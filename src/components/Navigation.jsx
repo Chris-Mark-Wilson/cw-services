@@ -29,6 +29,10 @@ export const Navigation = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/kitchens">Kitchens</Nav.Link>
+            <Nav.Link href="/bathrooms">Bathrooms</Nav.Link>
+            <Nav.Link href="/lettings">Lettings</Nav.Link>
+            <Nav.Link href="/outbuildings">Outbuildings</Nav.Link>
 
             <NavDropdown
               title="
@@ -36,8 +40,16 @@ export const Navigation = () => {
               id="basic-nav-dropdown"
             >
               <NavDropdown.Item href="/plastering">Plastering</NavDropdown.Item>
+              <NavDropdown.Item href="/joinery">Joinery</NavDropdown.Item>
+              <NavDropdown.Item href="/plumbing">Plumbing</NavDropdown.Item>
+              <NavDropdown.Item href="/tiling">Tiling</NavDropdown.Item>
+              <NavDropdown.Item href="/decorating">Decorating</NavDropdown.Item>
+              <NavDropdown.Item href="/maintenance">Reactive maintenance</NavDropdown.Item>
             </NavDropdown>
+
+
             <Nav.Link href="/contact">Contact</Nav.Link>
+
           </Nav>
         </Navbar.Collapse>
       </Container>
