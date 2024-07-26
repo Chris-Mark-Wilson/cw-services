@@ -11,6 +11,11 @@
   text-align: center;
   /* border:10px solid green; */
 }
+p{
+  display:inline-block;
+  text-align: justify;
+  margin:0 10px 0 20px;
+}
 
 .page{
   /* box-shadow: 10px 5px 5px grey; */
@@ -56,12 +61,7 @@ a{
   width:100%;
   max-width:100%;
 }
-.picture-card p{
-  display:inline-block;
- text-align: justify;
-  margin:0 10px 0 20px;
 
-}
 
 /* classes for fade in effect */
 .fade-in {
@@ -82,6 +82,10 @@ a{
   max-height:300px;
  width:auto;
 }
+.card-picture:hover{
+  box-shadow: 10px 5px 5px #747bff;
+  transform:scale(1.5);
+}
 
 
 .carousel-card{
@@ -100,6 +104,10 @@ a{
   margin:0 auto;
   height:300px;
   width:auto;
+}
+.carousel-card img:hover{
+  box-shadow: 10px 5px 5px #747bff;
+  transform:scale(1.5);
 }
 
 
@@ -122,10 +130,14 @@ a{
     margin:10px auto;
   }
   .card-picture{
+    
     margin:0 auto;
     height:auto;
     width:100%;
   }
+
+
+
   .carousel-card img{
     border-radius: 10px;
   
@@ -139,8 +151,6 @@ a{
     padding:0;
     position:absolute;
     top:105px;
- /* background-color:lightgrey; */
-    /* color:black; */
     display:flex;
     justify-content: center;
     margin:10px auto;

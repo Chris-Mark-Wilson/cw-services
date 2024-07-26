@@ -34,7 +34,7 @@ export const AboutMe=()=>{
         </section>
         <hr/>
         <section className="picture-card">
-            <p>I'm a dog person. Thats me with my nutcase of a pooch in 2018. Sadly he died of cancer in 2019 and I havent had the heart to replace him. I think I have an affinity with most animals but especially dogs. You always know where you are with a dog.</p>
+            <p>I'm a dog person. Thats me with my nutcase of a pooch, Yogi, in 2018. Sadly he died of cancer in 2019 and I havent had the heart to replace him. I think I have an affinity with most animals but especially dogs. You always know where you are with a dog.</p>
                 <img ref={ref3} className={`card-picture fade-in ${isVisible3 ? 'visible' : ''}`}  src="./pictures/me-and-yogi.jpg" alt="Chris Wilson with his dog" title="My dog yogi and I, sadly he died from cancer in 2019" />
         </section>
         <hr/>
