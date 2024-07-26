@@ -24,7 +24,7 @@ export const Navigation = () => {
       className="nav-bar"
     >
       <Container className="navbar-container">
-        <Navbar.Brand href="#home">CW Services</Navbar.Brand>
+        <Navbar.Brand href="#home" className='logo'>CW Services</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

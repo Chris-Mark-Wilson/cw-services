@@ -1,3 +1,7 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&display=swap');
+
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -11,23 +15,41 @@
   text-align: center;
   /* border:10px solid green; */
 }
+
+.logo{
+  font-family: "Rubik Doodle Shadow", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+  margin:0 10px;
+  padding:0;
+  
+}
+.navbar-container{
+ border:1px solid black;
+ border-radius:5px;
+  max-width:95%;
+}
 p{
   display:inline-block;
   text-align: justify;
-  margin:0 10px 0 20px;
+  margin:0 10px 0 10px;
 }
 
 .page{
-  /* box-shadow: 10px 5px 5px grey; */
+  margin:0 auto;
+
+box-sizing: border-box;
   padding:0 20px;
   display:flex;
   flex-direction: column;
   height:fit-content;
-  width:95%;
+  max-width:100%;
 
   
 }
 .page h5{
+ 
   display:flex;
   margin:10px auto 10px 50px;
   
@@ -110,9 +132,23 @@ a{
   transform:scale(1.5);
 }
 
+.footer{
+  display:flex;
+  justify-content: center;
+  margin:0 auto;
+  padding:10px 0;
+  height:fit-content;
+  width:100%;
+  max-width:100%;
+}
 
 
 @media screen and (max-width: 600px) {
+  .logo{
+    font-size: 1.5rem;
+    padding:0;
+    margin:0;
+  }
   .picture-card{
     display:flex;
     flex-direction: column;
