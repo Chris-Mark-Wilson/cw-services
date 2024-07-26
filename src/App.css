@@ -116,8 +116,9 @@ a{
     max-width:100%;
   }
   .picture-card p{
-    display:flex;
-    justify-content: center;
+    width:100%;
+    display:inline-block;
+    text-align: justify;
     margin:10px auto;
   }
   .card-picture{
