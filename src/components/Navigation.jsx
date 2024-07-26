@@ -52,6 +52,7 @@ export const Navigation = () => {
 
 
             <Nav.Link href="/contact">Contact</Nav.Link>
+            <Nav.Link href="/glossary">Glossary</Nav.Link>
 
           </Nav>
         </Navbar.Collapse>

@@ -39,20 +39,28 @@
   justify-content: center;
   margin:0 auto;
 }
+a{
+  display:inline;
+  text-decoration: none;
+  color: #213547;
+}
 .picture-card{
   display:flex;
+  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
   margin:10px auto;
   padding:10px 30px 10px 30px;
-  height:300px;
+  height:fit-content;
+  
   width:100%;
   max-width:100%;
 }
 .picture-card p{
-  display:flex;
-  justify-content: center;
-  margin:0 10px 0 10px;
+  display:inline-block;
+ text-align: justify;
+  margin:0 10px 0 20px;
+
 }
 
 /* classes for fade in effect */
@@ -71,9 +79,30 @@
   display:flex;
   justify-content: center;
   margin:0 auto;
-  height:100%;
+  max-height:300px;
  width:auto;
 }
+
+
+.carousel-card{
+  display:flex;
+  /* justify-content: center; */
+  margin:10px auto;
+  height:300px;
+  width:auto;
+}
+
+.carousel-card img{
+  border-radius: 10px;
+
+  display:flex;
+  justify-content: center;
+  margin:0 auto;
+  height:300px;
+  width:auto;
+}
+
+
 
 @media screen and (max-width: 600px) {
   .picture-card{
@@ -92,11 +121,28 @@
     margin:10px auto;
   }
   .card-picture{
-   
-
     margin:0 auto;
     height:auto;
     width:100%;
+  }
+  .carousel-card img{
+    border-radius: 10px;
+  
+    display:flex;
+    justify-content: center;
+    margin:0 auto;
+    height:auto;
+    width:100%;
+  }
+  .carousel-card .caption {
+    padding:0;
+    position:absolute;
+    top:105px;
+ /* background-color:lightgrey; */
+    /* color:black; */
+    display:flex;
+    justify-content: center;
+    margin:10px auto;
   }
   
 }

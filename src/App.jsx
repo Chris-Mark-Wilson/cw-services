@@ -12,9 +12,11 @@ import { Bathrooms } from "./pages/Bathrooms.jsx";
 import { Lettings } from "./pages/Lettings.jsx";
 import { AboutMe } from "./pages/AboutMe.jsx";
 import { WebDev } from "./pages/WebDev.jsx";
+import { Glossary } from "./pages/Glossary.jsx";
 
 import { Contact } from "./pages/Contact.jsx";
 import { Navigation } from "./components/Navigation.jsx";
+import { Footer } from "./components/Footer.jsx";
 import "./App.css";
 
 function App() {
@@ -36,7 +38,9 @@ function App() {
         <Route path ="/lettings" element={<Lettings/>} />
         <Route path="/webdev" element={<WebDev />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path='/glossary' element={<Glossary/>}/>
       </Routes>
+      <Footer/>
     </>
   );
 }
