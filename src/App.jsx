@@ -10,6 +10,7 @@ import { Maintenance } from "./pages/Maintenance.jsx";
 import { Kitchens } from "./pages/Kitchens.jsx";
 import { Bathrooms } from "./pages/Bathrooms.jsx";
 import { Lettings } from "./pages/Lettings.jsx";
+import { AboutMe } from "./pages/AboutMe.jsx";
 
 import { Contact } from "./pages/Contact.jsx";
 import { Navigation } from "./components/Navigation.jsx";
@@ -21,6 +22,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/aboutme" element={<AboutMe />} />
         <Route path="/plastering" element={<Plastering />} />
         <Route path="/joinery" element={<Joinery />} />
         <Route path="/plumbing" element={<Plumbing />} />{" "}

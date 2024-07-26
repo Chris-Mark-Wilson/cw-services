@@ -24,11 +24,12 @@ export const Navigation = () => {
       className="nav-bar"
     >
       <Container className="navbar-container">
-        <Navbar.Brand href="#home">CW Property Services</Navbar.Brand>
+        <Navbar.Brand href="#home">CW Services</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/aboutme">About Me</Nav.Link>
             <Nav.Link href="/kitchens">Kitchens</Nav.Link>
             <Nav.Link href="/bathrooms">Bathrooms</Nav.Link>
             <Nav.Link href="/lettings">Lettings</Nav.Link>
