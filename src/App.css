@@ -40,7 +40,7 @@ p{
   margin:0 auto;
 
 box-sizing: border-box;
-  padding:0 20px;
+  padding:0 10px;
   display:flex;
   flex-direction: column;
   height:fit-content;
@@ -63,6 +63,7 @@ box-sizing: border-box;
 }
 .description{
   display:flex;
+  flex-direction:column;
   justify-content: center;
   margin:0 auto;
 }
@@ -72,6 +73,7 @@ a{
   color: #213547;
 }
 .picture-card{
+  /* border:1px solid red; */
   display:flex;
   flex-wrap: nowrap;
   justify-content: space-between;
@@ -130,6 +132,19 @@ a{
 .carousel-card img:hover{
   box-shadow: 10px 5px 5px #747bff;
   transform:scale(1.5);
+}
+
+.case-study{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  border:1px solid black;
+  border-radius:10px;
+  /* margin:10px auto;
+  padding:10px 30px 10px 30px; */
+  height:fit-content;
+  width:100%;
+  max-width:100%;
 }
 
 .footer{
