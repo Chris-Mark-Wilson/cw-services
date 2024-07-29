@@ -16,7 +16,7 @@ export const Kitchens = () => {
 
 
     return (
-        <div className='page'>
+    <div className='page'>
         <h5>Kitchens</h5>
         <section className='description'><p>They say the kichen is what sells a house. I tend to agree. I think what makes a good kitchen is not how fancy it looks, or how expensive the materials were to purchase, but how well it actually works. What I mean by that is 'is it ergonomic?' 'are you falling over yourself when under pressure? or does the work flow smoothly from place to place?'. Importantly, where is the <span style={{fontStyle:'italic'}}>bin?</span></p>
         <p>That said, all being present and correct, it does come down to quality. Quality of materials, and quality of workmanship. Not all kitchen carcassing is the same, and a decent fitter is worth his weight in gold. Also, how you go about the job in the first place counts massively towards the final finish. Would you want to come and plaster the walls of a kitchen after all the shiny new units have been fitted? Would you rather spend a little bit more to install extra electrical outlets, and possibly some extra undercabinet lighting <span style={{fontStyle:'italic'}}>before</span> the kitchen gets fitted or after? Why not paint the walls and ceiling <span style={{fontStyle:'italic'}}>before</span> the fitter turns up?</p><p>Kitchens, like a really good dish, take a lot of thought, and <span style={{fontStyle:'italic'}}>planning!</span></p><p>Prep -{'>'} Cook -{'>'} Wash, they call it 'The work triangle'...</p>
@@ -45,8 +45,30 @@ export const Kitchens = () => {
             <p>The next job was to completely rewire the kitchen. A new kitchen 'ring' was installed, on its own breaker in the consumer unit, to allow for the extra power drain that modern living demands. You wouldnt want to trip the existing 'main house ring' while using the kettle, washing machine, grill and toaster all at the same time, just before you have to leave for work. Provision was made at this point for under-cabinet lighting, safe and accessible isolators for the washing machine and new oven/hob/extractor. Cables were also run for 4 LED spotlights in the ceiling and the lightswitch was moved to a more accessible point. A new consumer unit was also installed complying with 18th edition revision 2 electrical regulations as the old one wasn't up to the job anymore.</p>
             </section>
 
+            
+            <hr/>
 
+            <section className='picture-card'>
+            <img ref={ref3} className={`card-picture fade-in ${isVisible3 ? 'visible' : ''}`}  src="./pictures/my-kitchen-electrical.jpg" alt="first fix electrical work" title="First fix electrical work" />
+            <p>The next job was to completely rewire the kitchen. A new kitchen 'ring' was installed, on its own breaker in the consumer unit, to allow for the extra power drain that modern living demands. You wouldnt want to trip the existing 'main house ring' while using the kettle, washing machine, grill and toaster all at the same time, just before you have to leave for work. Provision was made at this point for under-cabinet lighting, safe and accessible isolators for the washing machine and new oven/hob/extractor. Cables were also run for 4 LED spotlights in the ceiling and the lightswitch was moved to a more accessible point. A new consumer unit was also installed complying with 18th edition revision 2 electrical regulations as the old one wasn't up to the job anymore.</p>
+            </section>
+
+            <hr/>
+
+            <section className='picture-card'>
+            <img ref={ref4} className={`card-picture fade-in ${isVisible4 ? 'visible' : ''}`}  src="./pictures/my-kitchen-electrical.jpg" alt="first fix electrical work" title="First fix electrical work" />
+            <p>So bad, I’m so good that I’m so bad. Guarantee I’ll be the greatest thing you ever had. ‘Cause you ain't never met nobody like me. And you ain't gonna wanna fuck nobody else again. I'ma make you learn to appreciate me, differentiate me. From these phony, little fishy and sissy fake G’s. Skip over the "huggy bear," and all the "kissy face," please.Bagpipes from Baghdad. What's going through my mind. Half the time, when I rhyme, or blowing up like. Bagpipes from Baghdad. Somebody turn the vacancy sign on. 'Cause I'm gone, blowing on my. Bagpipes from Baghdad. I run the streets. And act like a madman holding a Glad.</p>
+            </section>
+
+            <hr/>
+
+            <section className='picture-card'>
+            <img ref={ref5} className={`card-picture fade-in ${isVisible5 ? 'visible' : ''}`}  src="./pictures/my-kitchen-electrical.jpg" alt="first fix electrical work" title="First fix electrical work" />
+            <p>So bad, I’m so good that I’m so bad. Guarantee I’ll be the greatest thing you ever had. ‘Cause you ain't never met nobody like me. And you ain't gonna wanna fuck nobody else again. I'ma make you learn to appreciate me, differentiate me. From these phony, little fishy and sissy fake G’s. Skip over the "huggy bear," and all the "kissy face," please.Bagpipes from Baghdad. What's going through my mind. Half the time, when I rhyme, or blowing up like. Bagpipes from Baghdad. Somebody turn the vacancy sign on. 'Cause I'm gone, blowing on my. Bagpipes from Baghdad. I run the streets. And act like a madman holding a Glad.</p>
+            </section>
+        {/*end case study*/}
         </section>
-        </div>
+    {/*end page*/}
+    </div>
     );
     }
