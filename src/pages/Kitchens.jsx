@@ -1,6 +1,8 @@
 
 import { PictureCard } from '../components/PictureCard.jsx';
 import { CarouselCard } from '../components/CarouselCard.jsx';
+import { LargeCarousel } from '../components/LargeCarousel.jsx';
+import { Accordion } from 'react-bootstrap';
 
 import '../App.css';
 
@@ -13,11 +15,11 @@ export const Kitchens = () => {
             <p>They say the kichen is what sells a house. I think what makes a good kitchen is how well it actually works. Where is the <span style={{fontStyle:'italic'}}>bin?</span></p>
         <br/>
             <p style={{textAlign:'center'}}>Kitchens, like a really good dish, take a lot of thought, and <span style={{fontStyle:'italic'}}>planning!</span></p>
-            <br/>
+           
             <div className="triangle-container">
-                <div className="triangle-face top">Prep</div>
                 <div className="triangle-face left">Cook</div>
                 <div className="triangle-face right">Wash</div>
+                <div className="triangle-face top">Prep</div>
             </div>
             <p style={{textAlign:'center'}}>They call it the work triangle...</p>
             <br/>
@@ -25,9 +27,63 @@ export const Kitchens = () => {
         <br/>
         <br/>
         </section>
+        <LargeCarousel  
+        images={[
+            './pictures/kitchen-farooq-castor-during.jpg',
+            './pictures/farooq-kitchen-castor2.jpg',
+            './pictures/farooq-kitchen-castor.jpg',
+            './pictures/farooq-kitchen.jpg',
+            './pictures/farooqs-mum-kitchen1.jpg',
+            './pictures/farooqs-mum-kitchen2.jpg',
+            './pictures/lettings-bringhurst-kitchen1.jpg',
+            './pictures/lettings-bringhurst-kitchen2.jpg',
+            './pictures/kitchen-godmanchester-after.jpg',
+            './pictures/kitchen-godmanchester-after2.jpg',
+            './pictures/kitchen-godmanchester-undersink.jpg',
+            './pictures/cambridge-conversion-utility.jpg',
+            './pictures/cambridge-conversion-utility2.jpg',
+            './pictures/cambridge-conversion-utility-under-sink.jpg',
+            './pictures/cambridge-conversion-utility-under-sink2.jpg',
+            './pictures/lettings-kitchen.jpg',
+            './pictures/lettings-kitchen-ravensthorpe.jpg',
+            './pictures/lettings-kitchen-welland.jpg',
+            './pictures/lettings-worktop-sherringham.jpg',
+            './pictures/toms-kitchen.jpg',
+            './pictures/toms-island.jpg'
+        ]}
+        captions={[
+            'Large tewksbury oak kitchen by Howdens',
+            'Large tewksbury oak kitchen by Howdens', 
+            'Large tewksbury oak kitchen by Howdens',
+            'B and Q white gloss kitchen',
+            'Large gloss grey kitchen with laminate splashback by Wren',
+            'Large gloss grey kitchen with laminate splashback by Wren',
+            'Large gloss cashmere handleless kitchen by Magnet',
+            'Large gloss cashmere handleless kitchen by Magnet',
+            'Handmade gloss grey handless kitchen',
+            'Handmade gloss grey handless kitchen',
+            'Tidy undersink plumbing',
+            'Cream shaker utility room',
+            'Cream shaker utility room',
+            'Tidy undersink plumbing',
+            'Undersink water heater',
+            'B and Q budget kitchen',
+            'B and Q budget kitchen',
+            'B and Q budget kitchen',
+            'Worktop and hob change, with new sink and tap',
+            'Stylish White and grey kitchen with oak worktop and plinth lights from Benchmarx',
+            'Island addition 3 years later'
+
+
+        ]}
+        />
+        <p style={{margin:'0 auto'}}>All these kitchens were fitted by myself. Some were part of a full house refurb, others kitchen fit only.</p>
 
         <hr/>
-
+        <Accordion >
+            <Accordion.Item eventKey={0}>
+                <Accordion.Header bsPrefix={'accordian-headers'}>Case study</Accordion.Header>
+                <Accordion.Body>
         <section className='case-study'>
             <h6>Case Study</h6>
 
@@ -121,18 +177,16 @@ export const Kitchens = () => {
             imageUris={{0:'./pictures/my-kitchen-after1.jpg',1:'./pictures/my-kitchen-after2.jpg',2:'./pictures/my-kitchen-window.jpg',3:'./pictures/my-kitchen-boiler.jpg'}}
             alts={{0:'Finished kitchen',1:'Finished kitchen',2:'Finished kitchen',3:'Finished kitchen'}}
             />
-    {/* `        <section className='picture-card'>
-                       <img ref={ref11} className={`card-picture fade-in ${isVisible11 ? 'visible' : ''}`}  src="./pictures/my-kitchen-after1.jpg" alt="Finished kitchen" title="Finished kitchen" />
-                       <img ref={ref12} className={`card-picture fade-in ${isVisible12 ? 'visible' : ''}`}  src="./pictures/my-kitchen-after2.jpg" alt="Finished kitchen" title="Finished kitchen" />
-                       <img ref={ref13} className={`card-picture fade-in ${isVisible13 ? 'visible' : ''}`}  src="./pictures/my-kitchen-window.jpg" alt="Finished kitchen" title="Finished kitchen" />
-                       <img ref={ref14} className={`card-picture fade-in ${isVisible14 ? 'visible' : ''}`}  src="./pictures/my-kitchen-boiler.jpg" alt="Finished kitchen" title="Finished kitchen" />
-            </section>` */}
+ 
 
             <p>I carried out 99% of the work myself (everything bar the boiler position change and the 2nd fix electrical). The homeowner was an absolute star who gave me free reign to design and implement the change. The tennant was over the moon with the results. He should be, it's me. It's my kitchen.</p>
             <br/>
             <br/>
         {/* end case study */} 
         </section>
+        </Accordion.Body>
+        </Accordion.Item>
+        </Accordion>
     {/*end page*/}
     </div>
     );

@@ -2,7 +2,7 @@ import { ControlledCarousel } from "./ControlledCarousel"
 
 //takes in arrays of image uri's, captions, and  2 paragraphs as props
 export const CarouselCard = ({ images=[], captions=[],paragraphs=[] }) => {
-    return (<section className='carousel-card'>
+    return (<section className='carousel-card large-card'>
         <p>{paragraphs[0]}</p>
         <ControlledCarousel images={[...images]} captions={[...captions]} slide={true} fade={true} />
         <p>{paragraphs[1]}</p>

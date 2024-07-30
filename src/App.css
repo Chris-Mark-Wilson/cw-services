@@ -91,23 +91,57 @@ a{
 
 .triangle-face.top {
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 25%;
+
+  transform:translateY(200%);
 }
 
 .triangle-face.left {
   bottom: 0;
-  left: 0;
-  transform: translateY(-50%) rotate(-60deg);
+  left: 10%;
+  
+  transform: translateY(-70%) rotate(-50deg);
   transform-origin: left bottom;
 }
 
 .triangle-face.right {
   bottom: 0;
-  right: 0;
-  transform: translateY(-50%) rotate(60deg);
+  right: 15%;
+  transform: translateY(-70%) rotate(50deg);
   transform-origin: right bottom;
 }
+.large-carousel{
+  /* border:10px solid green; */
+  display:flex;
+align-items: center;
+  margin:10px auto;
+  height:500px;
+  width:auto;
+  max-width:100%;
+}
+.large-carousel img{
+  border-radius: 10px;
+  box-shadow:10px 5px 5px grey;
+  display:flex;
+  justify-content: center;
+  margin:0 auto;
+  max-height:500px;
+  width:auto;
+  max-width:100%;
+}
+.large-carousel-container{
+  display:flex;
+
+  flex-direction: column;
+  justify-content: center;
+  margin:0 auto;
+  /* padding:10px 0; */
+  height:fit-content;
+  width:100%;
+  max-width:100%;
+ 
+}
+
 .picture-card{
   /* border:1px solid red; */
   display:flex;
@@ -214,6 +248,37 @@ align-items: center;
   width:100%;
   max-width:100%;
 }
+
+/* .accordian-headers{
+  background-color: blueviolet;
+} */
+ .accordian-headers{
+  border-radius:10px;
+  
+  margin:0;
+}
+/* .accordian-headers button {
+  border-radius:10px;
+  border:1px solid rgb(29, 203, 44);
+  background-color:rgb(37, 114, 40);
+  color: white;
+
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+} */
+
+.accordian-headers button:not(.collapsed) {
+
+  background-color:rgb(176, 160, 210)
+}
+.accordian-headers button.collapsed {
+  
+  background-color:rgb(124, 103, 167)
+}
+
 
 
 @media screen and (max-width: 900px) {

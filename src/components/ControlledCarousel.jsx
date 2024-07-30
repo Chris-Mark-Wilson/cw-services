@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Carousel, CarouselCaption } from "react-bootstrap";
 
-export const ControlledCarousel = ({ images, captions,slide=true,fade=false }) => {
+export const ControlledCarousel = ({ images, captions,slide=true,fade=false, size='small' }) => {
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {
@@ -9,7 +9,7 @@ export const ControlledCarousel = ({ images, captions,slide=true,fade=false }) =
   };
 
   return (
-    <section className="carousel-container">
+    <section className={`carousel-container ${size==='large'?'large-carousel-container':''}`}>
       <Carousel activeIndex={index} onSelect={handleSelect} slide={slide} fade={fade}>
         {images.map((image, index) => (
           <Carousel.Item key={index}>
