@@ -3,7 +3,7 @@ import useVisibility from '../hooks/useVisibility';
 
 import '../App.css';
 
-export const PictureCard = ({ paragraphs, imageUris, alts }) => {
+export const PictureCard = ({ paragraphs={}, imageUris={}, alts={} }) => {
       const imageCounter =Object.values(imageUris).map((_, index) => index);
       const { refArray, visibleArray } = useVisibility(imageCounter);
       let children=[];

@@ -54,52 +54,47 @@ export const Kitchens = () => {
             alts={{1:'first fix electrical work'}}
             paragraphs={{0:'The next job was to completely rewire the kitchen. A new kitchen \'ring\' was installed, on its own breaker in the consumer unit, to allow for the extra power drain that modern living demands. You wouldnt want to trip the existing \'main house ring\' while using the kettle, washing machine, grill and toaster all at the same time, just before you have to leave for work. Provision was made at this point for under-cabinet lighting, safe and accessible isolators for the washing machine and new oven/hob/extractor. Cables were also run for 4 LED spotlights in the ceiling and the lightswitch was moved to a more accessible point. A new consumer unit was also installed complying with 18th edition revision 2 electrical regulations as the old one wasn\'t up to the job anymore.'}}
             />
-         {/*
+      
             <hr/>
 
             <PictureCard
-            image='./pictures/my-kitchen-building-works.jpg'
-            alt='new lintel installed'
-            imgPos={0}
-            children={["On completion of the re-wire, an aperture needed to be made to take the new window. As the window was on order, the internal skin was completed beforehand to the required specification with a new concrete internal lintel installed."]}
+            imageUris={{0:'./pictures/my-kitchen-building-works.jpg'}}
+            alts={{0:'new lintel installed'}}
+            paragraphs={{1:"On completion of the re-wire, an aperture needed to be made to take the new window. As the window was on order, the internal skin was completed beforehand to the required specification with a new concrete internal lintel installed."}}
             />
            
             <hr/>
-
+ 
             <PictureCard
-            image='./pictures/my-kitchen-window-fit1.jpg'
-            alt='plastering done'
-            imgPos={1}
-            children={['At this point the ceiling was insulated, plasterboarded and skimmed along with the adjacent walls, so now we are just awaiting the new window.']}
+            imageUris={{1:'./pictures/my-kitchen-window-fit1.jpg'}}
+            alts={{1:'plastering done'}}
+            paragraphs={{0:'At this point the ceiling was insulated, plasterboarded and skimmed along with the adjacent walls, so now we are just awaiting the new window.'}}
             />
        
             <hr/>
 
             <PictureCard
-            image='./pictures/my-kitchen-window-fit-2.jpg'
-            alt='uPvc window fitted'
-            imgPos={0}
-            children={['The window arrived 10 days after ordering. The external skin was removed and as it was originally this height with a brick arch, no lintel was needed so the window was fitted directly into the new aperture. The window design incorporated a bottom hinged open-in fanlight to aid in humidity control and allow for remote operation. The side hung sashes utilise a \'flying mullion\' design so both windows can be opened simultaneously for egress in the event of a fire.']}
+            imageUris={{0:'./pictures/my-kitchen-window-fit-2.jpg'}}
+            alts={{0:'uPvc window fitted'}}
+            paragraphs={{1:'The window arrived 10 days after ordering. The external skin was removed and as it was originally this height with a brick arch, no lintel was needed so the window was fitted directly into the new aperture. The window design incorporated a bottom hinged open-in fanlight to aid in humidity control and allow for remote operation. The side hung sashes utilise a \'flying mullion\' design so both windows can be opened      simultaneously for egress in the event of a fire.'}}
             />
-
+ 
             <hr/>
 
             <PictureCard
-            image='./pictures/my-kitchen-bare.jpg'
-            alt='kitchen painted'
-            imgPos={1}
-            children={["Once the window was finally installed, the window wall plastered and made good, the kitchen could now be painted before any further installation was carried out. The paint used was a 'scrubbable matt white' allowing for easy cleaning. Its always much easier to paint the kitchen at this point. Any damage during installation can be simply touched up later"]}
+            imageUris={{0:'./pictures/my-kitchen-bare.jpg'}}
+            alts={{0:'kitchen painted'}}
+            paragraphs={{1:"Once the window was finally installed, the window wall plastered and made good, the kitchen could now be painted before any further installation was carried out. The paint used was a 'scrubbable matt white' allowing for easy cleaning. Its always much easier to paint the kitchen at this point. Any damage during installation can be simply touched up later"}}
             />
          
             <hr/>
 
             <PictureCard
-            image='./pictures/my-kitchen-during.jpg'
-            alt='units fitted and walls tiled'
-            imgPos={0}
-            children={['The units and doors were standard B and Q \'off the shelf\' high gloss white handleless. To the right hand side the base units were reduced in depth while still having the depth to store most large items, a depth of roughly 400mm (16"). A stainless steel electric built-under double over / grill with a matching gas hob. A quality sink by franke was fitted with a tap by grohe and the tiles were again \'off-the-shelf\' white marble effect metro style from B and Q. The idea was to create as much storage space as possible so the right hand side wall units are 900mm tall whilst the left hand side wall units are standard 720mm to keep a regulation distance away from the gas hob. 2 Internal hidden premium drawers were installed in the cupboard to the left of the cooker for utensil storage and another besooke drawer was added underneath the oven for items like grill pans, baking trays etc. A small peice of black granite was sourced and cut to size for a robust window cill. An electric remote window opener was fitted to the top fanlight. This was later adapted to use a humidity sensor to control its operation automatically via zigbee Home Automation']}
+            imageUris={{1:'./pictures/my-kitchen-during.jpg'}}
+            alts={{1:'units fitted and walls tiled'}}
+            paragraphs={{0:'The units and doors were standard B and Q \'off the shelf\' high gloss white handleless. To the right hand side the base units were reduced in depth while still having the depth to store most large items, a depth of roughly 400mm (16"). A stainless steel electric built-under double over / grill with a matching gas hob. A quality sink by franke was fitted with a tap by grohe and the tiles were again \'off-the-shelf\' white marble effect metro style from B and Q. The idea was to create as much storage space as possible so the right hand side wall units are 900mm tall whilst the left hand side wall units are standard 720mm to keep a regulation distance away from the gas hob. 2 Internal hidden premium drawers were installed in the cupboard to the left of the cooker for utensil storage and another besooke drawer was added underneath the oven for items like grill pans, baking trays etc. A small peice of black granite was sourced and cut to size for a robust window cill. An electric remote window opener was fitted to the top fanlight. This was later adapted to use a humidity sensor to control its operation automatically via zigbee Home Automation'}}
             />
-            
+           
             <hr/>
 
             <CarouselCard
@@ -118,20 +113,25 @@ export const Kitchens = () => {
             />
        
             <hr/>
-
+ 
             <p>The finished Kitchen. Finally, any further boxing-in was done, a glass splashback fitted to the tiles above the hob. A blind was sourced and fitted and the boiler pipes were covered with bespoke doors to allow access for the boiler engineer and nothing actually touches the boiler. The undercabinet lighting is a simple LED strip operated from a switched fused spur. This wasn't a straghtforward installation due to the window and boiler requirements but I think you can agree, a lot more workspace is now available with the natural light now flooding in. A compact, modern kitchen. </p>
 
-    `        <section className='picture-card'>
+
+            <PictureCard
+            imageUris={{0:'./pictures/my-kitchen-after1.jpg',1:'./pictures/my-kitchen-after2.jpg',2:'./pictures/my-kitchen-window.jpg',3:'./pictures/my-kitchen-boiler.jpg'}}
+            alts={{0:'Finished kitchen',1:'Finished kitchen',2:'Finished kitchen',3:'Finished kitchen'}}
+            />
+    {/* `        <section className='picture-card'>
                        <img ref={ref11} className={`card-picture fade-in ${isVisible11 ? 'visible' : ''}`}  src="./pictures/my-kitchen-after1.jpg" alt="Finished kitchen" title="Finished kitchen" />
                        <img ref={ref12} className={`card-picture fade-in ${isVisible12 ? 'visible' : ''}`}  src="./pictures/my-kitchen-after2.jpg" alt="Finished kitchen" title="Finished kitchen" />
                        <img ref={ref13} className={`card-picture fade-in ${isVisible13 ? 'visible' : ''}`}  src="./pictures/my-kitchen-window.jpg" alt="Finished kitchen" title="Finished kitchen" />
                        <img ref={ref14} className={`card-picture fade-in ${isVisible14 ? 'visible' : ''}`}  src="./pictures/my-kitchen-boiler.jpg" alt="Finished kitchen" title="Finished kitchen" />
-            </section>`
+            </section>` */}
 
             <p>I carried out 99% of the work myself (everything bar the boiler position change and the 2nd fix electrical). The homeowner was an absolute star who gave me free reign to design and implement the change. The tennant was over the moon with the results. He should be, it's me. It's my kitchen.</p>
             <br/>
             <br/>
-        end case study */}
+        {/* end case study */} 
         </section>
     {/*end page*/}
     </div>
