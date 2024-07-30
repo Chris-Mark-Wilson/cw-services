@@ -10,7 +10,8 @@ export const Kitchens = () => {
     return (
     <div className='page'>
         <h5>Kitchens</h5>
-        <section className='description'><p>They say the kichen is what sells a house. I think what makes a good kitchen is how well it actually works. Where is the <span style={{fontStyle:'italic'}}>bin?</span></p>
+        <section className='description'>
+            <p>They say the kichen is what sells a house. I think what makes a good kitchen is how well it actually works. Where is the <span style={{fontStyle:'italic'}}>bin?</span></p>
         <br/>
             <p style={{textAlign:'center'}}>Kitchens, like a really good dish, take a lot of thought, and <span style={{fontStyle:'italic'}}>planning!</span></p>
             <br/>
