@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import React from 'react';
 const useVisibility = (elements) => {
-  
+
   const [visibleArray, setVisibleArray] = useState(new Array(elements.length).fill(false));
   const refArray = useRef(elements.map(() => React.createRef()));
 
@@ -24,6 +24,7 @@ const useVisibility = (elements) => {
       }
     });
 
+
     return () => {
       refArray.current.forEach((ref) => {
         if (ref.current) {
@@ -31,7 +32,7 @@ const useVisibility = (elements) => {
         }
       });
     };
-  }, [elements]);
+  }, []);
 
   return { refArray, visibleArray };
 };

@@ -8,10 +8,7 @@ export const PictureCard = ({ paragraphs, imageUris, alts }) => {
       const { refArray, visibleArray } = useVisibility(imageCounter);
       let children=[];
 
-      console.log(visibleArray,refArray);
-
-
-   //iterate through paragraphs using object.keys. Use the key to get the value and assign it to the children array using the key as the index
+ 
 
     Object.keys(paragraphs).forEach((key,index)=>{
       children.splice(key,0,(<p key={key}>{paragraphs[key]}</p>));
