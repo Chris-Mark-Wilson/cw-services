@@ -25,7 +25,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/aboutme" element={<AboutMe />} />
+        <Route path="aboutme" element={<AboutMe />} />
         <Route path="/plastering" element={<Plastering />} />
         <Route path="/joinery" element={<Joinery />} />
         <Route path="/plumbing" element={<Plumbing />} />{" "}
