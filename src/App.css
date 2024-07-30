@@ -129,6 +129,10 @@ align-items: center;
   width:auto;
   max-width:100%;
 }
+.large-carousel img:hover{
+
+  transform:scale(1.5);
+}
 .large-carousel-container{
   display:flex;
 
