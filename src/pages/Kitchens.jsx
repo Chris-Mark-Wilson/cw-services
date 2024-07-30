@@ -1,5 +1,4 @@
 
-import { ControlledCarousel } from '../components/ControlledCarousel.jsx';
 import { PictureCard } from '../components/PictureCard.jsx';
 import { CarouselCard } from '../components/CarouselCard.jsx';
 
