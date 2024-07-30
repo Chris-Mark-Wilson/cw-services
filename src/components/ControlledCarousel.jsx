@@ -9,7 +9,7 @@ export const ControlledCarousel = ({ images, captions,slide=true,fade=false }) =
   };
 
   return (
-    <section className="carousel-card">
+    <section className="carousel-container">
       <Carousel activeIndex={index} onSelect={handleSelect} slide={slide} fade={fade}>
         {images.map((image, index) => (
           <Carousel.Item key={index}>
