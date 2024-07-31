@@ -23,7 +23,7 @@ export const Kitchens = () => {
             </div>
             <p style={{textAlign:'center'}}>They call it the work triangle...</p>
             <br/>
-        <p>That said, all being present and correct, it does come down to quality. Quality of materials, and quality of workmanship.A decent fitter is worth his weight in gold. Also, how you go about the job in the first place counts massively towards the final finish. Would you want to come and plaster the walls of a kitchen after all the shiny new units have been fitted? Would you rather spend a little bit more to install extra electrical outlets, and possibly some extra undercabinet lighting <span style={{fontStyle:'italic'}}>before</span> the kitchen gets fitted or after? Why not paint the walls and ceiling <span style={{fontStyle:'italic'}}>before</span> the fitter turns up?</p>
+        <p>That said, all being present and correct, it does come down to quality. Quality of materials, and quality of workmanship.A decent fitter is worth his weight in gold. Also, how you go about the job in the first place counts massively towards the final finish. Would you want to come and plaster the walls of a kitchen after all the shiny new units have been fitted? Would you rather spend a little bit more to install extra electrical outlets, and possibly some extra undercabinet lighting <span style={{fontStyle:'italic'}}>before</span> the kitchen gets fitted or after? Why not paint the walls and ceiling <span style={{fontStyle:'italic'}}>before</span> the fitter turns up? See the case study below for a schedule example.</p>
         <br/>
         <br/>
         </section>
@@ -73,8 +73,6 @@ export const Kitchens = () => {
             'Worktop and hob change, with new sink and tap',
             'Stylish White and grey kitchen with oak worktop and plinth lights from Benchmarx',
             'Island addition 3 years later'
-
-
         ]}
         />
         <p style={{margin:'0 auto'}}>All these kitchens were fitted by myself. Some were part of a full house refurb, others kitchen fit only.</p>
