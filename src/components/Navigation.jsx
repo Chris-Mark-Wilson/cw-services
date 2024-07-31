@@ -35,7 +35,7 @@ export const Navigation = () => {
             <Nav.Link href="/lettings">Lettings</Nav.Link>
             <Nav.Link href="/outbuildings">Outbuildings</Nav.Link>
             <Nav.Link href="/webdev">Web Development</Nav.Link>
-
+            <Nav.Link href="/ha">Home Automation</Nav.Link>
             <NavDropdown
               title="
                 Services"

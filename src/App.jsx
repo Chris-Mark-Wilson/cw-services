@@ -12,6 +12,7 @@ import { Bathrooms } from "./pages/Bathrooms.jsx";
 import { Lettings } from "./pages/Lettings.jsx";
 import { AboutMe } from "./pages/AboutMe.jsx";
 import { WebDev } from "./pages/WebDev.jsx";
+import { HomeAutomation } from "./pages/HomeAutomation.jsx";
 import { Glossary } from "./pages/Glossary.jsx";
 
 import { Contact } from "./pages/Contact.jsx";
@@ -37,6 +38,7 @@ function App() {
         <Route path ="/bathrooms" element={<Bathrooms/>} />
         <Route path ="/lettings" element={<Lettings/>} />
         <Route path="/webdev" element={<WebDev />} />
+        <Route path="/ha" element={<HomeAutomation />} />
         <Route path="/contact" element={<Contact />} />
         <Route path='/glossary' element={<Glossary/>}/>
       </Routes>
