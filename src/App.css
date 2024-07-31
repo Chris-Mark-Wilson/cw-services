@@ -136,7 +136,7 @@ align-items: center;
 .large-carousel-container{
   display:flex;
 
-  flex-direction: column;
+  flex-direction: column; 
   justify-content: center;
   margin:0 auto;
   /* padding:10px 0; */
