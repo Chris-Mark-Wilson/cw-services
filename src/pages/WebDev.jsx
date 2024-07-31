@@ -33,11 +33,11 @@ export const WebDev = () => {
                 <img src='./pictures/screenshot-android-weather.jpg' className='sabotage' alt='screenshot of a weather app for android' title='Android weather, the obligatory weather app everyone writes after they learn how to code...'/>
                 </a>
 
-                <a href='https://nrthcoders-ncnews.onrender.com' target='_blank'className='webserver'>
+                <a href='https://chriswilsonncnews.netlify.app/' target='_blank'>
                 <img src="./pictures/screenshot-nc-news.png" className='webserver' alt="screenshot from NC News" title="Example news web app I created as part of my Northcoders training, can take a minute to load the database as it's hosted on a free site"/>
                 </a>
                
-                <a href='https://github.com/Chris-Mark-Wilson/trackme#readme' target='_blank' className='github'>
+                <a href='https://github.com/Chris-Mark-Wilson/safe-journey-2#readme' target='_blank' className='github'>
                 <img src='./pictures/screenshot-safe-journey.jpg' className='trackme' alt='screenshot from the safe journey app' title='Safe Journey is a lone person safety tracking app that gives your location to any friends that are logged in whilst you make your journey home. Created by a 6 person team as part of our northcoders training' />
                 </a>
             </section>
