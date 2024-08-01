@@ -141,6 +141,15 @@ export const ExternalJoinery = () => {
         />
         <br/>
         <hr/>
+        <PictureCard
+        imageUris={{0:'./pictures/bent-fence.jpg'
+
+        }}
+        alts={{}}
+        paragraphs={{1:'A curved post and rail featherlap fence on a sloping driveway'}}
+        />
+        <br/>
+        <hr/>
         </div>
     );
     }
