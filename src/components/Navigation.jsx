@@ -29,12 +29,18 @@ export const Navigation = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/aboutme">About Me</Nav.Link>
-            <Nav.Link href="/kitchens">Kitchens</Nav.Link>
-            <Nav.Link href="/bathrooms">Bathrooms</Nav.Link>
-            <Nav.Link href="/lettings">Lettings</Nav.Link>
-            <Nav.Link href="/outbuildings">Outbuildings</Nav.Link>
-            <Nav.Link href="/webdev">Web Development</Nav.Link>
+            <Nav.Link href="/aboutme">About</Nav.Link>
+            <NavDropdown
+              title="Inside"
+              id="basic-nav-dropdown"
+            >
+              <NavDropdown.Item href="/kitchens">Kitchens</NavDropdown.Item>
+              <NavDropdown.Item href="/bathrooms">Bathrooms</NavDropdown.Item>
+              <NavDropdown.Item href="/lettings">Lettings</NavDropdown.Item>
+            </NavDropdown>
+           
+            <Nav.Link href="/outside">Outside</Nav.Link>
+            <Nav.Link href="/webdev">Coding</Nav.Link>
             <Nav.Link href="/ha">Home Automation</Nav.Link>
             <NavDropdown
               title="

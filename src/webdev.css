@@ -33,21 +33,15 @@ max-width:100%;
 .webpage-description p{
     text-align:center;
 }
-.webserver {
+.webserver, .nc-news {
     z-index:1;
     width:50%;
     height:auto;
     transition:all 0.5s ease-in-out;
     
 }
-/* .webserver:hover {
-    position:absolute;
-    border:5px outset red;
-    width:100%;
-    left:0;
- 
-} */
-.trackme, .sabotage{
+
+.trackme, .sabotage, .safe-journey, .weather{
     
     z-index: 3;
     width:auto;
@@ -56,13 +50,28 @@ max-width:100%;
     --hover-left: 0px;
     --hover-right: 0px;
 }
-.trackme:hover, .sabotage:hover, .webserver:hover{
-    transform:scale(1.5) rotate(360deg);
-
+ .sabotage:hover {
+    transform:translateX(50%) scale(1.5);
+    clip-path: polygon(34% 6%, 51% 15%, 69% 6%, 85% 18%, 86% 35%, 98% 41%, 94% 58%, 98% 70%, 85% 77%, 96% 92%, 76% 98%, 59% 93%, 46% 96%, 33% 89%, 20% 98%, 13% 86%, 0% 75%, 11% 58%, 3% 50%, 18% 39%, 10% 23%, 12% 3%);
 }
-/* .sabotage{
-    
-} */
+.webserver:hover, .nc-news:hover{
+    transform:scale(1.5) rotate(720deg);
+    clip-path: circle(62.1% at 50% 50%);
+}
+.trackme:hover{
+    transform:translateX(-200%) scale(2);
+    border-radius:20px;
+}
+.safe-journey:hover{
+    transform:translateX(-50%) scale(1.5) rotate(-30deg);
+    border-radius:50%;
+}
+.weather:hover{
+    transform:rotate(50deg) translateX(150%) scale(1.5) translateY(-50%) rotate(-130deg) rotate(150deg);
+    /* transform:rotate(150deg); */
+  border-radius:20px;
+}
+
 
 .pre-footer {
     font-size:medium;
@@ -97,12 +106,16 @@ max-width:100%;
         margin:0 auto;
         max-width:100%;
     }
-    .webserver {
+    .webserver, .nc-news, .sabotage, .safe-journey, .weather, .trackme {
+     padding:10px auto;
+    }
+    .webserver, .nc-news {
         display:flex;
         flex-direction:column;
         justify-content: center;
         margin:0 auto;
         max-width:100%;
+        width:100%;
     }
     .trackme {
         display:flex;
