@@ -124,6 +124,23 @@ export const Bathrooms = () => {
             1:"With most of the budget spent on the kitchen, a complete retile would have been over budget. A cheaper option was to rake out and regrout the existing wall tiles, lower the ceiling and introduce extraction. With a new suite and heated floor tiles, this completely refreshed the bathroom and brought it up to modern standards ",
         }}
         />
+        <br/>
+        <hr/>
+          <p>Bathroom refurb Mrs Stirrup - Peterborough</p>
+          <p>B and Q Wall units were used to create the vanity units, with the rest of the worktop used for a funky bath panel. The concealed cistern keeps the area easy to clean. The ensuite was created in a similar manner</p>
+        <PictureCard
+        imageUris={{
+            0:'./pictures/scottys-mum-bathroom1.jpg',
+            1:'./pictures/scottys-mum-bathroom2.jpg',
+            2:'./pictures/scottys-mum-ensuite.jpg'
+        }}
+        alts={{}}
+        paragraphs={{}}
+        />
+        
+        <br/>
+        <hr/>
+        
         </div>
     );
     }
