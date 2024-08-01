@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home.jsx";
-import { Outbuildings } from "./pages/Outbuildings.jsx";
-import { Plastering } from "./pages/Plastering.jsx";
-import { Decorating } from "./pages/Decorating.jsx";
-import { Joinery } from "./pages/Joinery.jsx";
-import { Plumbing } from "./pages/Plumbing.jsx";
-import { Tiling } from "./pages/Tiling.jsx";
-import { Maintenance } from "./pages/Maintenance.jsx";
+
+import { Plastering } from "./pages/services/Plastering.jsx";
+import { Decorating } from "./pages/services/Decorating.jsx";
+import { Joinery } from "./pages/services/Joinery.jsx";
+import { Plumbing } from "./pages/services/Plumbing.jsx";
+import { Tiling } from "./pages/services/Tiling.jsx";
+import { Maintenance } from "./pages/services/Maintenance.jsx";
 import { Kitchens } from "./pages/Kitchens.jsx";
 import { Bathrooms } from "./pages/Bathrooms.jsx";
 import { Lettings } from "./pages/Lettings.jsx";
@@ -14,7 +14,10 @@ import { AboutMe } from "./pages/AboutMe.jsx";
 import { WebDev } from "./pages/WebDev.jsx";
 import { HomeAutomation } from "./pages/HomeAutomation.jsx";
 import { Glossary } from "./pages/Glossary.jsx";
-
+import { ExternalJoinery } from "./pages/ExternalJoinery.jsx";
+import { ExternalMasonary } from "./pages/ExternalMasonary.jsx";
+import { Rendering } from "./pages/Rendering.jsx";
+import { Glazing } from "./pages/services/Glazing.jsx";
 import { Contact } from "./pages/Contact.jsx";
 import { Navigation } from "./components/Navigation.jsx";
 import { Footer } from "./components/Footer.jsx";
@@ -33,10 +36,13 @@ function App() {
         <Route path="/tiling" element={<Tiling />} />{" "}
         <Route path="/decorating" element={<Decorating />} />{" "}
         <Route path="/maintenance" element={<Maintenance />} />{" "}
-        <Route path="/outbuildings" element={<Outbuildings />} />
+        <Route path="/externaljoinery" element={<ExternalJoinery />} />
+        <Route path="/externalmasonary" element={<ExternalMasonary />} />
+        <Route path="/rendering" element={<Rendering />} />
         <Route path ="/kitchens" element={<Kitchens/>} />
         <Route path ="/bathrooms" element={<Bathrooms/>} />
         <Route path ="/lettings" element={<Lettings/>} />
+        <Route path="/glazing" element={<Glazing />} />
         <Route path="/webdev" element={<WebDev />} />
         <Route path="/ha" element={<HomeAutomation />} />
         <Route path="/contact" element={<Contact />} />

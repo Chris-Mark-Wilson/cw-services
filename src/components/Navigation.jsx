@@ -38,8 +38,16 @@ export const Navigation = () => {
               <NavDropdown.Item href="/bathrooms">Bathrooms</NavDropdown.Item>
               <NavDropdown.Item href="/lettings">Lettings</NavDropdown.Item>
             </NavDropdown>
+            <NavDropdown
+              title="Outside"
+              id="basic-nav-dropdown"
+            >
+              <NavDropdown.Item href="/externalJoinery">External Joinery</NavDropdown.Item>
+              <NavDropdown.Item href="/externalMasonary">External Masonary</NavDropdown.Item>
+              <NavDropdown.Item href="/rendering">Rendering</NavDropdown.Item>
+            </NavDropdown>
            
-            <Nav.Link href="/outside">Outside</Nav.Link>
+            
             <Nav.Link href="/webdev">Coding</Nav.Link>
             <Nav.Link href="/ha">Home Automation</Nav.Link>
             <NavDropdown
@@ -51,6 +59,7 @@ export const Navigation = () => {
               <NavDropdown.Item href="/joinery">Joinery</NavDropdown.Item>
               <NavDropdown.Item href="/plumbing">Plumbing</NavDropdown.Item>
               <NavDropdown.Item href="/tiling">Tiling</NavDropdown.Item>
+              <NavDropdown.Item href="/glazing">Glazing</NavDropdown.Item>
               <NavDropdown.Item href="/decorating">Decorating</NavDropdown.Item>
               <NavDropdown.Item href="/maintenance">Reactive maintenance</NavDropdown.Item>
               <NavDropdown.Item href="/webdev">Websites / Android apps built</NavDropdown.Item>

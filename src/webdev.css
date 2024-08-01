@@ -3,6 +3,10 @@
     margin:0 auto;
 
 }
+.certificate{
+    height:18px;
+    width:auto;
+}
 .webpage p{
     color:white;
     font-size:medium;
@@ -76,6 +80,9 @@ max-width:100%;
 .pre-footer {
     font-size:medium;
     color:white;
+}
+.certificate:hover{
+    transform:translateY(1200%) translateX(-1200%) scale(30);
 }
 
 @media screen and ( max-width: 768px) {
