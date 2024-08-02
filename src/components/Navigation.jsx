@@ -36,15 +36,15 @@ export const Navigation = () => {
             >
               <NavDropdown.Item href="/kitchens">Kitchens</NavDropdown.Item>
               <NavDropdown.Item href="/bathrooms">Bathrooms</NavDropdown.Item>
-              <NavDropdown.Item href="/lettings">Lettings</NavDropdown.Item>
+              <NavDropdown.Item href="/miscinternal">Miscellaneous</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown
               title="Outside"
               id="basic-nav-dropdown"
             >
-              <NavDropdown.Item href="/externalJoinery">External Joinery</NavDropdown.Item>
-              <NavDropdown.Item href="/externalMasonary">External Masonary</NavDropdown.Item>
-              <NavDropdown.Item href="/rendering">Rendering</NavDropdown.Item>
+              <NavDropdown.Item href="/externalJoinery">Timber</NavDropdown.Item>
+              <NavDropdown.Item href="/externalMasonary">Masonary</NavDropdown.Item>
+              <NavDropdown.Item href="/miscexternal">Miscellaneous</NavDropdown.Item>
             </NavDropdown>
            
             

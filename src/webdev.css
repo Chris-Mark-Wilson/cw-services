@@ -18,7 +18,7 @@
 .webpage-links{
     padding:5px 20px 5px 20px;
     display:flex;
-    border:5px groove red;
+    
     border-radius:15px;
 justify-content: space-around;
 align-items: center;
@@ -56,22 +56,22 @@ max-width:100%;
 }
  .sabotage:hover {
     transform:translateX(50%) scale(1.5);
-    clip-path: polygon(34% 6%, 51% 15%, 69% 6%, 85% 18%, 86% 35%, 98% 41%, 94% 58%, 98% 70%, 85% 77%, 96% 92%, 76% 98%, 59% 93%, 46% 96%, 33% 89%, 20% 98%, 13% 86%, 0% 75%, 11% 58%, 3% 50%, 18% 39%, 10% 23%, 12% 3%);
+    /* clip-path: polygon(34% 6%, 51% 15%, 69% 6%, 85% 18%, 86% 35%, 98% 41%, 94% 58%, 98% 70%, 85% 77%, 96% 92%, 76% 98%, 59% 93%, 46% 96%, 33% 89%, 20% 98%, 13% 86%, 0% 75%, 11% 58%, 3% 50%, 18% 39%, 10% 23%, 12% 3%); */
 }
 .webserver:hover, .nc-news:hover{
-    transform:scale(1.5) rotate(720deg);
-    clip-path: circle(62.1% at 50% 50%);
+    transform:scale(1.5) 
+    /* clip-path: circle(62.1% at 50% 50%); */
 }
 .trackme:hover{
-    transform:translateX(-200%) scale(2);
+    transform:translateX(-50%) scale(1.5) rotate(-20deg);
     border-radius:20px;
 }
 .safe-journey:hover{
-    transform:translateX(-50%) scale(1.5) rotate(-30deg);
-    border-radius:50%;
+    transform:translateX(-50%) scale(1.5) rotate(-20deg);
+    border-radius:20px;
 }
 .weather:hover{
-    transform:rotate(50deg) translateX(150%) scale(1.5) translateY(-50%) rotate(-130deg) rotate(150deg);
+    transform:rotate(20deg) scale(1.5) translateX(50%) ;
     /* transform:rotate(150deg); */
   border-radius:20px;
 }
@@ -80,6 +80,9 @@ max-width:100%;
 .pre-footer {
     font-size:medium;
     color:white;
+}
+.certificate{
+    transition:all 0.5s ease-in-out;
 }
 .certificate:hover{
     transform:translateY(1200%) translateX(-1200%) scale(30);

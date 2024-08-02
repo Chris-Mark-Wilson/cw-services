@@ -9,14 +9,14 @@ import { Tiling } from "./pages/services/Tiling.jsx";
 import { Maintenance } from "./pages/services/Maintenance.jsx";
 import { Kitchens } from "./pages/Kitchens.jsx";
 import { Bathrooms } from "./pages/Bathrooms.jsx";
-import { Lettings } from "./pages/Lettings.jsx";
+import { MiscInternal } from "./pages/MiscInternal.jsx";
 import { AboutMe } from "./pages/AboutMe.jsx";
 import { WebDev } from "./pages/WebDev.jsx";
 import { HomeAutomation } from "./pages/HomeAutomation.jsx";
 import { Glossary } from "./pages/Glossary.jsx";
 import { ExternalJoinery } from "./pages/ExternalJoinery.jsx";
 import { ExternalMasonary } from "./pages/ExternalMasonary.jsx";
-import { Rendering } from "./pages/Rendering.jsx";
+import { MiscExternal } from "./pages/MiscExternal.jsx";
 import { Glazing } from "./pages/services/Glazing.jsx";
 import { Contact } from "./pages/Contact.jsx";
 import { Navigation } from "./components/Navigation.jsx";
@@ -38,10 +38,10 @@ function App() {
         <Route path="/maintenance" element={<Maintenance />} />{" "}
         <Route path="/externaljoinery" element={<ExternalJoinery />} />
         <Route path="/externalmasonary" element={<ExternalMasonary />} />
-        <Route path="/rendering" element={<Rendering />} />
+        <Route path="/miscexternal" element={<MiscExternal />} />
         <Route path ="/kitchens" element={<Kitchens/>} />
         <Route path ="/bathrooms" element={<Bathrooms/>} />
-        <Route path ="/lettings" element={<Lettings/>} />
+        <Route path ="/miscinternal" element={<MiscInternal/>} />
         <Route path="/glazing" element={<Glazing />} />
         <Route path="/webdev" element={<WebDev />} />
         <Route path="/ha" element={<HomeAutomation />} />

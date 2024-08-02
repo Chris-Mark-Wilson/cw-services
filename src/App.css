@@ -211,6 +211,9 @@ align-items: center;
   width:100%;
   max-width:100%;
 }
+.carousel-card p{
+  max-width:450px;
+}
 .carousel-container{
   display:flex;
 

@@ -24,7 +24,7 @@ export const ExternalMasonary = () => {
             <PictureCard
         imageUris={{
     0:'./pictures/farooq-canopy3.jpg',
-    1:'./public/pictures/farooq-canopy2.jpg',
+    1:'./pictures/farooq-canopy2.jpg',
           }}
         alts={{}}
         paragraphs={{}}
