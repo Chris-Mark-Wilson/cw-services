@@ -1,6 +1,6 @@
 import PictureCard from "../components/PictureCard";
-import '../webdev.scss';
-import '../webdev.css'; 
+import '../css_files/webdev.scss';
+import '../css_files/webdev.css'; 
 
 export const WebDev = () => {
     return (

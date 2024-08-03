@@ -2,7 +2,7 @@ import {db,storage} from './firebase.js';
 import { collection, getDocs } from "firebase/firestore";
 import {ref, getDownloadURL ,listAll} from 'firebase/storage';
 
-
+//usage for storage bucket
 
 //takes a reference to an image in the storage bucket and returns the download url
 export const getUrl =(ref) =>{
@@ -40,7 +40,10 @@ const getPictureDownloadURL= async(ref)=>{
     }
     }
 
+// example usage for db
 
+//
+//
 export const getAllUsers=async()=>{
     try{
     const querySnapshot = await getDocs(collection(db, "users"));

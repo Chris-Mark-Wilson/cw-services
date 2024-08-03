@@ -25,7 +25,9 @@ import { Glazing } from "./pages/services/Glazing.jsx";
 import { Contact } from "./pages/Contact.jsx";
 import { Navigation } from "./components/Navigation.jsx";
 import { Footer } from "./components/Footer.jsx";
-import "./App.css";
+
+import {UploadImage} from "./components/UploadImage.jsx";
+import "./css_files/App.css";
 
 function App() {
   return (
@@ -51,6 +53,7 @@ function App() {
         <Route path="/ha" element={<HomeAutomation />} />
         <Route path="/contact" element={<Contact />} />
         <Route path='/glossary' element={<Glossary/>}/>
+        <Route path='/upload' element={<UploadImage/>}/>
       </Routes>
       <Footer/>
     </>

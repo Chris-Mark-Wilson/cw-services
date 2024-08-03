@@ -4,7 +4,7 @@ import { CarouselCard } from '../components/CarouselCard.jsx';
 import { LargeCarousel } from '../components/LargeCarousel.jsx';
 import { Accordion } from 'react-bootstrap';
 
-import '../App.css';
+import '../css_files/App.css';
 
 export const Kitchens = () => {
      

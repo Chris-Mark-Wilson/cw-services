@@ -8,12 +8,12 @@ import usePrefersColorScheme from "use-prefers-color-scheme";
 export const Navigation = () => {
   const [mode, setMode] = useState("light");
 
-  // const colorScheme = usePrefersColorScheme();
-  // useEffect(() => {
-  //   if (mode) {
-  //     setMode(colorScheme);
-  //   }
-  // }, [mode]);
+  const colorScheme = usePrefersColorScheme();
+  useEffect(() => {
+    if (mode) {
+      setMode(colorScheme);
+    }
+  }, [mode]);
 
   return (
     <Navbar
@@ -68,6 +68,7 @@ export const Navigation = () => {
 
             <Nav.Link href="/contact">Contact</Nav.Link>
             <Nav.Link href="/glossary">Glossary</Nav.Link>
+            <Nav.Link href="/upload">Upload</Nav.Link>
 
           </Nav>
         </Navbar.Collapse>
