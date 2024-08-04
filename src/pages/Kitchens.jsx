@@ -12,18 +12,7 @@ export const Kitchens = () => {
     <div className='page'>
         <h5>Kitchens</h5>
         <section className='description'>
-            <p>They say the kichen is what sells a house. I think what makes a good kitchen is how well it actually works. Where is the <span style={{fontStyle:'italic'}}>bin?</span></p>
-        <br/>
-            <p style={{textAlign:'center'}}>Kitchens, like a really good dish, take a lot of thought, and <span style={{fontStyle:'italic'}}>planning!</span></p>
-           
-            <div className="triangle-container">
-                <div className="triangle-face left">Cook</div>
-                <div className="triangle-face right">Wash</div>
-                <div className="triangle-face top">Prep</div>
-            </div>
-            <p style={{textAlign:'center'}}>They call it the work triangle...</p>
-            <br/>
-        <p>That said, all being present and correct, it does come down to quality. Quality of materials, and quality of workmanship.A decent fitter is worth his weight in gold. Also, how you go about the job in the first place counts massively towards the final finish. Would you want to come and plaster the walls of a kitchen after all the shiny new units have been fitted? Would you rather spend a little bit more to install extra electrical outlets, and possibly some extra undercabinet lighting <span style={{fontStyle:'italic'}}>before</span> the kitchen gets fitted or after? Why not paint the walls and ceiling <span style={{fontStyle:'italic'}}>before</span> the fitter turns up? See the case study below for a schedule example.</p>
+            <p>Kichens I have fitted over the last few years</p>
         <br/>
         <br/>
         </section>

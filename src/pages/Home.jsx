@@ -6,7 +6,7 @@ export const Home = () => {
             <p>A portfolio of my work over recent years. Basically a photo album with comments and case studies. Feel free to have a look around</p>
             <br/>
             <hr/>
-            <p>I'll probably stick a trick carousel here eventually, when I get round to it, it's a work in progress...</p>
+            <p>This site is currently enjoying a complete rewrite with a built in cms accessed by admin login though Oauth 2, with comment capability, user login and new picture galleries</p>
             {/* stick a carousel here */}
             </section>
 
