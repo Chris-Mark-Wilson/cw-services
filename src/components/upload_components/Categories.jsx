@@ -1,32 +1,83 @@
+import { useEffect,useState } from "react";
+import { getAllCategories } from "../../../api/firebase_api";
+
+
 export const Categories = ({
   selectedCategory,
   setSelectedCategory,
-  categoryList,
-  setCategoryList,
-  newCategory,
-  setNewCategory,
+
+
+  
 }) => {
-  const addNewCategory = () => {
-    //upload a new category and refresh category list, set category to new category
-    // setCategory((prev)=>prompt('Enter folder name'));
-  };
-  const handleSelected = (e) => {
-    setSelectedCategory((prev) => e.target.value);
-  };
+
+  const [categoryList,setCategoryList]=useState([]);
+  const [newCategory,setNewCategory]=useState('');
+
+useEffect(()=>{
+getCategories();
+  
+},[]);
+
+const getCategories=()=>{
+  getAllCategories()
+  .then((categories)=>{
+   console.log(categories)
+ 
+   if(categories.length!==0){ 
+   setCategoryList((prev)=>{
+     return categories.map((category,index)=>{return {id:index,name:category}});
+   });
+   } else {
+    setCategoryList([]);
+     setSelectedCategory('No categories found');
+   }
+ })
+ 
+  .catch((error)=>{
+       console.log(error)
+  });
+}
+
+
+
+  const addNewCategory = (e) => {
+    e.preventDefault();
+    if(newCategory!==''){
+
+      // setCategoryList((prev)=>[...prev,{id:prev.length,name:newCategory}]);
+      setNewCategory('');
+      setSelectedCategory(newCategory);
+  }
+
+}
+
+const deleteSelectedCategory=()=>{
+  //alert this will delete the category and all its images
+  // if(selectedCategory!=='No categories found'){
+  //   setCategoryList((prev)=>{
+  //     return prev.filter((category)=>category.name!==selectedCategory);
+  //   });
+  //   setSelectedCategory('No categories found');
+  }
+  
+
+
+
+
   return (
     <section className="upload-categories">
       <h5>Categories</h5>
-
-      <div className="upload-category-list">
+<section className='category-selection'>
+      <div className="select-category">
         <label>
           Select Category:
           <select
             name="categories"
-            id="select-category"
-            onChange={handleSelected}
+            
+            onChange={(e) => setNewCategory(e.target.value)}
             value={selectedCategory}
           >
-            <option value="no category selected">None Selected</option>
+            <option value={selectedCategory}>{selectedCategory}</option>
             {categoryList.map((category, index) => {
               return (
                 <option key={category.id} value={category.name}>
@@ -38,20 +89,31 @@ export const Categories = ({
         </label>
       </div>
 
-      <div className="upload-new-category">
-        <label className='label'>
-            Add new Category
+      <div className="add-new-category">
+        <form>
+        <label htmlFor='new-category' >
+            Add new Category:
+            </label>
+            <div className='input-group'>
         <input
           type="text"
-          id="new-category"
+          name="new-category"
+          id='new-category'
           value={newCategory}
           placeholder="enter a new category"
-          onChange={() => setSelectedCategory((prev) => selectedCategory)}
+          onChange={(e) => setNewCategory(e.target.value)}
         />
         
-        </label>
-        <button onClick={addNewCategory}>Add</button>
+    
+        <button type='submit' onClick={addNewCategory} className='submit-button'>Add</button>
+        </div>
+        </form>
       </div>
+      </section>
+      <section className='remove-category'>
+        <button onClick={getCategories}>Refresh List</button>
+        <button onClick={deleteSelectedCategory}>Delete Selected Category</button>    
+        </section>
     </section>
   );
 };

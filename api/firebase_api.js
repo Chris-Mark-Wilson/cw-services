@@ -1,66 +1,56 @@
-import {db,storage} from './firebase.js';
-import { collection, getDocs } from "firebase/firestore";
-import {ref, getDownloadURL ,listAll} from 'firebase/storage';
+import { collection, addDoc, getDocs, query } from 'firebase/firestore';
+import {  ref, listAll } from 'firebase/storage';
+import {db,storage} from '../db/firebase';
 
-//usage for storage bucket
 
-//takes a reference to an image in the storage bucket and returns the download url
-export const getUrl =(ref) =>{
+// Takes a folder in the storage bucket and returns an array of references to the images in that folder
+export const getUrlList = async (folder) => {
+    try {
+        const listRef = ref(storage, `${folder}`);
+        const refs = await listAll(listRef);
+        return refs.items; // array
+    } catch (error) {
+        console.log(error);
+    }
+};
 
-    return (getPictureDownloadURL(ref))
-}
+// Adds a document to the "categories" collection
+export const addDocument = async (categoryName, imageObject) => {
+    try {
+        const docRef = await addDoc(collection(db, "categories"), imageObject);
+        console.log("Document successfully written!");
+        return docRef.id;
+    } catch (error) {
+        console.error("Error adding document: ", error);
+    }
+};
 
-const getPictureDownloadURL= async(ref)=>{
-    try{
+
+
+// Retrieves all documents from the "categories" collection
+export const getAllCategories = async () => {
+    try {
+        const q = query(collection(db, 'categories'));
+        const querySnapshot = await getDocs(q);
+        console.log(Object.keys(querySnapshot));
+        console.log("docs => ",querySnapshot.docs);
     
-    const url=await getDownloadURL(ref);
-   
-   return(url)
-    }
-    catch(error){
-        console.log(error)
-    }
-    }
+        querySnapshot.forEach((doc) => {
+            console.dir(`${doc.id} => ${doc.data()}`);
+        });
 
-
-//takes a folder in the storage bucket and returns an array of references to the images in that folder
-    //refs.items is an array of references
-    export const getUrlList=async(folder)=>{
-        try{
-        const listRef=ref(storage,`${folder}`)
-               
-   const refs=await listAll(listRef)
-       
-          
-       return     (refs.items) //array
-      
+        return querySnapshot.docs;
+    } catch (error) {
+        console.log("Error getting documents: ", error);
+        return Promise.reject(error);
     }
-    catch(error){
-        console.log(error)
+};
+
+// Adds a user document (implementation needed)
+export const addUser = async (user) => {
+    try {
+        // Your addUser implementation
+    } catch (error) {
+        console.error("Error adding user: ", error);
     }
-    }
-
-// example usage for db
-
-//
-//
-export const getAllUsers=async()=>{
-    try{
-    const querySnapshot = await getDocs(collection(db, "users"));
-    querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data()}`);
-    });
-} catch (error) {
-    console.log("Error getting documents: ", error);
-}
-}
-
-export const addUser=async(user)=>{
-    try{
-    const docRef = await addDoc(collection(db, "users"), user);
-    console.log("Document successfully written!");
-    return docRef.id
-} catch (error) {
-    console.error("Error adding document: ", error);
-}
-}
+};

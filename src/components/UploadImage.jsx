@@ -1,16 +1,17 @@
 import {useEffect,useState} from "react";
 import {Categories} from './upload_components/Categories';
 import {SelectFile} from './upload_components/SelectFile';
+import { ImageList } from "./upload_components/ImageList";
 import { Modal } from "./upload_components/Modal";
 import '../css_files/upload.css'
 
 export const UploadImage = () => {
-const [file,setFile]=useState('');
+const [file,setFile]=useState(null);
 const [caption,setCaption]=useState('');
-const [progress,setProgress]=useState(0);
-const [newCategory,setNewCategory]=useState('');
+
+
 const [selectedCategory,setSelectedCategory]=useState('None Selected');
-const [categoryList,setCategoryList]=useState([{id:0,name:'test0'},{id:1,name:'test1'},{id:2,name:'test2'},{id:3,name:'test3'}]);
+
 const [title,setTitle]=useState('');
 
 
@@ -28,11 +29,10 @@ return (
     <Categories
       selectedCategory={selectedCategory}
       setSelectedCategory={setSelectedCategory}
-      categoryList={categoryList}
-      setCategoryList={setCategoryList}
-      newCategory={newCategory}
-      setNewCategory={setNewCategory}
+  
     />
+    <ImageList selectedCategory={selectedCategory} />
+
     <SelectFile
       file={file}
       setFile={setFile}
@@ -41,6 +41,8 @@ return (
       caption={caption}
       setCaption={setCaption}
     />
+
+    
   </section>
 );
     

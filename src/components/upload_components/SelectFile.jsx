@@ -5,20 +5,30 @@ export const SelectFile=({file,setFile})=>{
     const [progress,setProgress]=useState(0);
 
     const handleFileChange=(event)=>{
-        setFile((prev)=>event.target.files[0]);
+      const selectedFile = event.target.files[0];
+      if (selectedFile) {
+       
+        setFile(URL.createObjectURL(selectedFile));
+      }
         
      }
     return (
-      <>
-        <section className="upload-file">
+    
+        <section className="upload-new-file">
           <section className="upload-select-file">
+            <div className='upload-file-select'>
             <label htmlFor="file">Choose a file</label>
             <input
               type="file"
               id="file"
               className="inputfile"
               onChange={handleFileChange}
+              accept={'image/*'}
             />
+            </div>
+     
+            {file && <img src={file} alt='selected file' className='file-image' />}
+          
           </section>
 
           <section className="upload-title">
@@ -29,7 +39,6 @@ export const SelectFile=({file,setFile})=>{
               placeholder="Enter a title that will also be the alt text"
             />
           </section>
-        </section>
 
         <section className="upload-caption">
           <label htmlFor="caption">Caption</label>
@@ -37,8 +46,9 @@ export const SelectFile=({file,setFile})=>{
             type="text"
             id="caption"
             placeholder="Enter a caption for the image"
-          />
+            />
         </section>
-      </>
+            </section>
+     
     );
 }
