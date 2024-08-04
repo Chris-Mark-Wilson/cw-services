@@ -13,10 +13,14 @@ export const ImageList = ({selectedCategory}) => {
     const deleteSelectedImage=()=>{
         // alert this will delete the image
     }
+
+    const uploadSelectedImage=()=>{
+
+    }
     
     return (
         <section className='upload-images'>
-            <h5>Images</h5>
+            <h5>Edit Images</h5>
             <div className='images-container'>
             <label>
           Select Image:
@@ -37,10 +41,29 @@ export const ImageList = ({selectedCategory}) => {
           </select>
         </label>
         <div className='image-display'>
-            <img src={selectedImage} alt='selected image'/>
+           {selectedImage&& <img src={selectedImage} alt='selected image'/>}
             </div>
         <button onClick={deleteSelectedImage}>Delete Image</button>
+        <button onClick={uploadSelectedImage}>Save</button>
         </div>
+
+        <section className="upload-title">
+            <label htmlFor="title">Title / Alt</label>
+            <textarea
+              type="text"
+              id="title"
+              placeholder="Enter a title that will also be the alt text"
+            />
+          </section>
+
+          <section className="upload-caption">
+          <label htmlFor="caption">Caption</label>
+          <textarea
+            type="text"
+            id="caption"
+            placeholder="Enter a caption for the image"
+            />
+        </section>
         </section>
     )
 }

@@ -195,7 +195,7 @@ align-content: center;
     border:1px solid black;
     border-radius:10px;
     flex-direction: column;
-   
+   width:100%;
     /* margin:0 10px; */
     flex-grow:2;
   }
@@ -212,6 +212,7 @@ align-content: center;
         flex-direction:column;
         text-align: left;
         border:1px solid black;
+        width:100%;
         max-width:100%;
         /* margin:10px; */
       }

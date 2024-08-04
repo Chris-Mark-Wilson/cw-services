@@ -5,7 +5,7 @@ import { ImageList } from "./upload_components/ImageList";
 import { Modal } from "./upload_components/Modal";
 import '../css_files/upload.css'
 
-export const UploadImage = () => {
+export const ManageGalleries = () => {
 const [file,setFile]=useState(null);
 const [caption,setCaption]=useState('');
 
@@ -25,7 +25,7 @@ const [title,setTitle]=useState('');
 
 return (
   <section className="upload-page">
-    <h5>Upload Image</h5>
+    <h5>Manage Galleries</h5>
     <Categories
       selectedCategory={selectedCategory}
       setSelectedCategory={setSelectedCategory}

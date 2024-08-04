@@ -15,9 +15,10 @@ export const SelectFile=({file,setFile})=>{
     return (
     
         <section className="upload-new-file">
+          <h5>Upload a new image</h5>
           <section className="upload-select-file">
             <div className='upload-file-select'>
-            <label htmlFor="file">Choose a file</label>
+            <label htmlFor="file">Choose an image</label>
             <input
               type="file"
               id="file"
@@ -31,23 +32,9 @@ export const SelectFile=({file,setFile})=>{
           
           </section>
 
-          <section className="upload-title">
-            <label htmlFor="title">Title / Alt</label>
-            <textarea
-              type="text"
-              id="title"
-              placeholder="Enter a title that will also be the alt text"
-            />
-          </section>
+  
 
-        <section className="upload-caption">
-          <label htmlFor="caption">Caption</label>
-          <textarea
-            type="text"
-            id="caption"
-            placeholder="Enter a caption for the image"
-            />
-        </section>
+   
             </section>
      
     );

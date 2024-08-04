@@ -26,7 +26,7 @@ import { Contact } from "./pages/Contact.jsx";
 import { Navigation } from "./components/Navigation.jsx";
 import { Footer } from "./components/Footer.jsx";
 
-import {UploadImage} from "./components/UploadImage.jsx";
+import {ManageGalleries} from "./components/ManageGalleries.jsx";
 import "./css_files/App.css";
 
 function App() {
@@ -53,7 +53,7 @@ function App() {
         <Route path="/ha" element={<HomeAutomation />} />
         <Route path="/contact" element={<Contact />} />
         <Route path='/glossary' element={<Glossary/>}/>
-        <Route path='/upload' element={<UploadImage/>}/>
+        <Route path='/manage' element={<ManageGalleries/>}/>
       </Routes>
       <Footer/>
     </>
