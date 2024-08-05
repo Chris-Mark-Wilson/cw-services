@@ -8,12 +8,12 @@ import usePrefersColorScheme from "use-prefers-color-scheme";
 export const Navigation = () => {
   const [mode, setMode] = useState("light");
 
-  // const colorScheme = usePrefersColorScheme();
-  // useEffect(() => {
-  //   if (mode) {
-  //     setMode(colorScheme);
-  //   }
-  // }, [mode]);
+  const colorScheme = usePrefersColorScheme();
+  useEffect(() => {
+    if (mode) {
+      setMode(colorScheme);
+    }
+  }, [mode]);
 
   return (
     <Navbar
@@ -30,7 +30,7 @@ export const Navigation = () => {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/aboutme">About</Nav.Link>
-            <NavDropdown
+            {/* <NavDropdown
               title="Inside"
               id="basic-nav-dropdown"
             >
@@ -45,11 +45,11 @@ export const Navigation = () => {
               <NavDropdown.Item href="/externalJoinery">Timber</NavDropdown.Item>
               <NavDropdown.Item href="/externalMasonary">Masonary</NavDropdown.Item>
               <NavDropdown.Item href="/miscexternal">Miscellaneous</NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
            
             
             <Nav.Link href="/webdev">Coding</Nav.Link>
-            <Nav.Link href="/ha">Home Automation</Nav.Link>
+            <Nav.Link href="/ha">Automation</Nav.Link>
             <NavDropdown
               title="
                 Services"
@@ -67,7 +67,8 @@ export const Navigation = () => {
 
 
             <Nav.Link href="/contact">Contact</Nav.Link>
-            <Nav.Link href="/glossary">Glossary</Nav.Link>
+            {/* <Nav.Link href="/glossary">Glossary</Nav.Link> */}
+            <Nav.Link href="/manage">Manage</Nav.Link>
 
           </Nav>
         </Navbar.Collapse>

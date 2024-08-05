@@ -358,7 +358,7 @@ align-items: center;
   }
   
 }
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   #root body html{
     background-color: #213547;
     color: #ffffff;
@@ -384,4 +384,4 @@ align-items: center;
   button {
     background-color: #f9f9f9;
   }
-} */
+}

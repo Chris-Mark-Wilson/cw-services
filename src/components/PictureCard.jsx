@@ -1,7 +1,7 @@
 import React from 'react';
 import useVisibility from '../hooks/useVisibility';
 
-import '../App.css';
+import '../css_files/App.css';
 
 //takes in paragraphs object, with keys corresponding to positions in the card
 //takes in imageUris object, with keys corresponding to positions in the card
