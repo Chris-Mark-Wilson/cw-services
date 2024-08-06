@@ -1,19 +1,18 @@
 import {useEffect,useState} from "react";
-import {Categories} from './upload_components/Categories';
-import {SelectFile} from './upload_components/SelectFile';
-import { ImageList } from "./upload_components/ImageList";
-import { Modal } from "./upload_components/Modal";
+import {Categories} from './manage_galleries_components/Categories';
+import {SelectFile} from './manage_galleries_components/SelectFile';
+import { EditImages } from "./manage_galleries_components/EditImages";
+import { Modal } from "./manage_galleries_components/Modal";
 import '../css_files/upload.css'
 
 export const ManageGalleries = () => {
-const [file,setFile]=useState(null);
-const [caption,setCaption]=useState('');
 
 
 
-const [selectedCategory,setSelectedCategory]=useState('None Selected');
 
-const [title,setTitle]=useState('');
+const [selectedCategory,setSelectedCategory]=useState('');
+const [reload,setReload]=useState(false);
+
 
 
 
@@ -30,18 +29,15 @@ return (
     <Categories
       selectedCategory={selectedCategory}
       setSelectedCategory={setSelectedCategory}
-  
     />
-    <ImageList selectedCategory={selectedCategory} />
+    <EditImages selectedCategory={selectedCategory} reload={reload} setReload={setReload}/>
 
     <SelectFile
-      file={file}
-      setFile={setFile}
-      title={title}
-      setTitle={setTitle}
-      caption={caption}
-      setCaption={setCaption}
+     
       selectedCategory={selectedCategory}
+      setSelectedCategory={setSelectedCategory}
+   
+      setReload={setReload}
     />
 
     

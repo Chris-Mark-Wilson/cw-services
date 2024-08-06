@@ -21,8 +21,8 @@ getCategories();
 const getCategories=()=>{
   getAllCategories()
   .then((categories)=>{
-   console.log(categories,', ',typeof(categories),'isArray:',
-   Array.isArray(categories), 'categories in component');
+  //  console.log(categories,', ',typeof(categories),'isArray:',
+  //  Array.isArray(categories), 'categories in component');
  
    if(categories!==""){ 
    setCategoryList((prev)=>{
@@ -75,7 +75,7 @@ const deleteSelectedCategory=()=>{
           Select Category:
           <select
             name="categories"
-            
+            placeholder={'select a category'}
             onChange ={(e) => setSelectedCategory(e.target.value)}
             value={selectedCategory}
           >

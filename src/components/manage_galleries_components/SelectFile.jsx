@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { uploadImage } from "../../../api/firebase_api";
-export const SelectFile=({file,setFile,title,setTitle,caption,setCaption,selectedCategory})=>{
+export const SelectFile=({selectedCategory,setSelectedCategory,setReload})=>{
 
-  const [progress,setProgress]=useState(0);
+  const [progress, setProgress] = useState(0);
+  const [file, setFile] = useState(null);
+  const [caption, setCaption] = useState("");
+  const [title, setTitle] = useState("");
+  const [fileName, setFileName] = useState("");
   
   const handleFileChange=(event)=>{
     const selectedFile = event.target.files[0];
@@ -21,21 +25,41 @@ export const SelectFile=({file,setFile,title,setTitle,caption,setCaption,selecte
       alert('Please select a category or create a new one');
       return;
     }
-    if(title===''||caption===''){
-      alert('Please enter a title and caption');
-      return}
+    // if(title===''||caption===''){
+    //   alert('Please enter a title and caption');
+    //   return}
     if(file===null){
       alert('Please select an image file');
       return;
     }
-    alert('Uploading the file');
-    uploadImage(selectedCategory,file,{title:title,caption:caption,name:'placeholdername'});
+    if(fileName===''){
+      alert('Please enter a file name');
+      return
+    }
+  console.log('Uploading the file');
+    uploadImage(selectedCategory,file,{title:title,caption:caption,name:fileName})
+    .then((response)=>{
+      console.log('uploaded file:',response);
+
+        setFile(null);
+        setCaption('');
+        setTitle('');
+        setFileName('');
+      //trigger a refresh of the image list
+    setReload((prev)=>!prev);
+
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
   }
     return (
     
         <section className="upload-new-file">
           <h5>Upload a new image</h5>
-          <p>Selected category:{selectedCategory}</p>
+          <p>Selected category: {selectedCategory}</p>
+          <p>File name: {fileName}</p>
+          <input type='text' placeholder='Enter a file name' onChange={(e)=>setFileName(e.target.value)} value={fileName}/>
           <section className="upload-select-file">
             <div className='upload-file-select'>
             <label htmlFor="file">Choose an image</label>
@@ -48,7 +72,7 @@ export const SelectFile=({file,setFile,title,setTitle,caption,setCaption,selecte
             />
             </div>
      
-            {file && <img src={file} alt='selected file' className='file-image' />}
+            {file && <img src={URL.createObjectURL(file)} alt='selected file' className='file-image' />}
           
           </section>
 
