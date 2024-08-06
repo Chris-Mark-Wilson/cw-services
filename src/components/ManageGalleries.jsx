@@ -10,6 +10,7 @@ const [file,setFile]=useState(null);
 const [caption,setCaption]=useState('');
 
 
+
 const [selectedCategory,setSelectedCategory]=useState('None Selected');
 
 const [title,setTitle]=useState('');
@@ -40,6 +41,7 @@ return (
       setTitle={setTitle}
       caption={caption}
       setCaption={setCaption}
+      selectedCategory={selectedCategory}
     />
 
     

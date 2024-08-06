@@ -21,11 +21,13 @@ getCategories();
 const getCategories=()=>{
   getAllCategories()
   .then((categories)=>{
-   console.log(categories)
+   console.log(categories,', ',typeof(categories),'isArray:',
+   Array.isArray(categories), 'categories in component');
  
-   if(categories.length!==0){ 
+   if(categories!==""){ 
    setCategoryList((prev)=>{
-     return categories.map((category,index)=>{return {id:index,name:category}});
+     return Object.keys(categories).map((category,index)=>{
+      return {id:index,name:category}});
    });
    } else {
     setCategoryList([]);
@@ -74,7 +76,7 @@ const deleteSelectedCategory=()=>{
           <select
             name="categories"
             
-            onChange={(e) => setNewCategory(e.target.value)}
+            onChange ={(e) => setSelectedCategory(e.target.value)}
             value={selectedCategory}
           >
             <option value={selectedCategory}>{selectedCategory}</option>

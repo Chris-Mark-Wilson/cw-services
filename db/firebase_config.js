@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore";
+import { getDatabase} from "firebase/database";
+
 import { getStorage } from "firebase/storage";
 
 const API_KEY=import.meta.env.VITE_FIREBASE_API_KEY;
@@ -12,6 +13,7 @@ const API_KEY=import.meta.env.VITE_FIREBASE_API_KEY;
 const firebaseConfig = {
   apiKey: API_KEY,
   authDomain: "cw-services-739b7.firebaseapp.com",
+  databaseURL: "https://cw-services-739b7-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "cw-services-739b7",
   storageBucket: "cw-services-739b7.appspot.com",
   messagingSenderId: "561552733227",
@@ -21,6 +23,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app); // firestore database, returns a database object
+export const db = getDatabase(app); // firestore database, returns a database object
 export const storage = getStorage(app); // storage bucket, returns a storage object 
-export const analytics = getAnalytics(app);
+
+ 
