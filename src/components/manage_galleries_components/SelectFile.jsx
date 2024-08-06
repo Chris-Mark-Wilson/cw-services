@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { uploadImage } from "../../../api/firebase_api";
-export const SelectFile=({selectedCategory,setSelectedCategory,setReload})=>{
+export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
 
   const [progress, setProgress] = useState(0);
   const [file, setFile] = useState(null);
@@ -40,7 +40,7 @@ export const SelectFile=({selectedCategory,setSelectedCategory,setReload})=>{
     uploadImage(selectedCategory,file,{title:title,caption:caption,name:fileName})
     .then((response)=>{
       console.log('uploaded file:',response);
-
+     document.getElementById('file').value='';
         setFile(null);
         setCaption('');
         setTitle('');
@@ -66,9 +66,11 @@ export const SelectFile=({selectedCategory,setSelectedCategory,setReload})=>{
             <input
               type="file"
               id="file"
+              name='file'
               className="inputfile"
               onChange={handleFileChange}
               accept={'image/*'}
+            
             />
             </div>
      
