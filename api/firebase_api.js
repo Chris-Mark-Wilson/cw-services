@@ -1,5 +1,5 @@
-import {   get, set,ref as baseRef,child } from 'firebase/database';
-import {  ref as storeRef, listAll,uploadBytesResumable, getBlob } from 'firebase/storage';
+import {   get, set,ref as baseRef,child,remove } from 'firebase/database';
+import {  ref as storeRef, listAll,uploadBytesResumable, getBlob,deleteObject } from 'firebase/storage';
 import {db,storage} from '../db/firebase_config';
 
 
@@ -135,6 +135,20 @@ export const getAllCategories = async () => {
        
     } catch (error) {
         console.log("Error getting categories ", error);
+        return Promise.reject(error);
+    }
+};
+export const deleteImage = async (category, imageName) => {
+    try {
+        let imageRef = storeRef(storage, `images/${category}/${imageName}`);
+        await deleteObject(imageRef);
+        console.log("Image deleted from storage successfully");
+        imageRef=baseRef(db, `categories/${category}/${imageName}`);
+        await remove(imageRef);
+        console.log("Document deleted from database successfully");
+       
+    } catch (error) {
+        console.log("Error deleting image ", error);
         return Promise.reject(error);
     }
 };

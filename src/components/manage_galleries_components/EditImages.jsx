@@ -4,7 +4,7 @@ import { getImageNamesByCategory } from "../../../api/firebase_api";
 import { getImageByImageName } from "../../../api/firebase_api";
 import { getImageDataByImageName } from "../../../api/firebase_api";
 import { uploadImage } from "../../../api/firebase_api";
-import { set } from "firebase/database";
+import { deleteImage } from "../../../api/firebase_api";
 
 export const EditImages = ({ selectedCategory,reload,setReload }) => {
   const [imageList, setImageList] = useState([]);
@@ -58,7 +58,8 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
   
 
   const deleteSelectedImage = () => {
-    // alert this will delete the image
+alert('Are you sure you want to delete this image?');
+deleteImage(selectedCategory,selectedImage)
   };
 
   const saveSelectedImage = () => {
