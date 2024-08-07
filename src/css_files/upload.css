@@ -20,6 +20,13 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
     z-index: 1000; /* Ensure it appears above other elements */
 }
+.delete-modal-content{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    padding:10px;
+}
 h5{
     margin:0;
     padding:0;
