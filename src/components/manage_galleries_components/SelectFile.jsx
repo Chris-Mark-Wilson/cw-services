@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { uploadImage } from "../../../api/firebase_api";
+import { LoadingSpinner } from "./LoadingSpinner";
 export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
 
   const [progress, setProgress] = useState(0);
@@ -7,6 +8,8 @@ export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
   const [caption, setCaption] = useState("");
   const [title, setTitle] = useState("");
   const [fileName, setFileName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [spinnerMessage, setSpinnerMessage] = useState("");
   
   const handleFileChange=(event)=>{
     const selectedFile = event.target.files[0];
@@ -36,7 +39,9 @@ export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
       alert('Please enter a file name');
       return
     }
-  console.log('Uploading the file');
+    //set the loading spinner
+    setSpinnerMessage('Uploading Image...');
+    setIsLoading(true);
     uploadImage(selectedCategory,file,{title:title,caption:caption,name:fileName})
     .then((response)=>{
       console.log('uploaded file:',response);
@@ -45,15 +50,18 @@ export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
         setCaption('');
         setTitle('');
         setFileName('');
+        setIsLoading(false);
       //trigger a refresh of the image list
     setReload((prev)=>!prev);
 
     })
     .catch((error)=>{
       console.log(error);
+      setIsLoading(false);
     })
   }
-    return (
+    return (<>
+          {isLoading && <LoadingSpinner message={spinnerMessage} />}
     
         <section className="upload-new-file">
           <h5>Upload a new image</h5>
@@ -106,6 +114,7 @@ export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
 
    
             </section>
-     
+            </>
+    
     );
 }
