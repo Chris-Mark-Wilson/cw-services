@@ -8,25 +8,7 @@
     max-width:1024px;
     margin:0 auto;
 }
-.delete-modal {
-    position: fixed; /* Position relative to the viewport */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Offset by half its own width and height */
-    margin: auto;
-    border: 1px solid red;
-    background-color: white; /* Ensure the modal has a background */
-    padding: 20px; /* Add some padding for content */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
-    z-index: 1000; /* Ensure it appears above other elements */
-}
-.delete-modal-content{
-    display:flex;
-    flex-direction:column;
-    justify-content: center;
-    align-items: center;
-    padding:10px;
-}
+
 h5{
     margin:0;
     padding:0;

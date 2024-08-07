@@ -3,7 +3,7 @@ import {Categories} from './manage_galleries_components/Categories';
 import {SelectFile} from './manage_galleries_components/SelectFile';
 import { EditImages } from "./manage_galleries_components/EditImages";
 
-import '../css_files/upload.css'
+import '../css_files/manage_galleries.css'
 
 export const ManageGalleries = () => {
 

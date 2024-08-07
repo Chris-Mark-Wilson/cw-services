@@ -5,6 +5,7 @@ import { getImageByImageName } from "../../../api/firebase_api";
 import { getImageDataByImageName } from "../../../api/firebase_api";
 import { uploadImage } from "../../../api/firebase_api";
 import { deleteImage } from "../../../api/firebase_api";
+import '../../css_files/delete_modal.css';
 
 
 export const EditImages = ({ selectedCategory,reload,setReload }) => {
@@ -16,6 +17,13 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
   const [isEdited, setIsEdited] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
+  useEffect(() => {
+    if (showDeleteModal) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+  }, [showDeleteModal]);
 
   useEffect(() => {
 
@@ -153,6 +161,8 @@ uploadImage(selectedCategory,selectedImageUrl,{title:title,caption:caption,name:
           </section>
 
     {showDeleteModal && (
+      <>
+       <div className="delete-overlay"></div>
       <div className="delete-modal">
         <div className="delete-modal-content">
           <h4>Confirm Delete</h4>
@@ -161,6 +171,7 @@ uploadImage(selectedCategory,selectedImageUrl,{title:title,caption:caption,name:
           <button onClick={()=>setShowDeleteModal(false)}>No</button>
         </div>
       </div>
+      </>
     )} 
           
         </Accordion.Body>
