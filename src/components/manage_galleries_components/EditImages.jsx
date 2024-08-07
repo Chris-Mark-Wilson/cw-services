@@ -14,6 +14,7 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
   const [title, setTitle] = useState("");
   const [caption, setCaption] = useState("");
   const [isEdited, setIsEdited] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
 
   useEffect(() => {
@@ -54,12 +55,12 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
           });
       }
     }
-  }, [selectedCategory, selectedImage,reload]);
+  }, [selectedCategory,selectedImage,reload]);
 
   
 
   const deleteSelectedImage = () => {
-alert('Are you sure you want to delete this image?');
+
 deleteImage(selectedCategory,selectedImage)
 .then((response)=>{
 setSelectedImage('');
@@ -122,7 +123,7 @@ uploadImage(selectedCategory,selectedImageUrl,{title:title,caption:caption,name:
                   />
                 )}
               </div>
-              {selectedImage!= '' && <button onClick={deleteSelectedImage}>Delete Image</button>}
+              {selectedImage!= '' && <button onClick={()=>setShowDeleteModal(true)}>Delete Image</button>}
               {isEdited && <button onClick={saveSelectedImage}>Save Image</button>}
             </div>
 
@@ -148,6 +149,18 @@ uploadImage(selectedCategory,selectedImageUrl,{title:title,caption:caption,name:
               />
             </section>
           </section>
+
+          
+      {showDeleteModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <h4>Confirm Delete</h4>
+            <p>Are you sure you want to delete this file?</p>
+            <button onClick={deleteSelectedImage}>Yes</button>
+            <button onClick={setShowDeleteModal(false)}>No</button>
+          </div>
+        </div>
+      )}
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>

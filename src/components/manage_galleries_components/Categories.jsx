@@ -5,9 +5,7 @@ import { getAllCategories } from "../../../api/firebase_api";
 export const Categories = ({
   selectedCategory,
   setSelectedCategory,
-
-
-  
+ 
 }) => {
 
   const [categoryList,setCategoryList]=useState([]);
