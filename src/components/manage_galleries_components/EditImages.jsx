@@ -6,7 +6,8 @@ import { getImageDataByImageName } from "../../../api/firebase_api";
 import { uploadImage } from "../../../api/firebase_api";
 import { deleteImage } from "../../../api/firebase_api";
 import { Modal } from "../Modal";
-
+import { LoadingSpinner } from "./LoadingSpinner";
+import { set } from "firebase/database";
 
 export const EditImages = ({ selectedCategory,reload,setReload }) => {
   const [imageList, setImageList] = useState([]);
@@ -19,6 +20,8 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
   const [modalTitle, setModalTitle] = useState("");
   const [modalMessage, setModalMessage] = useState("");
   const [modalConfirm, setModalConfirm] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [spinnerMessage, setSpinnerMessage] = useState("");
 
   useEffect(() => {
     if (showDeleteModal) {
@@ -31,7 +34,11 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
   useEffect(() => {
 
     if (selectedCategory !== "None Selected") {
+      //reset the selected image
+     
       // get the images from the selected category
+      setSpinnerMessage('Loading Categories...');
+      setIsLoading(true);
       getImageNamesByCategory(selectedCategory)
         .then((names) => {
           console.log("here");
@@ -40,19 +47,29 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
             
           setSelectedImage((prev)=>prev==""?names[0]:selectedImage);
           }
+          setIsLoading(false);
         })
         .catch((error) => {
           console.log(error);
+          setIsLoading(false);
         });
+      }
+      },[selectedCategory,reload]);
 
+      useEffect(() => {
+        if (selectedCategory !== "None Selected") {
       if (selectedImage !== "") {
+        setSpinnerMessage('Loading Image...');
+      setIsLoading(true);
         console.log("selected image:", selectedImage);
         getImageByImageName(selectedCategory, selectedImage)
           .then((image) => {
             setSelectedImageUrl(image);
+            setIsLoading(false);
           })
           .catch((error) => {
             console.log(error);
+            setIsLoading(false);
           });
        
           getImageDataByImageName(selectedCategory, selectedImage)
@@ -66,7 +83,7 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
           });
       }
     }
-  }, [selectedCategory,selectedImage,reload]);
+  }, [selectedImage,reload]);
 
   
 
@@ -90,12 +107,19 @@ setReload((prev)=>!prev);
       }
 
     if((selectedImage!=="No images to show")){
+      setSpinnerMessage('Saving Image...');
+      setIsLoading(true);
 uploadImage(selectedCategory,selectedImageUrl,{title:title,caption:caption,name:selectedImage})
 .then((response)=>{
   console.log('Saved file:',response);
   setSelectedImage('');
   setReload((prev)=>!prev);
   setIsEdited(false);
+  setIsLoading(false);
+  })
+  .catch((error)=>{
+    console.log(error);
+    setIsLoading(false);
   });
 }else{alert('No image selected')}
 };
@@ -184,6 +208,7 @@ const showModal = (title, message, onConfirm) => {
         onCancel={() => setShowDeleteModal(false)}
       />
     )} 
+    {isLoading && <LoadingSpinner message={spinnerMessage}/>}
           
         </Accordion.Body>
       </Accordion.Item>
