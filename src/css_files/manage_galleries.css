@@ -186,10 +186,10 @@ align-content: center;
 .file-image{
   /* flex-grow:2; */
   border:2px solid red;
-    max-width:100%;
+    max-width:200px;
     margin:0 auto;
     height:auto;
-    max-height:150px;
+    max-height:200px;
  
     border-radius:10px;
     /* flex-grow:2; */

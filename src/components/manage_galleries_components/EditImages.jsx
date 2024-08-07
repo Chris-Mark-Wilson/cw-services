@@ -34,7 +34,7 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
   useEffect(() => {
 
     if (selectedCategory !== "None Selected") {
-      //reset the selected image
+      console.log('in use effect');
      
       // get the images from the selected category
       setSpinnerMessage('Loading Categories...');
@@ -45,7 +45,8 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
           setImageList(names);
           if (names.length > 0){
             
-          setSelectedImage((prev)=>prev==""?names[0]:selectedImage);
+          // setSelectedImage((prev)=>prev==""?names[0]:selectedImage);
+          setSelectedImage(names[0]);
           }
           setIsLoading(false);
         })
@@ -57,6 +58,7 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
       },[selectedCategory,reload]);
 
       useEffect(() => {
+        console.log('in use effect 2');
         if (selectedCategory !== "None Selected") {
       if (selectedImage !== "") {
         setSpinnerMessage('Loading Image...');
@@ -147,7 +149,7 @@ const showModal = (title, message, onConfirm) => {
                 Select Image:
                 <select
                   name="image-list"
-                  onChange={(e) => {()=>setSelectedImage(e.target.value)}}
+                  onChange={(e)=>setSelectedImage(e.target.value)}
                   value={selectedImage}
                 >
                   {/* <option value={selectedImage}>{selectedImage}</option> */}

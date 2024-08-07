@@ -27,7 +27,7 @@ export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
     }
     // if(title===''||caption===''){
     //   alert('Please enter a title and caption');
-    //   return}
+    //   return}//reset the selected image
     if(file===null){
       alert('Please select an image file');
       return;
