@@ -229,6 +229,10 @@ align-content: center;
 
 
 @media screen and (max-width: 800px) {
+    .upload-page{
+        max-width:100%;
+        margin:0;
+    }
 .upload-categories{
     border:1px solid black;
     flex-direction: column;

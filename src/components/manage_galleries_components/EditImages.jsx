@@ -7,7 +7,7 @@ import { uploadImage } from "../../../api/firebase_api";
 import { deleteImage } from "../../../api/firebase_api";
 import { Modal } from "../Modal";
 import { LoadingSpinner } from "./LoadingSpinner";
-import { set } from "firebase/database";
+
 
 export const EditImages = ({ selectedCategory,reload,setReload }) => {
   const [imageList, setImageList] = useState([]);
@@ -16,6 +16,7 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
   const [title, setTitle] = useState("");
   const [caption, setCaption] = useState("");
   const [isEdited, setIsEdited] = useState(false);
+
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
   const [modalMessage, setModalMessage] = useState("");
