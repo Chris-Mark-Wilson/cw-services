@@ -27,11 +27,14 @@ import { Navigation } from "./components/Navigation.jsx";
 import { Footer } from "./components/Footer.jsx";
 
 import {ManageGalleries} from "./components/ManageGalleries.jsx";
+
+import { ModalProvider } from "./context/ModalContext.jsx";
+import {Modal} from "./components/Modal.jsx";
 import "./css_files/App.css";
 
 function App() {
   return (
-    <>
+    <ModalProvider>
       <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -56,7 +59,8 @@ function App() {
         <Route path='/manage' element={<ManageGalleries/>}/>
       </Routes>
       <Footer/>
-    </>
+      <Modal />
+    </ModalProvider>
   );
 }
 

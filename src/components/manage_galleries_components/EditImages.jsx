@@ -5,9 +5,8 @@ import { getImageByImageName } from "../../../api/firebase_api";
 import { getImageDataByImageName } from "../../../api/firebase_api";
 import { uploadImage } from "../../../api/firebase_api";
 import { deleteImage } from "../../../api/firebase_api";
-import { Modal } from "../Modal";
 import { LoadingSpinner } from "./LoadingSpinner";
-
+import { useModal } from "../../context/ModalContext";
 
 export const EditImages = ({ selectedCategory,reload,setReload }) => {
   const [imageList, setImageList] = useState([]);
@@ -16,21 +15,12 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
   const [title, setTitle] = useState("");
   const [caption, setCaption] = useState("");
   const [isEdited, setIsEdited] = useState(false);
-
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [modalTitle, setModalTitle] = useState("");
-  const [modalMessage, setModalMessage] = useState("");
-  const [modalConfirm, setModalConfirm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [spinnerMessage, setSpinnerMessage] = useState("");
 
-  useEffect(() => {
-    if (showDeleteModal) {
-      document.body.classList.add('modal-open');
-    } else {
-      document.body.classList.remove('modal-open');
-    }
-  }, [showDeleteModal]);
+  const {showModal} = useModal();
+
+
 
   useEffect(() => {
 
@@ -46,7 +36,7 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
           setImageList(names);
           if (names.length > 0){
             
-          // setSelectedImage((prev)=>prev==""?names[0]:selectedImage);
+          
           setSelectedImage(names[0]);
           }
           setIsLoading(false);
@@ -98,7 +88,7 @@ setSelectedImage('');
 setTitle('');
 setCaption('');
 setSelectedImageUrl('');
-setShowDeleteModal(false);
+
 setReload((prev)=>!prev);
 });
   };
@@ -127,14 +117,6 @@ uploadImage(selectedCategory,selectedImageUrl,{title:title,caption:caption,name:
 }else{alert('No image selected')}
 };
 
-const showModal = (title, message, onConfirm) => {
-  console.log('in show modal');
-  setModalTitle(title);
-  setModalMessage(message);
-  setModalConfirm(() => onConfirm);
-
-  setShowDeleteModal(true);
-};
 
 
   return (
@@ -203,14 +185,7 @@ const showModal = (title, message, onConfirm) => {
             </section>
           </section>
 
-    {showDeleteModal && (
-      <Modal
-        title={modalTitle}
-        message={modalMessage}
-        onConfirm={modalConfirm}
-        onCancel={() => setShowDeleteModal(false)}
-      />
-    )} 
+ 
     {isLoading && <LoadingSpinner message={spinnerMessage}/>}
           
         </Accordion.Body>

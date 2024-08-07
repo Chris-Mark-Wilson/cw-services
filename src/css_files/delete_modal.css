@@ -18,6 +18,22 @@
     align-items: center;
     padding:10px;
 }
+.delete-modal-buttons{
+    display:flex;
+    flex-direction:row;
+    width:80%;
+    justify-content: space-around;
+    align-items: center;
+    padding:10px;
+}
+.delete-modal-buttons button{
+    padding:5px;
+    border-radius:5px;
+    border:1px solid black;
+    color:black;                                    
+
+    background-color: white;
+}
 
 .delete-overlay {
   
