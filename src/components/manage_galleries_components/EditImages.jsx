@@ -5,7 +5,7 @@ import { getImageByImageName } from "../../../api/firebase_api";
 import { getImageDataByImageName } from "../../../api/firebase_api";
 import { uploadImage } from "../../../api/firebase_api";
 import { deleteImage } from "../../../api/firebase_api";
-import '../../css_files/delete_modal.css';
+import { Modal } from "../Modal";
 
 
 export const EditImages = ({ selectedCategory,reload,setReload }) => {
@@ -16,6 +16,9 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
   const [caption, setCaption] = useState("");
   const [isEdited, setIsEdited] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
+  const [modalMessage, setModalMessage] = useState("");
+  const [modalConfirm, setModalConfirm] = useState("");
 
   useEffect(() => {
     if (showDeleteModal) {
@@ -97,6 +100,16 @@ uploadImage(selectedCategory,selectedImageUrl,{title:title,caption:caption,name:
 }else{alert('No image selected')}
 };
 
+const showModal = (title, message, onConfirm) => {
+  console.log('in show modal');
+  setModalTitle(title);
+  setModalMessage(message);
+  setModalConfirm(() => onConfirm);
+
+  setShowDeleteModal(true);
+};
+
+
   return (
     <>
     <Accordion>
@@ -133,7 +146,10 @@ uploadImage(selectedCategory,selectedImageUrl,{title:title,caption:caption,name:
                   />
                 )}
               </div>
-              {selectedImage!= '' && <button onClick={()=>setShowDeleteModal(true)}>Delete Image</button>}
+              {selectedImage!= '' && 
+              <button onClick={()=>showModal('Confirm Delete Image','Are you sure you want to delete this image? This cannot be undone.',deleteSelectedImage)}>
+                Delete Image
+                </button>}
               {isEdited && <button onClick={saveSelectedImage}>Save Image</button>}
             </div>
 
@@ -161,17 +177,12 @@ uploadImage(selectedCategory,selectedImageUrl,{title:title,caption:caption,name:
           </section>
 
     {showDeleteModal && (
-      <>
-       <div className="delete-overlay"></div>
-      <div className="delete-modal">
-        <div className="delete-modal-content">
-          <h4>Confirm Delete</h4>
-          <p>Are you sure you want to delete this file?</p>
-          <button onClick={deleteSelectedImage}>Yes</button>
-          <button onClick={()=>setShowDeleteModal(false)}>No</button>
-        </div>
-      </div>
-      </>
+      <Modal
+        title={modalTitle}
+        message={modalMessage}
+        onConfirm={modalConfirm}
+        onCancel={() => setShowDeleteModal(false)}
+      />
     )} 
           
         </Accordion.Body>
