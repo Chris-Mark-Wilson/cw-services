@@ -5,7 +5,7 @@ import { getImageByImageName } from "../../../api/firebase_api";
 import { getImageDataByImageName } from "../../../api/firebase_api";
 import { uploadImage } from "../../../api/firebase_api";
 import { deleteImage } from "../../../api/firebase_api";
-import { set } from "firebase/database";
+
 
 export const EditImages = ({ selectedCategory,reload,setReload }) => {
   const [imageList, setImageList] = useState([]);
@@ -60,13 +60,14 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
   
 
   const deleteSelectedImage = () => {
-
+console.log('in delete');
 deleteImage(selectedCategory,selectedImage)
 .then((response)=>{
 setSelectedImage('');
 setTitle('');
 setCaption('');
 setSelectedImageUrl('');
+setShowDeleteModal(false);
 setReload((prev)=>!prev);
 });
   };
@@ -89,6 +90,7 @@ uploadImage(selectedCategory,selectedImageUrl,{title:title,caption:caption,name:
 };
 
   return (
+    <>
     <Accordion>
       <Accordion.Item eventKey="0">
         <Accordion.Header>Edit Images</Accordion.Header>
@@ -100,7 +102,7 @@ uploadImage(selectedCategory,selectedImageUrl,{title:title,caption:caption,name:
                 Select Image:
                 <select
                   name="image-list"
-                  onChange={(e) => {setSelectedImage(e.target.value)}}
+                  onChange={(e) => {()=>setSelectedImage(e.target.value)}}
                   value={selectedImage}
                 >
                   {/* <option value={selectedImage}>{selectedImage}</option> */}
@@ -145,24 +147,25 @@ uploadImage(selectedCategory,selectedImageUrl,{title:title,caption:caption,name:
                 id="caption"
                 placeholder="Enter a caption for the image"
                 value={caption}
-                onChange={(e)=>{setCaption(e.target.value);setIsEdited(true)}}
+                onChange={(e)=>{()=>setCaption(e.target.value);setIsEdited(true)}}
               />
             </section>
           </section>
 
-          
-      {showDeleteModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <h4>Confirm Delete</h4>
-            <p>Are you sure you want to delete this file?</p>
-            <button onClick={deleteSelectedImage}>Yes</button>
-            <button onClick={setShowDeleteModal(false)}>No</button>
-          </div>
+    {showDeleteModal && (
+      <div className="delete-modal">
+        <div className="delete-modal-content">
+          <h4>Confirm Delete</h4>
+          <p>Are you sure you want to delete this file?</p>
+          <button onClick={deleteSelectedImage}>Yes</button>
+          <button onClick={()=>setShowDeleteModal(false)}>No</button>
         </div>
-      )}
+      </div>
+    )} 
+          
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>
+      </>
   );
 };
