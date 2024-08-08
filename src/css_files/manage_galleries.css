@@ -16,6 +16,11 @@
     padding:0; margin:0;
 
 }
+.accordion .image-display{
+    border:none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+}
 .accordion button{
     display: flex;
     justify-content: space-between;
@@ -204,7 +209,7 @@ align-content: center;
 }
 
 .upload-select-file{
-    border:1px solid rgb(78, 155, 71);
+    border:1px solid black;
     border-radius:10px;
     display: flex;
     flex-direction: row;
@@ -218,13 +223,13 @@ align-content: center;
     flex-direction: column;
     margin:0 10px 0 0;
     padding:10px;
-    border:1px solid black;
+    /* border:1px solid black; */
     border-radius:10px;
     /* flex-grow:2; */
 }
 .file-image{
   /* flex-grow:2; */
-  border:2px solid red;
+  /* border:2px solid red; */
     max-width:200px;
     margin:0 auto;
     height:auto;
