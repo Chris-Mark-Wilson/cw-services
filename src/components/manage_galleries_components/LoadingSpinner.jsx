@@ -11,6 +11,7 @@ export const LoadingSpinner = ({message}) => {
           <Spinner animation="border" role="status">
             <span className="visually-hidden">{message}</span>
           </Spinner>
+          <p style={{textAlign:'center'}}>{message}</p>
         </div>
       </div>
     </>
