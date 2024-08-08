@@ -9,6 +9,7 @@ import { LoadingSpinner } from "./LoadingSpinner";
 import { useModal } from "../../context/ModalContext";
 
 import {updateImageName} from "../../../api/firebase_api";
+import { set } from "firebase/database";
 
 export const EditImages = ({ selectedCategory,reload,setReload }) => {
   const [imageList, setImageList] = useState([]);
