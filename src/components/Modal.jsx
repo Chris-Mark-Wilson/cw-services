@@ -1,6 +1,6 @@
 import React ,{useEffect}from 'react';
 import { useModal } from '../context/ModalContext.jsx';
-import '../css_files/delete_modal.css'; // Ensure the CSS file is imported
+import '../css_files/delete_modal.css'; 
 
 export const Modal = () => {
   const { showDeleteModal, modalTitle, modalMessage, modalConfirm, hideModal } = useModal();

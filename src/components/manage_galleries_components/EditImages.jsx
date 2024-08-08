@@ -8,12 +8,15 @@ import { deleteImage } from "../../../api/firebase_api";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { useModal } from "../../context/ModalContext";
 
+import {updateImageName} from "../../../api/firebase_api";
+
 export const EditImages = ({ selectedCategory,reload,setReload }) => {
   const [imageList, setImageList] = useState([]);
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedImageUrl, setSelectedImageUrl] = useState("");
   const [title, setTitle] = useState("");
   const [caption, setCaption] = useState("");
+  const [editedImageName, setEditedImageName] = useState("");
   const [isEdited, setIsEdited] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [spinnerMessage, setSpinnerMessage] = useState("");
@@ -25,18 +28,18 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
   useEffect(() => {
 
     if (selectedCategory !== "None Selected") {
-      console.log('in use effect');
+  console.log('in use effect1');
      
       // get the images from the selected category
       setSpinnerMessage('Loading Categories...');
       setIsLoading(true);
       getImageNamesByCategory(selectedCategory)
         .then((names) => {
-          console.log("here");
+       
           setImageList(names);
           if (names.length > 0){
             
-          
+          console.log('selectedImage:names[0]',names[0]);
           setSelectedImage(names[0]);
           }
           setIsLoading(false);
@@ -49,14 +52,17 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
       },[selectedCategory,reload]);
 
       useEffect(() => {
-        console.log('in use effect 2');
+     
         if (selectedCategory !== "None Selected") {
+          console.log('in use effect2');
       if (selectedImage !== "") {
         setSpinnerMessage('Loading Image...');
       setIsLoading(true);
-        console.log("selected image:", selectedImage);
+        // console.log("selected image:", selectedImage);
         getImageByImageName(selectedCategory, selectedImage)
           .then((image) => {
+            console.log("selectedImage:", selectedImage);
+            console.log("selectedImage image:", image);
             setSelectedImageUrl(image);
             setIsLoading(false);
           })
@@ -67,9 +73,9 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
        
           getImageDataByImageName(selectedCategory, selectedImage)
           .then((imageData) => {
-              console.log(imageData)
+              console.log('selectedImage imageData :',imageData)
               setTitle(imageData.title);
-              setCaption(imageData.caption);
+              setCaption(imageData.caption??'');
           })
           .catch((error) => {
               console.log(error);
@@ -93,29 +99,41 @@ setReload((prev)=>!prev);
 });
   };
 
-  const saveSelectedImage = () => {
-    if(selectedCategory==='None Selected'){
-       alert('Please select a category'); 
-       return;
-      }
+  const saveSelectedImage = async () => {
+    // if(selectedCategory==='None Selected'){
+    //    alert('Please select a category');
+    //    return;
+    //   }
 
-    if((selectedImage!=="No images to show")){
-      setSpinnerMessage('Saving Image...');
+    try {
+      setSpinnerMessage("Saving Image...");
       setIsLoading(true);
-uploadImage(selectedCategory,selectedImageUrl,{title:title,caption:caption,name:selectedImage})
-.then((response)=>{
-  console.log('Saved file:',response);
-  setSelectedImage('');
-  setReload((prev)=>!prev);
-  setIsEdited(false);
-  setIsLoading(false);
-  })
-  .catch((error)=>{
-    console.log(error);
-    setIsLoading(false);
-  });
-}else{alert('No image selected')}
-};
+      if (editedImageName !== "") {
+        setSpinnerMessage("Updating Image Name...");
+  
+        await updateImageName(selectedCategory, selectedImage, editedImageName);
+  
+      } else{
+      await uploadImage(selectedCategory, selectedImageUrl, {
+        title: title,
+        caption: caption,
+        name: selectedImage,
+      });
+    }
+
+      console.log("done to here");
+
+      
+      setEditedImageName('');
+      setSelectedImage(editedImageName===''?selectedImage:editedImageName);
+      setIsEdited(false);
+      setIsLoading(false);
+      setReload((prev) => !prev);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
 
 
 
@@ -146,6 +164,7 @@ uploadImage(selectedCategory,selectedImageUrl,{title:title,caption:caption,name:
                   })}
                 </select>
               </label>
+
               <div className="image-display">
                 {selectedImageUrl !== "" && (
                   <img
@@ -155,15 +174,25 @@ uploadImage(selectedCategory,selectedImageUrl,{title:title,caption:caption,name:
                   />
                 )}
               </div>
+
               {selectedImage!= '' && 
+              < div className='edit-buttons'>
+                <div className='edit-input-group'>
+                  <label htmlFor='editImageName'>Edit Image Name</label>
+                  <input type='text' name = 'editImageName'  placeholder='enter new image name' value={editedImageName} onChange={(e)=>{setIsEdited(true);setEditedImageName(e.target.value)}}/>
+                </div>
+              {isEdited && <button onClick={saveSelectedImage}>Save Image</button>}
+
               <button onClick={()=>showModal('Confirm Delete Image','Are you sure you want to delete this image? This cannot be undone.',deleteSelectedImage)}>
                 Delete Image
-                </button>}
-              {isEdited && <button onClick={saveSelectedImage}>Save Image</button>}
+                </button>
+                </div>
+              }
+
             </div>
 
             <section className="upload-title">
-              <label htmlFor="title">Title / Alt</label>
+              <label htmlFor="title">Edit Title / Alt</label>
               <textarea
                 type="text"
                 id="title"
@@ -174,7 +203,7 @@ uploadImage(selectedCategory,selectedImageUrl,{title:title,caption:caption,name:
             </section>
 
             <section className="upload-caption">
-              <label htmlFor="caption">Caption</label>
+              <label htmlFor="caption">Edit Caption</label>
               <textarea
                 type="text"
                 id="caption"

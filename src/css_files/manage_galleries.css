@@ -17,7 +17,7 @@ li{
     list-style-type:none;
 }
 label{
-border:1px solid green;
+/* border:1px solid green; */
    padding:0;
    margin:0;
 }
@@ -46,10 +46,12 @@ border:1px solid green;
     align-items: center;
     margin:20px 10px;
     padding:20px;
+   
 
 }
 .category-selection{
-    border:1px solid green;
+    /* border:1px solid green; */
+    
     display:flex;
     width:100%;
     justify-content: space-around;
@@ -57,7 +59,8 @@ border:1px solid green;
 }
 
 .select-category{
-    border:1px solid red;
+    /* border:1px solid red; */
+    
     display: flex;
     flex-direction: column;
    text-align: left;
@@ -69,6 +72,7 @@ border:1px solid green;
 }
 select{
     /* border:1px solid yellow; */
+    
     display: flex;
     flex-direction:column;
     text-align: left;
@@ -106,6 +110,23 @@ align-content: center;
     width:100%;
    max-width:100%;
    
+}
+
+.edit-buttons{
+    /* border:1px solid red; */
+    display:flex;
+    flex-direction:column;
+    justify-content: space-evenly;
+   
+    margin:10px 0;
+
+}
+.edit-input-group{
+    /* border:1px solid rgb(17, 147, 37); */
+    display:flex;
+    flex-direction:column;
+    text-align: left;
+    justify-content: center;
 }
 .submit-button {
     align-self: center; /* Center the button vertically */
