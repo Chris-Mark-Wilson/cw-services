@@ -9,7 +9,7 @@ import { LoadingSpinner } from "./LoadingSpinner";
 import { useModal } from "../../context/ModalContext";
 
 import {updateImageName} from "../../../api/firebase_api";
-import { set } from "firebase/database";
+
 
 export const EditImages = ({ selectedCategory,reload,setReload }) => {
   const [imageList, setImageList] = useState([]);
@@ -42,6 +42,11 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
             
           console.log('selectedImage:names[0]',names[0]);
           setSelectedImage(names[0]);
+          } else {
+            setSelectedImage('');
+            setSelectedImageUrl('');
+            setTitle('');
+            setCaption('');
           }
           setIsLoading(false);
         })

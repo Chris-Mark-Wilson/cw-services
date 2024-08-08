@@ -19,14 +19,15 @@ getCategories();
 const getCategories=()=>{
   getAllCategories()
   .then((categories)=>{
-  //  console.log(categories,', ',typeof(categories),'isArray:',
-  //  Array.isArray(categories), 'categories in component');
+   console.log(categories,', ',typeof(categories),'isArray:',
+   Array.isArray(categories), 'categories in component');
  
    if(categories!==""){ 
    setCategoryList((prev)=>{
      return Object.keys(categories).map((category,index)=>{
       return {id:index,name:category}});
    });
+   setSelectedCategory(categoryList[0].name);
    } else {
     setCategoryList([]);
      setSelectedCategory('No categories found');
@@ -45,8 +46,8 @@ const getCategories=()=>{
     if(newCategory!==''){
 
       // setCategoryList((prev)=>[...prev,{id:prev.length,name:newCategory}]);
-      setNewCategory('');
       setSelectedCategory(newCategory);
+      setNewCategory('');
   }
 
 }
