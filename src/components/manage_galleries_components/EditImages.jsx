@@ -139,7 +139,7 @@ setReload((prev)=>!prev);
 
   return (
     <>
-    <Accordion>
+    <Accordion className='accordion'>
       <Accordion.Item eventKey="0">
         <Accordion.Header>Edit Images</Accordion.Header>
         <Accordion.Body>
@@ -209,7 +209,7 @@ setReload((prev)=>!prev);
                 id="caption"
                 placeholder="Enter a caption for the image"
                 value={caption}
-                onChange={(e)=>{()=>setCaption(e.target.value);setIsEdited(true)}}
+                onChange={(e)=>{setCaption(e.target.value);setIsEdited(true)}}
               />
             </section>
           </section>

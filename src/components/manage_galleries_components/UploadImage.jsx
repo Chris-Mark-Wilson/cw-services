@@ -67,7 +67,6 @@ export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
           <h5>Upload a new image</h5>
           <p>Selected category: {selectedCategory}</p>
           <p>File name: {fileName}</p>
-          <input type='text' placeholder='Enter a file name' onChange={(e)=>setFileName(e.target.value)} value={fileName}/>
           <section className="upload-select-file">
             <div className='upload-file-select'>
             <label htmlFor="file">Choose an image</label>
@@ -85,6 +84,7 @@ export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
             {file && <img src={URL.createObjectURL(file)} alt='selected file' className='file-image' />}
           
           </section>
+          <input type='text' placeholder='Enter a file name' onChange={(e)=>setFileName(e.target.value)} value={fileName}/>
 
           
         <section className="upload-title">
