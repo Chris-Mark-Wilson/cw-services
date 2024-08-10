@@ -24,12 +24,18 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
 
   const {showModal} = useModal();
 
-
+useEffect(()=>{
+  if(editedImageName!==''){
+    setIsEdited(true);
+  } else {
+    setIsEdited(false);
+  }
+},[editedImageName]);
 
   useEffect(() => {
 
     if (selectedCategory !== "None Selected") {
-  console.log('in use effect1');
+  // console.log('in use effect1');
      
       // get the images from the selected category
       setSpinnerMessage('Loading Categories...');
@@ -40,7 +46,7 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
           setImageList(names);
           if (names.length > 0){
             
-          console.log('selectedImage:names[0]',names[0]);
+          // console.log('selectedImage:names[0]',names[0]);
           setSelectedImage(names[0]);
           } else {
             setSelectedImage('');
@@ -60,15 +66,15 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
       useEffect(() => {
      
         if (selectedCategory !== "None Selected") {
-          console.log('in use effect2');
+          // console.log('in use effect2');
       if (selectedImage !== "") {
         setSpinnerMessage('Loading Image...');
       setIsLoading(true);
         // console.log("selected image:", selectedImage);
         getImageByImageName(selectedCategory, selectedImage)
           .then((image) => {
-            console.log("selectedImage:", selectedImage);
-            console.log("selectedImage image:", image);
+            // console.log("selectedImage:", selectedImage);
+            // console.log("selectedImage image:", image);
             setSelectedImageUrl(image);
             setIsLoading(false);
           })
@@ -79,7 +85,7 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
        
           getImageDataByImageName(selectedCategory, selectedImage)
           .then((imageData) => {
-              console.log('selectedImage imageData :',imageData)
+              // console.log('selectedImage imageData :',imageData)
               setTitle(imageData.title);
               setCaption(imageData.caption??'');
           })

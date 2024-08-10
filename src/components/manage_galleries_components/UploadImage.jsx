@@ -24,7 +24,7 @@ export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
 
   const handleUpload=(e)=>{
     e.preventDefault();
-    if(selectedCategory==='None Selected'){
+    if(selectedCategory===''){
       alert('Please select a category or create a new one');
       return;
     }

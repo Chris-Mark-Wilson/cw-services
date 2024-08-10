@@ -103,15 +103,16 @@ export const updateImageName = async (category, oldName, newName) => {
 const storeImage = async (image) => {
     // console.log(image.file, image.name);
     try{
-        const storageRef = storeRef(storage, `images/${image.category}/${image.name}`);
+        const storageRef = storeRef(storage, `images/${image.name}`);
         const snapshot=await uploadBytesResumable(storageRef, image.file)
         console.log("Snapshot: ", snapshot);
         console.log("Reference: ", storageRef);
         console.log("Document successfully written!");
-        return storageRef;
+        return image.name;
     }
     catch(err){
         console.log(err);
+        return Promise.reject('Error uploading image to storage');
     }
 }
 
@@ -123,19 +124,23 @@ export const uploadImage = async (category, file, imageObject) => {
   try {
     let docref = "https://test-url";
 
-    docref = await storeImage({
-      category: category,
-      name: imageObject.name,
-      file: file,
+    let imageId = await storeImage({
+    
+      name: Date.now(),
+      file: file
     });
 
-    console.log(docref);
+    console.log(imageId);
+   
     const doc = {
       title: imageObject.title,
       caption: imageObject.caption,
-      url: `images/${category}/${imageObject.name}`,
+      imageId: imageId
     };
-
+   const ref=(baseRef(db, `categories/${category}/${imageObject.name}`));
+   const result = await get(ref);
+   // check see is this exists
+console.log(result);
     await set(
       baseRef(db, `categories/${category}/${imageObject.name}`),
       doc
@@ -199,3 +204,21 @@ export const addUser = async (user) => {
         console.error("Error adding user: ", error);
     }
 };
+
+export const updateCategoryName = async (oldName, newName) => {
+    try {
+        const oldRef = baseRef(db, `categories/${oldName}`);
+        const newRef = baseRef(db, `categories/${newName}`);
+        const docSnap = await get(oldRef);
+        if (docSnap.exists()) {
+            console.log("Document data:", docSnap.val());
+            // await set(newRef, docSnap.val());
+            // await remove(oldRef);
+            console.log("Category updated in database successfully");
+        }
+        return 'woo!';
+    } catch (error) {
+        console.log("Error updating category name ", error);
+        return Promise.reject(error);
+    }
+}
