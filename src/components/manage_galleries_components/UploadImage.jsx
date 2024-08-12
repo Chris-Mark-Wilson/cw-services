@@ -42,7 +42,7 @@ export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
     //set the loading spinner
     setSpinnerMessage('Uploading Image...');
     setIsLoading(true);
-    uploadImage(selectedCategory,file,{title:title,caption:caption,name:fileName})
+    uploadImage(selectedCategory,file,{title:title,caption:caption,name:fileName,comments:[]})
     .then((response)=>{
       console.log('uploaded file:',response);
      document.getElementById('file').value='';
@@ -56,7 +56,7 @@ export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
 
     })
     .catch((error)=>{
-      console.log(error);
+      console.log('Upload error: ',error);
       setIsLoading(false);
     })
   }

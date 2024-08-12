@@ -42,8 +42,8 @@ const getCategories= async()=>{
    console.log(categories,', ',typeof(categories),'isArray:',
    Array.isArray(categories), 'categories in component');
    
-   if(categories!==null){ 
-    const newCategoryList = Object.keys(categories).map((category, index) => {
+   if(categories.length>0){ 
+    const newCategoryList = categories.map((category, index) => {
       // console.log('category: ', category);
       return { id: index, name: category };
     });

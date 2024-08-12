@@ -18,7 +18,7 @@ export const getUrlList = async (folder) => {
 //get image from storage
 export const getImageByImageName = async (category, imageName) => {
     try {
-        const imageRef = storeRef(storage, `images/${category}/${imageName}`);
+        const imageRef = storeRef(storage, `images/${imageName}`);
         const image = await getBlob(imageRef);
         // console.log(image)
         return image;
@@ -47,16 +47,43 @@ export const getImageDataByImageName = async (category, imageName) => {
 }
 
 //get a list of all image names in Storage
-export const getImageNamesByCategory = async (category) => {
+export const getAllImagesByCategory = async (category) => {
+    console.log('category:',category);
     try {
-        const names=[];
-        const refs = await getUrlList(`images/${category}`);
-
-        refs.forEach((ref) => {
-            names.push(ref.name);
+        const imageData=[];
+        const ref=baseRef(db, `categories/${category}`);
+        const dbSnapShot = await get(ref);;
+        // console.log('here')
+        //return an object with image names as keys
+        if(dbSnapShot.exists()){
+                   console.log('dbSnapShot:', dbSnapShot.val());
+        const images = Object.keys(dbSnapShot.val());
+        const values = Object.values(dbSnapShot.val());
+        
+        const imageDataPromises = images.map(async (image, index) => {
+          const imageId = values[index].imageId;
+          const imageRef = storeRef(storage, `images/${imageId}`);
+          const imageBlob = await getBlob(imageRef);
+        
+          return {
+            name: image,
+            caption: values[index].caption,
+            title: values[index].title,
+            url: URL.createObjectURL(imageBlob),
+          };
         });
-    
-        return names;
+        
+        const imageData = await Promise.all(imageDataPromises);
+        
+        console.dir('Images:', imageData);
+        return imageData;
+            
+        }
+        else{
+            console.log('No images found');
+            return [];
+        }
+
        
     } catch (error) {
         console.log(error);
@@ -118,35 +145,56 @@ const storeImage = async (image) => {
 
 
 //uploads an image to storage and adds an image document to the database
-export const uploadImage = async (category, file, imageObject) => {
-  //check if the image name already exists *****
-
-  try {
-    let docref = "https://test-url";
-
-    let imageId = await storeImage({
-    
-      name: Date.now(),
+export const uploadImage = async (category, file, imageObject) => { //Checks if category exists
+  //Checks if the image name already exists 
+  //If the image name does not exist, upload the image to storage and add a document to the database
+  
+  //define upload function
+  const upload=async (category, file, imageObject)=>{
+  console.log('image does not exist, uploading image');
+  let imageId = await storeImage({
+  
+      name: new Date().getTime(),
       file: file
     });
-
-    console.log(imageId);
-   
     const doc = {
-      title: imageObject.title,
-      caption: imageObject.caption,
+      title: imageObject.title.trim(),
+      caption: imageObject.caption.trim(),
       imageId: imageId
     };
-   const ref=(baseRef(db, `categories/${category}/${imageObject.name}`));
-   const result = await get(ref);
-   // check see is this exists
-console.log(result);
     await set(
-      baseRef(db, `categories/${category}/${imageObject.name}`),
+      baseRef(db, `categories/${category}/${imageObject.name.trim()}`),
       doc
     );
-    console.log("Document successfully written!");
+    console.log("Image uploaded to storage, document written to db");
     return true;
+  }
+
+  try {
+    const categories=await getAllCategories();
+    //if category exists
+    if(categories.includes(category)){
+        console.log('category exists');
+        const snapShot=await get(child(baseRef(db), `categories/${category}/${imageObject.name}`));
+        if(snapShot.exists()){
+            console.log('image exists');
+            return Promise.reject('Image already exists');
+        } else{
+            upload(category, file, imageObject);
+        }
+    }
+    //if category doesnt exist
+        else{
+        console.log('category does not exist');
+        //add category to categoryList in db
+        const ref=baseRef(db, `categoryList/${categories.length}`);
+        await set(ref, category);
+        //upload imgage
+        upload(category, file, imageObject);
+        }  
+
+return true;
+
   } catch (error) {
     console.error("Error adding document: ", error);
     return Promise.reject(error);
@@ -159,18 +207,12 @@ console.log(result);
 export const getAllCategories = async () => {
     // console.log("here");
     try {
-        const snapshot = await get(baseRef(db, '/categories'));
+        const snapshot = await get(baseRef(db, '/categoryList'));
         
         if (snapshot.exists()) {
-            // console.log(Object.keys(snapshot.val())+', '+typeof(snapshot))
-            // console.dir(Object.values(snapshot.val())+', '+typeof(snapshot))
-            if(snapshot.val().categories!==""){
-                // Object.keys(snapshot.val()).forEach((key) => {
-                //     console.dir(key);
-                // })
-                // console.log("snapshot.val():", snapshot.val());
-            return snapshot.val();
-        }
+        console.log("Category data available");
+            return Array.from(Object.values(snapshot.val()));
+        
      } else {
             console.log("No Category data available");
             return [];

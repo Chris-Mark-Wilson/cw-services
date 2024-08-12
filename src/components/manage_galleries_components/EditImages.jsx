@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 import { Accordion } from "react-bootstrap";
-import { getImageNamesByCategory } from "../../../api/firebase_api";
+import { getAllImagesByCategory } from "../../../api/firebase_api";
 import { getImageByImageName } from "../../../api/firebase_api";
 import { getImageDataByImageName } from "../../../api/firebase_api";
 import { uploadImage } from "../../../api/firebase_api";
@@ -9,10 +9,11 @@ import { LoadingSpinner } from "./LoadingSpinner";
 import { useModal } from "../../context/ModalContext";
 
 import {updateImageName} from "../../../api/firebase_api";
+import CustomSelect from "../CustomSelect";
 
 
 export const EditImages = ({ selectedCategory,reload,setReload }) => {
-  const [imageList, setImageList] = useState([]);
+  const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedImageUrl, setSelectedImageUrl] = useState("");
   const [title, setTitle] = useState("");
@@ -21,8 +22,25 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
   const [isEdited, setIsEdited] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [spinnerMessage, setSpinnerMessage] = useState("");
+  const [dimensions, setDimensions] = useState({ naturalWidth: 0, naturalHeight: 0 });
+  const imgRef = useRef(null);
+  const [largeImage, setLargeImage] = useState(false);
 
   const {showModal} = useModal();
+
+  useEffect(() => {
+    if (imgRef.current) {
+      console.log(imgRef.current)
+      console.log('width: ',imgRef.current.naturalWidth,' height: ',imgRef.current.naturalHeight);
+      setDimensions({
+        naturalWidth: imgRef.current.naturalWidth,
+        naturalHeight: imgRef.current.naturalHeight,
+      });
+    }
+  }, [imgRef,largeImage]);
+  const { naturalWidth, naturalHeight } = dimensions;
+
+
 
 useEffect(()=>{
   if(editedImageName!==''){
@@ -34,20 +52,25 @@ useEffect(()=>{
 
   useEffect(() => {
 
-    if (selectedCategory !== "None Selected") {
+    if (selectedCategory !== "") {
   // console.log('in use effect1');
      
       // get the images from the selected category
       setSpinnerMessage('Loading Categories...');
       setIsLoading(true);
-      getImageNamesByCategory(selectedCategory)
-        .then((names) => {
+      getAllImagesByCategory(selectedCategory)
+      //returns an array of image objects
+      // {name:(string),caption:(string),title:(string), url:(imageurl)}
+        .then((images) => {
+          if (images.length > 0){
+            //deep copy the array of image objects
+            console.log(images)
+          setImages(JSON.parse(JSON.stringify(images)));
        
-          setImageList(names);
-          if (names.length > 0){
-            
-          // console.log('selectedImage:names[0]',names[0]);
-          setSelectedImage(names[0]);
+          // setSelectedImage(images[0].name);
+           setSelectedImage(images[0]);
+          console.log('selected image url:',images[0].url);
+          setSelectedImageUrl(images[0].url);
           } else {
             setSelectedImage('');
             setSelectedImageUrl('');
@@ -63,37 +86,21 @@ useEffect(()=>{
       }
       },[selectedCategory,reload]);
 
-      useEffect(() => {
+  useEffect(() => {
      
-        if (selectedCategory !== "None Selected") {
+    if (selectedCategory !== "" && selectedImage !== "") {
           // console.log('in use effect2');
-      if (selectedImage !== "") {
-        setSpinnerMessage('Loading Image...');
-      setIsLoading(true);
-        // console.log("selected image:", selectedImage);
-        getImageByImageName(selectedCategory, selectedImage)
-          .then((image) => {
-            // console.log("selectedImage:", selectedImage);
-            // console.log("selectedImage image:", image);
-            setSelectedImageUrl(image);
-            setIsLoading(false);
-          })
-          .catch((error) => {
-            console.log(error);
-            setIsLoading(false);
-          });
-       
-          getImageDataByImageName(selectedCategory, selectedImage)
-          .then((imageData) => {
-              // console.log('selectedImage imageData :',imageData)
-              setTitle(imageData.title);
-              setCaption(imageData.caption??'');
-          })
-          .catch((error) => {
-              console.log(error);
-          });
+     
+        console.log('selected image : ',selectedImage);
+        // console.log('images:',images)
+        // const image=images.find((image)=>image.name===selectedImage);
+        // console.log('found image: ',image)
+        const url=selectedImage.url;
+        console.log('image.url:',url)
+        setSelectedImageUrl(selectedImage.url)
+        setTitle(selectedImage.title);
+        setCaption(selectedImage.caption);
       }
-    }
   }, [selectedImage,reload]);
 
   
@@ -160,35 +167,28 @@ setReload((prev)=>!prev);
             <div className="images-container">
               <label>
                 Select Image:
-                <select
-                  name="image-list"
-                  onChange={(e)=>setSelectedImage(e.target.value)}
-                  value={selectedImage}
-                >
-                  {/* <option value={selectedImage}>{selectedImage}</option> */}
-                  {imageList.map((imageName, index) => {
-                  
-                    return (
-                      <option key={index} >
-                        {imageName}
-                      </option>
-                    );
-                  })}
-                </select>
+                <CustomSelect images={images} setSelectedImage={setSelectedImage} selectedImage={selectedImage} />
+        
               </label>
 
               <div className="image-display">
-                {selectedImageUrl !== "" && (
+                {selectedImage.url !== "" && (
                   <img
-                    src={URL.createObjectURL(selectedImageUrl)}
+                  ref={imgRef}
+                    src={selectedImage.url}
                     alt="selected image"
-                    className="file-image"
+                    className={`file-image ${largeImage ? "large-image" : ""}`}
+                    onClick={()=>setLargeImage(!largeImage)}
+                    style={{
+                      transform: ` scale(${ largeImage ?( naturalWidth / naturalHeight)*2:1},${largeImage?2:1})`, 
+                    }}
                   />
                 )}
               </div>
 
               {selectedImage!= '' && 
               < div className='edit-buttons'>
+                {selectedImage.name}
                 <div className='edit-input-group'>
                   <label htmlFor='editImageName'>Edit Image Name</label>
                   <input type='text' name = 'editImageName'  placeholder='enter new image name' value={editedImageName} onChange={(e)=>{setIsEdited(true);setEditedImageName(e.target.value)}}/>
