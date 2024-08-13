@@ -47,11 +47,13 @@ export const getImageDataByImageName = async (category, imageName) => {
 }
 
 //get a list of all image names in Storage
-export const getAllImagesByCategory = async (category) => {
-    console.log('category:',category);
+export const  getAllImagesByCategory = async (category) => {
+console.log(category)
+
     try {
+     
         const imageData=[];
-        const ref=baseRef(db, `categories/${category}`);
+        const ref=baseRef(db, `categories/${category.id}`);
         const dbSnapShot = await get(ref);;
         // console.log('here')
         //return an object with image names as keys
@@ -72,7 +74,7 @@ export const getAllImagesByCategory = async (category) => {
             url: URL.createObjectURL(imageBlob),
           };
         });
-        
+        //wait for all the image objects
         const imageData = await Promise.all(imageDataPromises);
         
         console.dir('Images:', imageData);
@@ -92,35 +94,25 @@ export const getAllImagesByCategory = async (category) => {
 }
 
 //update image name in storage and db
-export const updateImageName = async (category, oldName, newName) => {
+export const updateImageName = async (categoryId, oldName, newName) => {
     try {
-       let oldRef = storeRef(storage, `images/${category}/${oldName}`);
-      
-       
-        let newRef = storeRef(storage, `images/${category}/${newName}`);
-       
+
+       let oldRef = baseRef(db, `categories/${categoryId}/${oldName}`);
+
+       const oldSnapShot = await get(oldRef);
+
+        let newRef = baseRef(db, `categories/${categoryId}/${newName}`);
         
-        const fileBuffer = await getBlob(oldRef);
-        await storeImage({file:fileBuffer,category:category, name: newName});
-        await deleteObject(oldRef);
-
-       
-        console.log("Image name updated in storage successfully");
-
-         oldRef = baseRef(db, `categories/${category}/${oldName}`);
-         newRef = baseRef(db, `categories/${category}/${newName}`);
-        const docSnap = await get(oldRef);
-        if (docSnap.exists()) {
-            const newUrl = `images/${category}/${newName}`;
-            //change the url in the document
-            await set(newRef, {...docSnap.val(), url: newUrl});
-            await remove(oldRef);
-
-
+   
+      
+        //change the url in the document
+        await set(newRef, {...oldSnapShot.val(), name: newName});
+        await remove(oldRef);
    
         console.log("Document updated in database successfully");
         }
-    } catch (error) {
+
+  catch (error) {
         console.log("Error updating image name ", error);
         return Promise.reject(error);
     }
@@ -145,12 +137,12 @@ const storeImage = async (image) => {
 
 
 //uploads an image to storage and adds an image document to the database
-export const uploadImage = async (category, file, imageObject) => { //Checks if category exists
+export const uploadImage = async (categoryId,categoryName, file, imageObject) => { //Checks if category exists
   //Checks if the image name already exists 
   //If the image name does not exist, upload the image to storage and add a document to the database
   
   //define upload function
-  const upload=async (category, file, imageObject)=>{
+  const upload=async (categoryId, file, imageObject)=>{
   console.log('image does not exist, uploading image');
   let imageId = await storeImage({
   
@@ -163,7 +155,7 @@ export const uploadImage = async (category, file, imageObject) => { //Checks if 
       imageId: imageId
     };
     await set(
-      baseRef(db, `categories/${category}/${imageObject.name.trim()}`),
+      baseRef(db, `categories/${categoryId}/${imageObject.name.trim()}`),
       doc
     );
     console.log("Image uploaded to storage, document written to db");
@@ -171,26 +163,27 @@ export const uploadImage = async (category, file, imageObject) => { //Checks if 
   }
 
   try {
-    const categories=await getAllCategories();
+    const categoriesArray=await getAllCategories();
     //if category exists
-    if(categories.includes(category)){
+    if(categoriesArray.find(category=>category.name===categoryName)){
         console.log('category exists');
-        const snapShot=await get(child(baseRef(db), `categories/${category}/${imageObject.name}`));
+        const snapShot=await get(child(baseRef(db), `categories/${categoryId}/${imageObject.name}`));
         if(snapShot.exists()){
             console.log('image exists');
             return Promise.reject('Image already exists');
         } else{
-            upload(category, file, imageObject);
+            upload(categoryId, file, imageObject);
         }
     }
     //if category doesnt exist
         else{
         console.log('category does not exist');
         //add category to categoryList in db
-        const ref=baseRef(db, `categoryList/${categories.length}`);
-        await set(ref, category);
+        categoryId=Date.now()+categoryName;
+        const ref=baseRef(db, `categoryList/${categoryId}`);
+        await set(ref, categoryId);
         //upload imgage
-        upload(category, file, imageObject);
+        upload(categoryId, file, imageObject);
         }  
 
 return true;
@@ -211,7 +204,12 @@ export const getAllCategories = async () => {
         
         if (snapshot.exists()) {
         console.log("Category data available");
-            return Array.from(Object.values(snapshot.val()));
+        console.log('Category snapshot): ',(snapshot.val()));
+        const array=[];
+        for(const  key in snapshot.val()){
+            array.push({name:key, id:snapshot.val()[key]});
+        }
+            return array;
         
      } else {
             console.log("No Category data available");

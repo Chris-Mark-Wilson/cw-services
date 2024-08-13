@@ -30,29 +30,34 @@ export const Categories = ({
     }
   },[editedCategory,newCategory]);
 
-useEffect(()=>{
-getCategories();
+
+
   
+  
+  useEffect(()=>{
+    
+    getCategories();
+    
 },[categoryList.length]);
 
-const getCategories= async()=>{
+const getCategories=async()=>{
   try{
-   const categories = await getAllCategories()
-
+    
+    const categories = await getAllCategories()
    console.log(categories,', ',typeof(categories),'isArray:',
    Array.isArray(categories), 'categories in component');
    
    if(categories.length>0){ 
-    const newCategoryList = categories.map((category, index) => {
-      // console.log('category: ', category);
-      return { id: index, name: category };
-    });
+    // const newCategoryList = categories.map((category, index) => {
+    //   // console.log('category: ', category);
+    //   return { id: category.id, name: category.name };
+    // });
 
     // await new Promise((resolve) => setTimeout(resolve, 100));
-    setCategoryList(newCategoryList);
+    setCategoryList(categories);
     // console.log('selected category: ',selectedCategory);
     //   console.log('category list: ',categoryList);
-      categoryList.length > 0 && setSelectedCategory( categoryList[0].name);
+      categoryList.length > 0 && setSelectedCategory( categoryList[0]);
       
     } else {
       console.log('no categories found');
@@ -75,7 +80,7 @@ const getCategories= async()=>{
     if(newCategory!==''){
 
       // setCategoryList((prev)=>[...prev,{id:prev.length,name:newCategory}]);
-      setSelectedCategory(newCategory);
+      setSelectedCategory({name:newCategory,id:0});
       setNewCategory('');
   }
 
@@ -122,10 +127,9 @@ if(editedCategory!==''){
             onChange ={(e) => setSelectedCategory(e.target.value)}
             value={selectedCategory}
           >
-            <option value={selectedCategory}>{selectedCategory}</option>
             {categoryList.map((category, index) => {
               return (
-                <option key={category.id} value={category.name}>
+                <option key={category.id} value={category}>
                   {category.name}
                 </option>
               );

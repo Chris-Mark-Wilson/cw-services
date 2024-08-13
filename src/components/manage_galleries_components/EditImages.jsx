@@ -52,7 +52,7 @@ useEffect(()=>{
 
   useEffect(() => {
 
-    if (selectedCategory !== "") {
+    if (selectedCategory !== null) {
   // console.log('in use effect1');
      
       // get the images from the selected category
@@ -130,10 +130,10 @@ setReload((prev)=>!prev);
       if (editedImageName !== "") {
         setSpinnerMessage("Updating Image Name...");
   
-        await updateImageName(selectedCategory, selectedImage, editedImageName);
+        await updateImageName(selectedCategory.id, selectedImage.name, editedImageName);
   
       } else{
-      await uploadImage(selectedCategory, selectedImageUrl, {
+      await uploadImage(selectedCategory.id,selectedCategory.name, selectedImageUrl, {
         title: title,
         caption: caption,
         name: selectedImage,

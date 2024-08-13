@@ -42,7 +42,7 @@ export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
     //set the loading spinner
     setSpinnerMessage('Uploading Image...');
     setIsLoading(true);
-    uploadImage(selectedCategory,file,{title:title,caption:caption,name:fileName,comments:[]})
+    uploadImage(selectedCategory.id,selectedCategory.name,file,{title:title,caption:caption,name:fileName,comments:[]})
     .then((response)=>{
       console.log('uploaded file:',response);
      document.getElementById('file').value='';
@@ -65,7 +65,7 @@ export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
     
         <section className="upload-new-file">
           <h5>Upload a new image</h5>
-          <p>Selected category: {selectedCategory}</p>
+          <p>Selected category: {selectedCategory.name}</p>
           <p>File name: {fileName}</p>
           <section className="upload-select-file">
             <div className='upload-file-select'>
