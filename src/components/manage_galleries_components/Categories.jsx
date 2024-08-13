@@ -79,9 +79,10 @@ const getCategories=async()=>{
   const addNewCategory = (e) => {
     e.preventDefault();
     if(newCategory!==''){
-
+console.log('new category:',newCategory);
       // setCategoryList((prev)=>[...prev,{id:prev.length,name:newCategory}]);
       setSelectedCategory({name:newCategory,id:0});
+      setCategoryList((prev)=>[...prev,{name:newCategory,id:0}]);
       setNewCategory('');
   }
 

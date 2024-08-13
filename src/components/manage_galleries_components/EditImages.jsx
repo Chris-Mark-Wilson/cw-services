@@ -25,7 +25,7 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
   const imgRef = useRef(null);
   const [largeImage, setLargeImage] = useState(false);
 
-  const {showModal} = useModal();
+  const {showModalDelete,showModalComplete} = useModal();
 
   useEffect(() => {
     if (imgRef.current) {
@@ -51,7 +51,8 @@ useEffect(()=>{
 
   useEffect(() => {
 
-    if (selectedCategory) {
+    if (selectedCategory && selectedCategory.id !== 0) {
+      console.log('selectedCategory,selectedCategory.id:',selectedCategory,selectedCategory.id) 
   // console.log('in use effect1');
      console.log('selected category in get all images by ca6tegory:',selectedCategory)
       // get the images from the selected category
@@ -106,23 +107,19 @@ useEffect(()=>{
 
   const deleteSelectedImage = () => {
 console.log('in delete');
-deleteImage(selectedCategory,selectedImage)
+deleteImage(selectedCategory.id,selectedImage)
 .then((response)=>{
 setSelectedImage('');
 setTitle('');
 setCaption('');
 setSelectedImageUrl('');
+showModalComplete('Image Deleted','The image has been deleted.');
 
 setReload((prev)=>!prev);
 });
   };
 
   const saveSelectedImage = async () => {
-    // if(selectedCategory==='None Selected'){
-    //    alert('Please select a category');
-    //    return;
-    //   }
-
     try {
       setSpinnerMessage("Saving Image...");
       setIsLoading(true);
@@ -194,7 +191,7 @@ setReload((prev)=>!prev);
                 </div>
               {isEdited && <button onClick={saveSelectedImage}>Save Image</button>}
 
-              <button onClick={()=>showModal('Confirm Delete Image','Are you sure you want to delete this image? This cannot be undone.',deleteSelectedImage)}>
+              <button onClick={()=>showModalDelete('Confirm Delete Image','Are you sure you want to delete this image? This cannot be undone.',deleteSelectedImage)}>
                 Delete Image
                 </button>
                 </div>

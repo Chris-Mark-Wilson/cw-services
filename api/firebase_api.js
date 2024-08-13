@@ -30,6 +30,7 @@ export const  getAllImagesByCategory = async (category) => {
             name: image,
             caption: values[index].caption,
             title: values[index].title,
+            imageId: imageId,
             url: URL.createObjectURL(imageBlob),
           };
         });
@@ -79,22 +80,7 @@ export const updateImageName = async (categoryId, oldName, newName) => {
 }
 
 
-// Adds a document to the "categories" collection
-const storeImage = async (image) => {
-    // console.log(image.file, image.name);
-    try{
-        const storageRef = storeRef(storage, `images/${image.name}`);
-        const snapshot=await uploadBytesResumable(storageRef, image.file)
-        // console.log("Snapshot: ", snapshot);
-        // console.log("Reference: ", storageRef);
-        console.log("Document successfully written!");
-        return image.name;
-    }
-    catch(err){
-        console.log(err);
-        return Promise.reject('Error uploading image to storage');
-    }
-}
+
 
 
 //uploads an image to storage and adds an image document to the database
@@ -201,15 +187,26 @@ export const getAllCategories = async () => {
         return Promise.reject(error);
     }
 };
-export const deleteImage = async (category, imageName) => {
+export const deleteImage = async (categoryId, image) => {
+    console.log('image name, url: ',image.name,image.imageId);
+    const imageName = image.name;
+    const imageId = image.imageId;
     try {
-        let imageRef = storeRef(storage, `images/${category}/${imageName}`);
+        let imageRef = storeRef(storage, `images/${imageId}`);
         await deleteObject(imageRef);
         console.log("Image deleted from storage successfully");
-        imageRef=baseRef(db, `categories/${category}/${imageName}`);
+        imageRef=baseRef(db, `categories/${categoryId}/${imageName}`);
         await remove(imageRef);
         console.log("Document deleted from database successfully");
-       
+        //check category length and delete if empty
+        const categoryRef=baseRef(db, `categories/${categoryId}`);
+        const categorySnapshot=await get(categoryRef);
+        if(!categorySnapshot.exists()){
+            console.log('Category is empty, deleting category');
+            const categoryListRef=baseRef(db, `categoryList/${categoryId}`);
+            await remove(categoryListRef);
+        }
+       return true;
     } catch (error) {
         console.log("Error deleting image ", error);
         return Promise.reject(error);
