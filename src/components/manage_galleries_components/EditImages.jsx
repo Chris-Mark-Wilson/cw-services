@@ -1,8 +1,7 @@
 import { useState, useEffect,useRef } from "react";
 import { Accordion } from "react-bootstrap";
 import { getAllImagesByCategory } from "../../../api/firebase_api";
-import { getImageByImageName } from "../../../api/firebase_api";
-import { getImageDataByImageName } from "../../../api/firebase_api";
+
 import { uploadImage } from "../../../api/firebase_api";
 import { deleteImage } from "../../../api/firebase_api";
 import { LoadingSpinner } from "./LoadingSpinner";
@@ -30,9 +29,9 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
 
   useEffect(() => {
     if (imgRef.current) {
-      console.log(imgRef.current)
-      console.log('width: ',imgRef.current.naturalWidth,' height: ',imgRef.current.naturalHeight);
-      setDimensions({
+      // console.log(imgRef.current)
+      // console.log('width: ',imgRef.current.naturalWidth,' height: ',imgRef.current.naturalHeight);
+       setDimensions({
         naturalWidth: imgRef.current.naturalWidth,
         naturalHeight: imgRef.current.naturalHeight,
       });
@@ -52,9 +51,9 @@ useEffect(()=>{
 
   useEffect(() => {
 
-    if (selectedCategory !== null) {
+    if (selectedCategory) {
   // console.log('in use effect1');
-     
+     console.log('selected category in get all images by ca6tegory:',selectedCategory)
       // get the images from the selected category
       setSpinnerMessage('Loading Categories...');
       setIsLoading(true);
@@ -64,12 +63,12 @@ useEffect(()=>{
         .then((images) => {
           if (images.length > 0){
             //deep copy the array of image objects
-            console.log(images)
+            // console.log(images)
           setImages(JSON.parse(JSON.stringify(images)));
        
           // setSelectedImage(images[0].name);
            setSelectedImage(images[0]);
-          console.log('selected image url:',images[0].url);
+          // console.log('selected image url:',images[0].url);
           setSelectedImageUrl(images[0].url);
           } else {
             setSelectedImage('');
@@ -91,12 +90,12 @@ useEffect(()=>{
     if (selectedCategory !== "" && selectedImage !== "") {
           // console.log('in use effect2');
      
-        console.log('selected image : ',selectedImage);
+        // console.log('selected image : ',selectedImage);
         // console.log('images:',images)
         // const image=images.find((image)=>image.name===selectedImage);
         // console.log('found image: ',image)
         const url=selectedImage.url;
-        console.log('image.url:',url)
+        // console.log('image.url:',url)
         setSelectedImageUrl(selectedImage.url)
         setTitle(selectedImage.title);
         setCaption(selectedImage.caption);

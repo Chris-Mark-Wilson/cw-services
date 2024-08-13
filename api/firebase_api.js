@@ -4,51 +4,10 @@ import {db,storage} from '../db/firebase_config';
 
 
 
-// Takes a folder in the storage bucket and returns an array of references to the images in that folder
-export const getUrlList = async (folder) => {
-    try {
-        const listRef = storeRef(storage, `${folder}`);
-        const refs = await listAll(listRef);
-        return refs.items; // array
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-//get image from storage
-export const getImageByImageName = async (category, imageName) => {
-    try {
-        const imageRef = storeRef(storage, `images/${imageName}`);
-        const image = await getBlob(imageRef);
-        // console.log(image)
-        return image;
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-//get image data from db
-export const getImageDataByImageName = async (category, imageName) => {
-    try {
-       const dbRef=baseRef(db);
-        const docSnap = await get(child(dbRef, `categories/${category}/${imageName}`));
-        // console.log(docSnap)
-        if (docSnap) {
-            // console.log("Document data:", docSnap.val());
-            return docSnap.val();
-        } else {
-            // console.log("No such document!");
-            return Promise.reject("No such document!");
-        }
-    } catch (error) {
-        console.log("Error getting document:", error);
-        return Promise.reject(error);
-    }
-}
 
 //get a list of all image names in Storage
 export const  getAllImagesByCategory = async (category) => {
-console.log(category)
+// console.log(category)
 
     try {
      
@@ -58,7 +17,7 @@ console.log(category)
         // console.log('here')
         //return an object with image names as keys
         if(dbSnapShot.exists()){
-                   console.log('dbSnapShot:', dbSnapShot.val());
+             console.log('Images found');
         const images = Object.keys(dbSnapShot.val());
         const values = Object.values(dbSnapShot.val());
         
@@ -77,7 +36,7 @@ console.log(category)
         //wait for all the image objects
         const imageData = await Promise.all(imageDataPromises);
         
-        console.dir('Images:', imageData);
+        // console.dir('Images:', imageData);
         return imageData;
             
         }
@@ -118,14 +77,16 @@ export const updateImageName = async (categoryId, oldName, newName) => {
     }
 
 }
+
+
 // Adds a document to the "categories" collection
 const storeImage = async (image) => {
     // console.log(image.file, image.name);
     try{
         const storageRef = storeRef(storage, `images/${image.name}`);
         const snapshot=await uploadBytesResumable(storageRef, image.file)
-        console.log("Snapshot: ", snapshot);
-        console.log("Reference: ", storageRef);
+        // console.log("Snapshot: ", snapshot);
+        // console.log("Reference: ", storageRef);
         console.log("Document successfully written!");
         return image.name;
     }
@@ -162,6 +123,25 @@ export const uploadImage = async (categoryId,categoryName, file, imageObject) =>
     return true;
   }
 
+  // define storeImage function
+  // Adds a document to the "categories" collection
+const storeImage = async (image) => {
+    // console.log(image.file, image.name);
+    try{
+        const storageRef = storeRef(storage, `images/${image.name}`);
+        const snapshot=await uploadBytesResumable(storageRef, image.file)
+        // console.log("Snapshot: ", snapshot);
+        // console.log("Reference: ", storageRef);
+        console.log("Document successfully written!");
+        return image.name;
+    }
+    catch(err){
+        console.log(err);
+        return Promise.reject('Error uploading image to storage');
+    }
+}
+
+//upload image
   try {
     const categoriesArray=await getAllCategories();
     //if category exists
@@ -179,8 +159,8 @@ export const uploadImage = async (categoryId,categoryName, file, imageObject) =>
         else{
         console.log('category does not exist');
         //add category to categoryList in db
-        categoryId=Date.now()+categoryName;
-        const ref=baseRef(db, `categoryList/${categoryId}`);
+        categoryId=Date.now();
+        const ref=baseRef(db, `categoryList/${categoryName}`);
         await set(ref, categoryId);
         //upload imgage
         upload(categoryId, file, imageObject);
@@ -203,8 +183,8 @@ export const getAllCategories = async () => {
         const snapshot = await get(baseRef(db, '/categoryList'));
         
         if (snapshot.exists()) {
-        console.log("Category data available");
-        console.log('Category snapshot): ',(snapshot.val()));
+        // console.log("Category data available");
+        // console.log('Category snapshot: ',(snapshot.val()));
         const array=[];
         for(const  key in snapshot.val()){
             array.push({name:key, id:snapshot.val()[key]});
@@ -236,27 +216,22 @@ export const deleteImage = async (category, imageName) => {
     }
 };
 
-// Adds a user document (implementation needed)
-export const addUser = async (user) => {
-    try {
-        // Your addUser implementation
-    } catch (error) {
-        console.error("Error adding user: ", error);
-    }
-};
+
 
 export const updateCategoryName = async (oldName, newName) => {
+    console.log('old name: ',oldName),'new name: ',newName;
     try {
-        const oldRef = baseRef(db, `categories/${oldName}`);
-        const newRef = baseRef(db, `categories/${newName}`);
+        const oldRef = baseRef(db, `categoryList/${oldName}`);
+        const newRef = baseRef(db, `categoryList/${newName}`);
         const docSnap = await get(oldRef);
         if (docSnap.exists()) {
             console.log("Document data:", docSnap.val());
-            // await set(newRef, docSnap.val());
-            // await remove(oldRef);
-            console.log("Category updated in database successfully");
+            const data = docSnap.val();
+            await set(newRef, data);
+            await remove(oldRef);
+            console.log('newName:',newName)
+            return {name:newName,id:data};
         }
-        return 'woo!';
     } catch (error) {
         console.log("Error updating category name ", error);
         return Promise.reject(error);

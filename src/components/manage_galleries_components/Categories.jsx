@@ -1,6 +1,7 @@
 import { useEffect,useState } from "react";
 import { getAllCategories } from "../../../api/firebase_api";
 import { updateCategoryName } from "../../../api/firebase_api";
+import { connectStorageEmulator } from "firebase/storage";
 
 
 export const Categories = ({
@@ -44,8 +45,7 @@ const getCategories=async()=>{
   try{
     
     const categories = await getAllCategories()
-   console.log(categories,', ',typeof(categories),'isArray:',
-   Array.isArray(categories), 'categories in component');
+   console.log('categories: ',categories);
    
    if(categories.length>0){ 
     // const newCategoryList = categories.map((category, index) => {
@@ -57,12 +57,13 @@ const getCategories=async()=>{
     setCategoryList(categories);
     // console.log('selected category: ',selectedCategory);
     //   console.log('category list: ',categoryList);
-      categoryList.length > 0 && setSelectedCategory( categoryList[0]);
+    console.log('selected category: ',selectedCategory);
+    setSelectedCategory(categoryList[0]);
       
     } else {
       console.log('no categories found');
       setCategoryList([]);
-      setSelectedCategory('No categories found');
+      setSelectedCategory('');
     }
     // console.log('selected category: ',selectedCategory);
     // console.log('category list: ',categoryList);
@@ -98,14 +99,26 @@ const deleteSelectedCategory=()=>{
  const editSelectedCategory=(e)=>{
    e.preventDefault();
 if(editedCategory!==''){
-  
-  updateCategoryName(selectedCategory,editedCategory)
+  console.log('selected Category:',selectedCategory)
+  updateCategoryName(selectedCategory.name,editedCategory)
   .then((response)=>{
+    
     console.log('and were back ..',response);
-    getCategories();
+    setSelectedCategory(response);
+    setEditedCategory('');
+   setCategoryList((prev)=>{
+const newList=[...prev];
+return newList.map((category)=>{
+  if(category.name===selectedCategory.name){
+    return response;
+  }
+ else {return category};
+})
+   })
   })
   .catch((error)=>{
     console.error(error);
+    alert(error);
   });
 }
  }

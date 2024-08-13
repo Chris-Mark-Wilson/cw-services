@@ -39,6 +39,11 @@ export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
       alert('Please enter a file name');
       return
     }
+    console.log('selected category on upload:',selectedCategory);
+    if(selectedCategory===''){
+      alert('Please select a category');
+      return;
+    }
     //set the loading spinner
     setSpinnerMessage('Uploading Image...');
     setIsLoading(true);
@@ -65,7 +70,7 @@ export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
     
         <section className="upload-new-file">
           <h5>Upload a new image</h5>
-          <p>Selected category: {selectedCategory.name}</p>
+          <p>Category:{selectedCategory?selectedCategory.name:''}</p>
           <p>File name: {fileName}</p>
           <section className="upload-select-file">
             <div className='upload-file-select'>
