@@ -143,7 +143,7 @@ console.log('new category:',newCategory);
           </section>
 
       
-
+        <form>
           <input
             type="text"
             placeholder="Enter a file name"
@@ -176,6 +176,7 @@ console.log('new category:',newCategory);
           <button type="submit" id="upload-button" onClick={handleUpload}>
             Upload
           </button>
+        </form>
         </section>
       </>
     );
