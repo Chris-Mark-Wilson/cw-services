@@ -113,13 +113,19 @@ setSelectedCategory('');
 setTitle('');
 setCaption('');
 setSelectedImageUrl('');
-showModalComplete('Image Deleted','The image has been deleted.');
 
-setTimeout(()=>{setReload((prev)=>!prev)},2000);
-});
-  };
+setTimeout(()=>{
+  setReload((prev)=>!prev);
+  showModalComplete('Image Deleted','The image has been deleted.');
 
-  const saveSelectedImage = async () => {
+},2000);
+  }).catch((error)=>{
+    console.error(error);
+  });
+}
+
+  const saveSelectedImage = async (e) => {
+    e.preventDefault();
     try {
       setSpinnerMessage("Saving Image...");
       setIsLoading(true);
@@ -136,14 +142,17 @@ setTimeout(()=>{setReload((prev)=>!prev)},2000);
       });
     }
 
-      console.log("done to here");
+
 
       
       setEditedImageName('');
       setSelectedImage(editedImageName===''?selectedImage:editedImageName);
       setIsEdited(false);
       setIsLoading(false);
+      setTimeout(() => {
       setReload((prev) => !prev);
+      showModalComplete('Image Saved',`Image saved as ${editedImageName===''?selectedImage:editedImageName}`);
+      }, 2000);
     } catch (error) {
       console.log(error);
       setIsLoading(false);
@@ -154,82 +163,115 @@ setTimeout(()=>{setReload((prev)=>!prev)},2000);
 
   return (
     <>
-    <Accordion className='accordion'>
-      <Accordion.Item eventKey="0">
-        <Accordion.Header>Edit Images</Accordion.Header>
-        <Accordion.Body>
-          <section className="upload-images">
-            <h5>Edit Images</h5>
-            <div className="images-container">
-              <label>
-                Select Image:
-                <CustomSelect images={images} setSelectedImage={setSelectedImage} selectedImage={selectedImage} />
-        
-              </label>
-
-              <div className="image-display">
-                {selectedImage.url !== "" && (
-                  <img
-                  ref={imgRef}
-                    src={selectedImage.url}
-                    alt="selected image"
-                    className={`file-image ${largeImage ? "large-image" : ""}`}
-                    onClick={()=>setLargeImage(!largeImage)}
-                    style={{
-                      transform: ` scale(${ largeImage ?( naturalWidth / naturalHeight)*2:1},${largeImage?2:1})`, 
-                    }}
+      <Accordion className="accordion">
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>Edit Images</Accordion.Header>
+          <Accordion.Body>
+            <section className="upload-images">
+              <h5>Edit Images</h5>
+              <div className="images-container">
+                <label>
+                  Select Image:
+                  <CustomSelect
+                    images={images}
+                    setSelectedImage={setSelectedImage}
+                    selectedImage={selectedImage}
                   />
+                </label>
+
+                <div className="image-display">
+                  {selectedImage.url !== "" && (
+                    <img
+                      ref={imgRef}
+                      src={selectedImage.url}
+                      alt="selected image"
+                      className={`file-image ${
+                        largeImage ? "large-image" : ""
+                      }`}
+                      onClick={() => setLargeImage(!largeImage)}
+                      style={{
+                        transform: ` scale(${
+                          largeImage ? (naturalWidth / naturalHeight) * 2 : 1
+                        },${largeImage ? 2 : 1})`,
+                      }}
+                    />
+                  )}
+                </div>
+
+                {selectedImage != "" && (
+                  <div className="edit-buttons">
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                      <div>Selected Category: {selectedCategory.name}</div>
+                      <div>Selected Image: {selectedImage.name}</div>
+                    </div>
+                    <div className="edit-input-group">
+                      <label htmlFor="editImageName">Edit Image Name</label>
+                      <input
+                        type="text"
+                        name="editImageName"
+                        placeholder="enter new image name"
+                        value={editedImageName}
+                        onChange={(e) => {
+                          setIsEdited(true);
+                          setEditedImageName(e.target.value);
+                        }}
+                      />
+                    </div>
+                    {isEdited && (
+                      <form>
+                        <button type="submit" onClick={saveSelectedImage}>
+                          Save Image
+                        </button>
+                      </form>
+                    )}
+                    <button
+                      onClick={() =>
+                        showModalDelete(
+                          "Confirm Delete Image",
+                          "Are you sure you want to delete this image? This cannot be undone.",
+                          deleteSelectedImage
+                        )
+                      }
+                    >
+                      Delete Image
+                    </button>
+                  </div>
                 )}
               </div>
 
-              {selectedImage!= '' && 
-              < div className='edit-buttons'>
-                <div style={{display:'flex',flexDirection:'column'}}><div>Selected Category: {selectedCategory.name}</div>
-                <div>Selected Image: {selectedImage.name}</div>
-                </div>
-                <div className='edit-input-group'>
-                  <label htmlFor='editImageName'>Edit Image Name</label>
-                  <input type='text' name = 'editImageName'  placeholder='enter new image name' value={editedImageName} onChange={(e)=>{setIsEdited(true);setEditedImageName(e.target.value)}}/>
-                </div>
-              {isEdited && <button onClick={saveSelectedImage}>Save Image</button>}
+              <section className="upload-title">
+                <label htmlFor="title">Edit Title / Alt</label>
+                <textarea
+                  type="text"
+                  id="title"
+                  placeholder="Enter a title that will also be the alt text"
+                  value={title}
+                  onChange={(e) => {
+                    setTitle(e.target.value);
+                    setIsEdited(true);
+                  }}
+                />
+              </section>
 
-              <button onClick={()=>showModalDelete('Confirm Delete Image','Are you sure you want to delete this image? This cannot be undone.',deleteSelectedImage)}>
-                Delete Image
-                </button>
-                </div>
-              }
-
-            </div>
-
-            <section className="upload-title">
-              <label htmlFor="title">Edit Title / Alt</label>
-              <textarea
-                type="text"
-                id="title"
-                placeholder="Enter a title that will also be the alt text"
-                value={title}
-                onChange={(e)=>{setTitle(e.target.value);setIsEdited(true)}}
-              />
+              <section className="upload-caption">
+                <label htmlFor="caption">Edit Caption</label>
+                <textarea
+                  type="text"
+                  id="caption"
+                  placeholder="Enter a caption for the image"
+                  value={caption}
+                  onChange={(e) => {
+                    setCaption(e.target.value);
+                    setIsEdited(true);
+                  }}
+                />
+              </section>
             </section>
 
-            <section className="upload-caption">
-              <label htmlFor="caption">Edit Caption</label>
-              <textarea
-                type="text"
-                id="caption"
-                placeholder="Enter a caption for the image"
-                value={caption}
-                onChange={(e)=>{setCaption(e.target.value);setIsEdited(true)}}
-              />
-            </section>
-          </section>
-
- 
-    {isLoading && <LoadingSpinner message={spinnerMessage}/>}
-          
-        </Accordion.Body>
-      </Accordion.Item>
-    </Accordion>
-      </>
+            {isLoading && <LoadingSpinner message={spinnerMessage} />}
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
+    </>
   );
 };

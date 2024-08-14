@@ -69,7 +69,7 @@ export const updateImageName = async (categoryId, oldName, newName) => {
         await set(newRef, {...oldSnapShot.val(), name: newName});
         await remove(oldRef);
    
-        console.log("Document updated in database successfully");
+      
         }
 
   catch (error) {
@@ -90,7 +90,7 @@ export const uploadImage = async (categoryId,categoryName, file, imageObject) =>
   
   //define upload function
   const upload=async (categoryId, file, imageObject)=>{
-  console.log('image does not exist, uploading image');
+
   let imageId = await storeImage({
   
       name: new Date().getTime(),
@@ -105,7 +105,7 @@ export const uploadImage = async (categoryId,categoryName, file, imageObject) =>
       baseRef(db, `categories/${categoryId}/${imageObject.name.trim()}`),
       doc
     );
-    console.log("Image uploaded to storage, document written to db");
+
     return true;
   }
 
@@ -118,7 +118,7 @@ const storeImage = async (image) => {
         const snapshot=await uploadBytesResumable(storageRef, image.file)
         // console.log("Snapshot: ", snapshot);
         // console.log("Reference: ", storageRef);
-        console.log("Document successfully written!");
+       
         return image.name;
     }
     catch(err){
@@ -132,10 +132,10 @@ const storeImage = async (image) => {
     const categoriesArray=await getAllCategories();
     //if category exists
     if(categoriesArray.find(category=>category.name===categoryName)){
-        console.log('category exists');
+ 
         const snapShot=await get(child(baseRef(db), `categories/${categoryId}/${imageObject.name}`));
         if(snapShot.exists()){
-            console.log('image exists');
+      
             return Promise.reject('Image already exists');
         } else{
             upload(categoryId, file, imageObject);
@@ -143,7 +143,7 @@ const storeImage = async (image) => {
     }
     //if category doesnt exist
         else{
-        console.log('category does not exist');
+
         //add category to categoryList in db
         categoryId=Date.now();
         const ref=baseRef(db, `categoryList/${categoryName}`);
@@ -164,13 +164,12 @@ return true;
 
 // Retrieves all documents from the "categories" collection
 export const getAllCategories = async () => {
-    // console.log("here");
+  
     try {
         const snapshot = await get(baseRef(db, '/categoryList'));
         
         if (snapshot.exists()) {
-        // console.log("Category data available");
-        // console.log('Category snapshot: ',(snapshot.val()));
+     
         const array=[];
         for(const  key in snapshot.val()){
             array.push({name:key, id:snapshot.val()[key]});
@@ -178,7 +177,7 @@ export const getAllCategories = async () => {
             return array;
         
      } else {
-            console.log("No Category data available");
+    
             return [];
         }
        
@@ -195,19 +194,19 @@ export const deleteImage = async (categoryId, categoryName,image) => {
         //delete from storage
         let imageRef = storeRef(storage, `images/${imageId}`);
         await deleteObject(imageRef);
-        console.log("Image deleted from storage successfully");
+       
 
         //delete from database
         imageRef=baseRef(db, `categories/${categoryId}/${imageName}`);
         await remove(imageRef);
-        console.log("Document deleted from database successfully");
+      
 
         //check category length and delete if empty
         const categoryRef=baseRef(db, `categories/${categoryId}`);
         const categorySnapshot=await get(categoryRef);
-        console.log('category snapshot:',categorySnapshot.val());
+        
         if(!categorySnapshot.exists()){
-            console.log('Category is empty, deleting category');
+        
             const categoryListRef=baseRef(db, `categoryList/${categoryName}`);
             await remove(categoryListRef);
         }
@@ -221,17 +220,17 @@ export const deleteImage = async (categoryId, categoryName,image) => {
 
 
 export const updateCategoryName = async (oldName, newName) => {
-    console.log('old name: ',oldName),'new name: ',newName;
+  
     try {
         const oldRef = baseRef(db, `categoryList/${oldName}`);
         const newRef = baseRef(db, `categoryList/${newName}`);
         const docSnap = await get(oldRef);
         if (docSnap.exists()) {
-            console.log("Document data:", docSnap.val());
+     
             const data = docSnap.val();
             await set(newRef, data);
             await remove(oldRef);
-            console.log('newName:',newName)
+         
             return {name:newName,id:data};
         }
     } catch (error) {

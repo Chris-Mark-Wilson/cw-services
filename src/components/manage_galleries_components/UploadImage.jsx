@@ -55,7 +55,7 @@ export const UploadImage=({selectedCategory,setSelectedCategory,setReload})=>{
     setIsLoading(true);
     uploadImage(selectedCategory.id,selectedCategory.name,file,{title:title,caption:caption,name:fileName,comments:[]})
     .then((response)=>{
-      console.log('uploaded file:',response);
+  
      document.getElementById('file').value='';
         setFile(null);
         setCaption('');
@@ -78,7 +78,7 @@ export const UploadImage=({selectedCategory,setSelectedCategory,setReload})=>{
   const addNewCategory = (e) => {
     e.preventDefault();
     if(newCategory!==''){
-console.log('new category:',newCategory);
+
       // setCategoryList((prev)=>[...prev,{id:prev.length,name:newCategory}]);
       setSelectedCategory({name:newCategory,id:0});
      

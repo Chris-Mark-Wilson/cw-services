@@ -52,7 +52,7 @@ export const Categories = ({
     setSelectedCategory(categoryList[0]);
       
     } else {
-      console.log('no categories found');
+ 
       setCategoryList([]);
       // setSelectedCategory('');
     }
