@@ -13,7 +13,7 @@ export const ModalProvider = ({ children }) => {
   const [modalConfirm, setModalConfirm] = useState(() => () => {});
 
   const showModalDelete = (title, message, onConfirm) => {
-    console.log('in show modal');
+  
     setModalTitle(title);
     setModalMessage(message);
     setModalConfirm(() => onConfirm);

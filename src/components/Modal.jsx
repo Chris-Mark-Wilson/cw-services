@@ -5,7 +5,7 @@ import { connectStorageEmulator } from 'firebase/storage';
 
 export const Modal = () => {
   const { showDeleteModal,showCompletionModal, modalTitle, modalMessage, modalConfirm, hideModal } = useModal();
-console.log('in modal component');
+
 
     useEffect(() => {
     if (showDeleteModal || showCompletionModal) {
@@ -14,7 +14,7 @@ console.log('in modal component');
       document.body.classList.remove('modal-open');
     }
   }, [showDeleteModal, showCompletionModal]);
-  console.log('setshowDeleteModal:',showDeleteModal);
+
   if (!showDeleteModal && !showCompletionModal) return null;
 
 

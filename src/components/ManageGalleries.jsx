@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {Categories} from './manage_galleries_components/Categories';
-import {SelectFile} from './manage_galleries_components/UploadImage';
+import {UploadImage} from './manage_galleries_components/UploadImage';
 import { EditImages } from "./manage_galleries_components/EditImages";
 
 import '../css_files/manage_galleries.css'
@@ -29,13 +29,15 @@ return (
     <Categories
       selectedCategory={selectedCategory}
       setSelectedCategory={setSelectedCategory}
+      reload={reload}
+      setReload={setReload}
     />
-    <EditImages selectedCategory={selectedCategory} reload={reload} setReload={setReload}/>
+    <EditImages selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} reload={reload} setReload={setReload}/>
 
-    <SelectFile
+    <UploadImage
      
       selectedCategory={selectedCategory}
-     
+      setSelectedCategory={setSelectedCategory}
    
       setReload={setReload}
     />

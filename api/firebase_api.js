@@ -17,7 +17,7 @@ export const  getAllImagesByCategory = async (category) => {
         // console.log('here')
         //return an object with image names as keys
         if(dbSnapShot.exists()){
-             console.log('Images found');
+           
         const images = Object.keys(dbSnapShot.val());
         const values = Object.values(dbSnapShot.val());
         
@@ -187,23 +187,28 @@ export const getAllCategories = async () => {
         return Promise.reject(error);
     }
 };
-export const deleteImage = async (categoryId, image) => {
-    console.log('image name, url: ',image.name,image.imageId);
+export const deleteImage = async (categoryId, categoryName,image) => {
+    // console.log('image name, url: ',image.name,image.imageId);
     const imageName = image.name;
     const imageId = image.imageId;
     try {
+        //delete from storage
         let imageRef = storeRef(storage, `images/${imageId}`);
         await deleteObject(imageRef);
         console.log("Image deleted from storage successfully");
+
+        //delete from database
         imageRef=baseRef(db, `categories/${categoryId}/${imageName}`);
         await remove(imageRef);
         console.log("Document deleted from database successfully");
+
         //check category length and delete if empty
         const categoryRef=baseRef(db, `categories/${categoryId}`);
         const categorySnapshot=await get(categoryRef);
+        console.log('category snapshot:',categorySnapshot.val());
         if(!categorySnapshot.exists()){
             console.log('Category is empty, deleting category');
-            const categoryListRef=baseRef(db, `categoryList/${categoryId}`);
+            const categoryListRef=baseRef(db, `categoryList/${categoryName}`);
             await remove(categoryListRef);
         }
        return true;
@@ -231,6 +236,41 @@ export const updateCategoryName = async (oldName, newName) => {
         }
     } catch (error) {
         console.log("Error updating category name ", error);
+        return Promise.reject(error);
+    }
+}
+
+export const deleteCategory = async (category) => {
+    try {
+        //delete all images in category from storage
+        const ref=baseRef(db, `categories/${category.id}`);
+        const categorySnapshot=await get(ref);
+        if(categorySnapshot.exists()){
+            const images=Object.keys(categorySnapshot.val());
+            const imageValues=Object.values(categorySnapshot.val());
+            const imagePromises=images.map(async (image,index)=>{
+                const imageId=imageValues[index].imageId;
+                const imageRef=storeRef(storage, `images/${imageId}`);
+                await deleteObject(imageRef);
+              
+            });
+            await Promise.all(imagePromises);
+        
+        }
+
+
+
+        //delete category data from db
+        const categoryRef=baseRef(db, `categories/${category.id}`);
+        await remove(categoryRef);
+ 
+
+        //delete category from categoryList in db;
+        const listRef = baseRef(db, `categoryList/${category.name}`);
+        await remove(listRef);
+        console.log("Category deleted from categoryList successfully");       return true;
+    } catch (error) {
+        console.log("Error deleting category ", error);
         return Promise.reject(error);
     }
 }

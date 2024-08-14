@@ -11,7 +11,7 @@ import {updateImageName} from "../../../api/firebase_api";
 import CustomSelect from "../CustomSelect";
 
 
-export const EditImages = ({ selectedCategory,reload,setReload }) => {
+export const EditImages = ({ selectedCategory,setSelectedCategory,reload,setReload }) => {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedImageUrl, setSelectedImageUrl] = useState("");
@@ -29,14 +29,15 @@ export const EditImages = ({ selectedCategory,reload,setReload }) => {
 
   useEffect(() => {
     if (imgRef.current) {
-      // console.log(imgRef.current)
-      // console.log('width: ',imgRef.current.naturalWidth,' height: ',imgRef.current.naturalHeight);
+     // gets the natural width and height of the image in the viewer
+     // for scaling the image to its natural aspect ration
        setDimensions({
         naturalWidth: imgRef.current.naturalWidth,
         naturalHeight: imgRef.current.naturalHeight,
       });
     }
   }, [imgRef,largeImage]);
+
   const { naturalWidth, naturalHeight } = dimensions;
 
 
@@ -52,9 +53,7 @@ useEffect(()=>{
   useEffect(() => {
 
     if (selectedCategory && selectedCategory.id !== 0) {
-      console.log('selectedCategory,selectedCategory.id:',selectedCategory,selectedCategory.id) 
-  // console.log('in use effect1');
-     console.log('selected category in get all images by ca6tegory:',selectedCategory)
+
       // get the images from the selected category
       setSpinnerMessage('Loading Categories...');
       setIsLoading(true);
@@ -106,16 +105,17 @@ useEffect(()=>{
   
 
   const deleteSelectedImage = () => {
-console.log('in delete');
-deleteImage(selectedCategory.id,selectedImage)
+
+deleteImage(selectedCategory.id,selectedCategory.name,selectedImage)
 .then((response)=>{
 setSelectedImage('');
+setSelectedCategory('');
 setTitle('');
 setCaption('');
 setSelectedImageUrl('');
 showModalComplete('Image Deleted','The image has been deleted.');
 
-setReload((prev)=>!prev);
+setTimeout(()=>{setReload((prev)=>!prev)},2000);
 });
   };
 
@@ -184,7 +184,9 @@ setReload((prev)=>!prev);
 
               {selectedImage!= '' && 
               < div className='edit-buttons'>
-                {selectedImage.name}
+                <div style={{display:'flex',flexDirection:'column'}}><div>Selected Category: {selectedCategory.name}</div>
+                <div>Selected Image: {selectedImage.name}</div>
+                </div>
                 <div className='edit-input-group'>
                   <label htmlFor='editImageName'>Edit Image Name</label>
                   <input type='text' name = 'editImageName'  placeholder='enter new image name' value={editedImageName} onChange={(e)=>{setIsEdited(true);setEditedImageName(e.target.value)}}/>

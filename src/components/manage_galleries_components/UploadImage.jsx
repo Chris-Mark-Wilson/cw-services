@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { uploadImage } from "../../../api/firebase_api";
 import { LoadingSpinner } from "./LoadingSpinner";
-export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
+import { useModal } from "../../context/ModalContext";
+
+
+export const UploadImage=({selectedCategory,setSelectedCategory,setReload})=>{
 
   const [progress, setProgress] = useState(0);
   const [file, setFile] = useState(null);
@@ -10,6 +13,9 @@ export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
   const [fileName, setFileName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [spinnerMessage, setSpinnerMessage] = useState("");
+  const [newCategory,setNewCategory]=useState('');
+
+  const {showModalComplete}=useModal();
   
   const handleFileChange=(event)=>{
     const selectedFile = event.target.files[0];
@@ -28,18 +34,18 @@ export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
       alert('Please select a category or create a new one');
       return;
     }
-    // if(title===''||caption===''){
-    //   alert('Please enter a title and caption');
-    //   return}//reset the selected image
+   
     if(file===null){
       alert('Please select an image file');
       return;
     }
+
     if(fileName===''){
       alert('Please enter a file name');
       return
     }
-    console.log('selected category on upload:',selectedCategory);
+
+ 
     if(selectedCategory===''){
       alert('Please select a category');
       return;
@@ -56,8 +62,11 @@ export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
         setTitle('');
         setFileName('');
         setIsLoading(false);
-      //trigger a refresh of the image list
-    setReload((prev)=>!prev);
+
+        showModalComplete('Success','Image uploaded successfully');
+        //trigger a refresh of the image list
+        //dont fire too fast, firebase needs a 1 second min gap between requests to the same file
+    setTimeout(()=>setReload((prev)=>!prev),2000);
 
     })
     .catch((error)=>{
@@ -65,34 +74,84 @@ export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
       setIsLoading(false);
     })
   }
-    return (<>
-          {isLoading && <LoadingSpinner message={spinnerMessage} />}
-    
+
+  const addNewCategory = (e) => {
+    e.preventDefault();
+    if(newCategory!==''){
+console.log('new category:',newCategory);
+      // setCategoryList((prev)=>[...prev,{id:prev.length,name:newCategory}]);
+      setSelectedCategory({name:newCategory,id:0});
+     
+      setNewCategory('');
+  }
+
+}
+
+
+    return (
+      <>
+        {isLoading && <LoadingSpinner message={spinnerMessage} />}
+
         <section className="upload-new-file">
           <h5>Upload a new image</h5>
-          <p>Category:{selectedCategory?selectedCategory.name:''}</p>
+          <p>Category:{selectedCategory ? selectedCategory.name : ""}</p>
           <p>File name: {fileName}</p>
           <section className="upload-select-file">
-            <div className='upload-file-select'>
-            <label htmlFor="file">Choose an image</label>
-            <input
-              type="file"
-              id="file"
-              name='file'
-              className="inputfile"
-              onChange={handleFileChange}
-              accept={'image/*'}
-            
-            />
+            <div className="upload-file-select">
+              <label htmlFor="file">Choose an image</label>
+              <input
+                type="file"
+                id="file"
+                name="file"
+                className="inputfile"
+                onChange={handleFileChange}
+                accept={"image/*"}
+              />
             </div>
-     
-            {file && <img src={URL.createObjectURL(file)} alt='selected file' className='file-image' />}
-          
-          </section>
-          <input type='text' placeholder='Enter a file name' onChange={(e)=>setFileName(e.target.value)} value={fileName}/>
 
-          
-        <section className="upload-title">
+            {file && (
+              <img
+                src={URL.createObjectURL(file)}
+                alt="selected file"
+                className="file-image"
+              />
+            )}
+
+<div className="add-new-category">
+            <form>
+              <label htmlFor="new-category">Add new Category:</label>
+              <div className="input-group">
+                <input
+                  type="text"
+                  name="new-category"
+                  id="new-category"
+                  value={newCategory}
+                  placeholder="enter a new category"
+                  onChange={(e) => setNewCategory(e.target.value)}
+                />
+                <button
+                  type="submit"
+                  onClick={addNewCategory}
+                  className="submit-button"
+                >
+                  Add
+                </button>
+              </div>
+            </form>
+          </div>
+
+          </section>
+
+      
+
+          <input
+            type="text"
+            placeholder="Enter a file name"
+            onChange={(e) => setFileName(e.target.value)}
+            value={fileName}
+          />
+
+          <section className="upload-title">
             <label htmlFor="title">Title / Alt</label>
             <textarea
               type="text"
@@ -103,23 +162,21 @@ export const SelectFile=({selectedCategory,setSelectedImage,setReload})=>{
             />
           </section>
 
+
           <section className="upload-caption">
-          <label htmlFor="caption">Caption</label>
-          <textarea
-            type="text"
-            id="caption"
-            value={caption}
-            onChange={(e) => setCaption(e.target.value)}
-            placeholder="Enter a caption for the image"
+            <label htmlFor="caption">Caption</label>
+            <textarea
+              type="text"
+              id="caption"
+              value={caption}
+              onChange={(e) => setCaption(e.target.value)}
+              placeholder="Enter a caption for the image"
             />
+          </section>
+          <button type="submit" id="upload-button" onClick={handleUpload}>
+            Upload
+          </button>
         </section>
-        <button type='submit' id='upload-button' onClick={handleUpload}>Upload</button>
-
-  
-
-   
-            </section>
-            </>
-    
+      </>
     );
 }
