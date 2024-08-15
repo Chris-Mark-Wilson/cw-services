@@ -44,4 +44,6 @@ gsutil cors get gs://your-bucket-name
 
 `````
 
+The Oauth 2 clientId credential needs to have an authorised url in th list from where you host your app, or add http://localhost:5173 to the existing list.
+The list is in google cloud, apis, your project, credentials, find or create new oAuth 2 client id
 

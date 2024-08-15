@@ -1,14 +1,23 @@
 import {   get, set,ref as baseRef,child,remove } from 'firebase/database';
 import {  ref as storeRef, listAll,uploadBytesResumable, getBlob,deleteObject,getBytes } from 'firebase/storage';
-import {db,storage} from '../db/firebase_config';
+import {db,storage,auth} from '../db/firebase_config';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
-
+export const signUp = async (email, password) => {
+    try{
+    const credentials = await createUserWithEmailAndPassword(auth, email, password,);
+    return credentials;
+    } catch (error) {
+    console.log(error);
+    return Promise.reject(error);
+    }
+}
 
 
 //get a list of all image names in Storage
 export const  getAllImagesByCategory = async (category) => {
 // console.log(category)
-
+console.log(JSON.stringify(db,null,1))
     try {
      
         const imageData=[];

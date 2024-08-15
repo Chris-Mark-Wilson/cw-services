@@ -119,7 +119,8 @@ return newList.map((category)=>{
   return (
     <section className="upload-categories">
       <h5>Categories</h5>
-<section className='category-selection'>
+     
+      <section className='category-selection'>
       <div className="select-category">
         <label>
           Select Category:
