@@ -9,7 +9,7 @@ export const signInWithEmail = async (email, password) => {
         const credentials = await signInWithEmailAndPassword(auth, email, password);
         return credentials;
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return Promise.reject(error);
     }
 }
@@ -19,7 +19,7 @@ export const signUpWithEmail = async (email, password) => {
     const credentials = await createUserWithEmailAndPassword(auth, email, password,);
     return credentials;
     } catch (error) {
-    console.log(error);
+    // console.log(error);
     return Promise.reject(error);
     }
 }
@@ -29,7 +29,7 @@ export const signUpWithEmail = async (email, password) => {
         const credentials = await signInWithPopup(auth, provider);
         return credentials;
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return Promise.reject(error);
     }
 }

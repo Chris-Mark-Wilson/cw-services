@@ -28,6 +28,13 @@
     max-width:350px;
   
   }
+  .signin-error{
+    display:flex;
+    margin:0;
+    padding:0;
+    color:rgb(142, 30, 8);
+    font-size:small;
+  }
   .email-sign-in{
     display:flex;
     flex-direction:row;

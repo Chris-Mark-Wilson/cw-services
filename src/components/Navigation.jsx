@@ -18,11 +18,11 @@ export const Navigation = () => {
   const colorScheme = usePrefersColorScheme();
 //auth listener to auto manage user state
   useEffect(()=>{
-    const unsubscribe=(onAuthStateChanged(auth,(user)=>{
-      if(user){
-        console.log(user.displayName)
-        setUser(user);
-        if(user.displayName==='Chris Wilson'){
+    const unsubscribe=(onAuthStateChanged(auth,(newuser)=>{
+      if(newuser){
+        console.log(newuser.displayName)
+        setUser(newuser);
+        if(newuser.displayName==='Chris Wilson'){
           setIsAdmin(true)
         }
       }
