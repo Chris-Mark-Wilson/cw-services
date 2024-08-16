@@ -51,13 +51,14 @@
   }
   .sign-in form input{
     
-    background-color: rgb(240, 248, 255 , 25%) !important;
+    background: rgb(240, 248, 255 , 20%) !important;
  border-top:none;
   border-left:none;
   border-right:none;
     border-bottom:1px solid rgb(128, 119, 119);
     border-radius:5px;
         color:black;
+       
     display:flex;
     justify-content: center;
     margin:10px auto;
@@ -66,6 +67,7 @@
     width:100%;
     max-width:100%;
   }
+
 
   .sign-in form .email-buttons {
     display: flex;
@@ -86,10 +88,10 @@
     background-color: rgb(86, 86, 227);
     color: white;
     margin: 0 auto;
-    padding: 8px 8px; /* Adjust padding for better appearance */
-    border: none; /* Remove default border */
-    cursor: pointer; /* Change cursor to pointer on hover */
-    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    padding: 8px 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
     width:45%;
   }
   
