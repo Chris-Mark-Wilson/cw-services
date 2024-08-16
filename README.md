@@ -44,4 +44,7 @@ gsutil cors get gs://your-bucket-name
 
 `````
 
+The Oauth 2 clientId credential needs to have an authorised url in th list from where you host your app, or add http://localhost:5173 to the existing list.
+The list is in google cloud, apis, your project, credentials, find or create new oAuth 2 client id
 
+in firebase/auth cloud dash board, find email enumeration protection and uncheck it as this is a recen tbreaking change from google. thi stop the app trying to resign the user up again after theyve signed out

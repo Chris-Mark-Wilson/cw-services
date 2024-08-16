@@ -2,12 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
+import { LoadingScreen } from './components/LoadingScreen.jsx'
 import './css_files/index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <React.Suspense fallback={<LoadingScreen/>}>
     <BrowserRouter>
     <App />
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.Suspense>,
 )

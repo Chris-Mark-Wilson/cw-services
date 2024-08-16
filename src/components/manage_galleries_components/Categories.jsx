@@ -1,87 +1,138 @@
 import { useEffect,useState } from "react";
-import { getAllCategories } from "../../../api/firebase_api";
+import { deleteCategory, getAllCategories } from "../../../api/firebase_api";
+import { updateCategoryName } from "../../../api/firebase_api";
 
+import { useModal} from "../../context/ModalContext";
 
 export const Categories = ({
   selectedCategory,
   setSelectedCategory,
+  reload,setReload
  
 }) => {
 
   const [categoryList,setCategoryList]=useState([]);
-  const [newCategory,setNewCategory]=useState('');
 
-useEffect(()=>{
-getCategories();
+  const [editedCategory,setEditedCategory]=useState('');
+  const [isEdited,setIsEdited]=useState(false);
+  const [isAdding,setIsAdding]=useState(false);
+
+  const {showModalDelete,showModalComplete}=useModal();
+
+  useEffect(()=>{
+    if(editedCategory!==''){
+      setIsEdited(true);
+    } else {
+      setIsEdited(false);
+    }
+
+ 
+  },[editedCategory]);
+
+
+
   
-},[]);
+  
+  useEffect(()=>{
+    getCategories();
+    
+  },[categoryList.length,reload]);
+  
+  const getCategories=async()=>{
+    try{
+      
+    
+    const categories = await getAllCategories()
 
-const getCategories=()=>{
-  getAllCategories()
-  .then((categories)=>{
-   console.log(categories,', ',typeof(categories),'isArray:',
-   Array.isArray(categories), 'categories in component');
+   
+   if(categories.length>0){ 
+
+    setCategoryList(categories);
+   
+    setSelectedCategory(categoryList[0]);
+      
+    } else {
  
-   if(categories!==""){ 
+      setCategoryList([]);
+      // setSelectedCategory('');
+    }
+
+
+  }
+    catch(error){
+       console.error(error)
+  };
+}
+
+
+
+
+
+const deleteSelectedCategory=async()=>{
+  try{
+console.log('selected category in delete category',selectedCategory);
+await deleteCategory(selectedCategory)
+
+
+setTimeout(()=>{
+  setReload((prev)=>!prev);
+  showModalComplete('Category Deleted','Category has been deleted successfully');
+},1000);
+  }
+  catch(error){
+    console.error(error);
+    alert(error);
+  }
+}
+
+ const editSelectedCategory=(e)=>{
+   e.preventDefault();
+if(editedCategory!==''){
+  console.log('selected Category:',selectedCategory)
+  updateCategoryName(selectedCategory.name,editedCategory)
+  .then((response)=>{
+    
+    console.log('and were back ..',response);
+    setSelectedCategory(response);
+    setEditedCategory('');
    setCategoryList((prev)=>{
-     return Object.keys(categories).map((category,index)=>{
-      return {id:index,name:category}});
-   });
-   setSelectedCategory(categoryList[0].name);
-   } else {
-    setCategoryList([]);
-     setSelectedCategory('No categories found');
-   }
- })
- 
+const newList=[...prev];
+return newList.map((category)=>{
+  if(category.name===selectedCategory.name){
+    return response;
+  }
+ else {return category};
+})
+   })
+  })
   .catch((error)=>{
-       console.log(error)
+    console.error(error);
+    alert(error);
   });
 }
-
-
-
-  const addNewCategory = (e) => {
-    e.preventDefault();
-    if(newCategory!==''){
-
-      // setCategoryList((prev)=>[...prev,{id:prev.length,name:newCategory}]);
-      setSelectedCategory(newCategory);
-      setNewCategory('');
-  }
-
-}
-
-const deleteSelectedCategory=()=>{
-  //alert this will delete the category and all its images
-  // if(selectedCategory!=='No categories found'){
-  //   setCategoryList((prev)=>{
-  //     return prev.filter((category)=>category.name!==selectedCategory);
-  //   });
-  //   setSelectedCategory('No categories found');
-  }
+ }
   
 
 
 
-
+//dont forget value element must be a string
   return (
     <section className="upload-categories">
       <h5>Categories</h5>
-<section className='category-selection'>
+     
+      <section className='category-selection'>
       <div className="select-category">
         <label>
           Select Category:
           <select
             name="categories"
             placeholder={'select a category'}
-            onChange ={(e) => setSelectedCategory(e.target.value)}
-            value={selectedCategory}
+            onChange ={(e) => {console.log(JSON.parse(e.target.value));setSelectedCategory(JSON.parse(e.target.value))}}
+            value={JSON.stringify(selectedCategory)}
           >
-            <option value={selectedCategory}>{selectedCategory}</option>
             {categoryList.map((category, index) => {
               return (
-                <option key={category.id} value={category.name}>
+                <option key={category.id} value={JSON.stringify(category)}>
                   {category.name}
                 </option>
               );
@@ -89,32 +140,37 @@ const deleteSelectedCategory=()=>{
           </select>
         </label>
       </div>
+<div className='edit-buttons'>
+     
 
-      <div className="add-new-category">
+      <div className="edit-category">
         <form>
         <label htmlFor='new-category' >
-            Add new Category:
+            Edit Selected Category:
             </label>
             <div className='input-group'>
         <input
           type="text"
           name="new-category"
           id='new-category'
-          value={newCategory}
-          placeholder="enter a new category"
-          onChange={(e) => setNewCategory(e.target.value)}
+          value={editedCategory}
+          placeholder="edit category name"
+          onChange={(e) => setEditedCategory(e.target.value)}
         />
-        
-    
-        <button type='submit' onClick={addNewCategory} className='submit-button'>Add</button>
-        </div>
+            <button type='submit' onClick={editSelectedCategory}   
+       className='submit-button'
+       style={isEdited?{border:'1px solid red'}:{border:'1px solid black'}}>Change</button>
+               </div>
+      
         </form>
       </div>
+</div>
       </section>
+
       <section className='remove-category'>
         <button onClick={getCategories}>Refresh List</button>
-        <button onClick={deleteSelectedCategory}>Delete Selected Category</button>    
-        </section>
+        <button onClick={()=>showModalDelete('Delete Selected Category','Are you sure?, this will delete the entire category and its contents.',deleteSelectedCategory)}>Delete Selected Category</button>    
+      </section>
     </section>
   );
 };

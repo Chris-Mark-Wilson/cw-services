@@ -7,30 +7,41 @@ export const useModal = () => useContext(ModalContext);
 
 export const ModalProvider = ({ children }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showCompletionModal, setShowCompletionModal] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
   const [modalMessage, setModalMessage] = useState("");
   const [modalConfirm, setModalConfirm] = useState(() => () => {});
 
-  const showModal = (title, message, onConfirm) => {
-    console.log('in show modal');
+  const showModalDelete = (title, message, onConfirm) => {
+  
     setModalTitle(title);
     setModalMessage(message);
     setModalConfirm(() => onConfirm);
     setShowDeleteModal(true);
   };
 
+  const showModalComplete = (title, message) => {
+    setModalTitle(title);
+    setModalMessage(message);
+    setShowCompletionModal(true);
+   
+  };
+
   const hideModal = () => {
     setShowDeleteModal(false);
+    setShowCompletionModal(false);
   };
 
   return (
     <ModalContext.Provider
       value={{
+        showCompletionModal,
         showDeleteModal,
         modalTitle,
         modalMessage,
         modalConfirm,
-        showModal,
+        showModalDelete,
+        showModalComplete,
         hideModal,
       }}
     >

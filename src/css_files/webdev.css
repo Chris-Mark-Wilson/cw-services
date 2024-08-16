@@ -1,3 +1,6 @@
+
+
+
 .webpage img{
     z-index:1;
     margin:0 auto;
@@ -87,6 +90,7 @@ max-width:100%;
 .certificate:hover{
     transform:translateY(1200%) translateX(-1200%) scale(30);
 }
+
 
 @media screen and ( max-width: 768px) {
     .webpage {

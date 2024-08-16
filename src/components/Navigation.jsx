@@ -64,6 +64,7 @@ export const Navigation = () => {
               <NavDropdown.Item href="/maintenance">Reactive maintenance</NavDropdown.Item>
               <NavDropdown.Item href="/webdev">Websites / Android apps built</NavDropdown.Item>
             </NavDropdown>
+            <Nav.Link href="/signIn">Sign In</Nav.Link>
 
 
             <Nav.Link href="/contact">Contact</Nav.Link>

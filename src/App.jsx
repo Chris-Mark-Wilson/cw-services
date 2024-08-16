@@ -31,6 +31,7 @@ import {ManageGalleries} from "./components/ManageGalleries.jsx";
 import { ModalProvider } from "./context/ModalContext.jsx";
 import {Modal} from "./components/Modal.jsx";
 import "./css_files/App.css";
+import { SignIn } from "./components/SignIn.jsx";
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path='/glossary' element={<Glossary/>}/>
         <Route path='/manage' element={<ManageGalleries/>}/>
+        <Route path="/signIn" element={<SignIn />} />
       </Routes>
       <Footer/>
       <Modal />
