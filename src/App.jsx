@@ -26,7 +26,7 @@ import { Contact } from "./pages/Contact.jsx";
 import { Navigation } from "./components/Navigation.jsx";
 import { Footer } from "./components/Footer.jsx";
 
-import {ManageGalleries} from "./components/ManageGalleries.jsx";
+import {ManageGalleries} from "./pages/ManageGalleries.jsx";
 import { UserProvider } from "./context/UserContext.jsx";
 import { ModalProvider } from "./context/ModalContext.jsx";
 import {Modal} from "./components/Modal.jsx";

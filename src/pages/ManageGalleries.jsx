@@ -1,7 +1,7 @@
 import {useState} from "react";
-import {Categories} from './manage_galleries_components/Categories';
-import {UploadImage} from './manage_galleries_components/UploadImage';
-import { EditImages } from "./manage_galleries_components/EditImages";
+import {Categories} from '../components/manage_galleries_components/Categories';
+import {UploadImage} from '../components/manage_galleries_components/UploadImage';
+import { EditImages } from "../components/manage_galleries_components/EditImages";
 
 import '../css_files/manage_galleries.css'
 

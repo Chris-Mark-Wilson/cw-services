@@ -21,8 +21,7 @@ export const UploadImage=({selectedCategory,setSelectedCategory,setReload})=>{
     const selectedFile = event.target.files[0];
     if (selectedFile) {
       
-      // setFile(URL.createObjectURL(selectedFile));
-      setFile(selectedFile)
+           setFile(selectedFile)
     }
     
   }
@@ -53,7 +52,7 @@ export const UploadImage=({selectedCategory,setSelectedCategory,setReload})=>{
     //set the loading spinner
     setSpinnerMessage('Uploading Image...');
     setIsLoading(true);
-    uploadImage(selectedCategory.id,selectedCategory.name,file,{title:title,caption:caption,name:fileName,comments:[]})
+    uploadImage(selectedCategory.id,selectedCategory.name,file,{title:title,caption:caption,name:fileName,comments:[]},false)
     .then((response)=>{
   
      document.getElementById('file').value='';
@@ -71,6 +70,7 @@ export const UploadImage=({selectedCategory,setSelectedCategory,setReload})=>{
     })
     .catch((error)=>{
       console.log('Upload error: ',error);
+      showModalComplete('Error',`${error}: Please enter a  new name or delete the existing image`);
       setIsLoading(false);
     })
   }
@@ -95,7 +95,12 @@ export const UploadImage=({selectedCategory,setSelectedCategory,setReload})=>{
         <section className="upload-new-file">
           <h5>Upload a new image</h5>
           <p>Category:{selectedCategory ? selectedCategory.name : ""}</p>
-          <p>File name: {fileName}</p>
+          <p>File name:   <input
+            type="text"
+            placeholder="Enter a file name"
+            onChange={(e) => setFileName(e.target.value)}
+            value={fileName}
+          /></p>
           <section className="upload-select-file">
             <div className="upload-file-select">
               <label htmlFor="file">Choose an image</label>
@@ -144,12 +149,7 @@ export const UploadImage=({selectedCategory,setSelectedCategory,setReload})=>{
 
       
         <form>
-          <input
-            type="text"
-            placeholder="Enter a file name"
-            onChange={(e) => setFileName(e.target.value)}
-            value={fileName}
-          />
+    
 
           <section className="upload-title">
             <label htmlFor="title">Title / Alt</label>

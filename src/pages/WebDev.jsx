@@ -16,29 +16,29 @@ export const WebDev = () => {
 
             <section className='webpage-links'>
                 <a href='https://sabotage81.onrender.com' target='_blank'>
-                <img src='./pictures/screenshot-sabotage.png' className='sabotage' alt='screenshot of a zx81 remake of the game Sabotage' title='ZX81 remake of the game Sabotage originally written by Don Preistley in 1982'/>
+                <img src='./images/webdev/screenshot-sabotage.png' className='sabotage' alt='screenshot of a zx81 remake of the game Sabotage' title='ZX81 remake of the game Sabotage originally written by Don Preistley in 1982'/>
                 </a>
 
                 <a href='https://cmwebserver.ddns.net' target='_blank'>
-                <img src='./pictures/screenshot-webserver.png' className='webserver' alt='screenshot from cmwebserver.ddns.net' title='An apache webserver retrieving hacking attempts from the access logs, storing them in a MySql database to be retrieved and displayed'/>
+                <img src='./images/webdev/screenshot-webserver.png' className='webserver' alt='screenshot from cmwebserver.ddns.net' title='An apache webserver retrieving hacking attempts from the access logs, storing them in a MySql database to be retrieved and displayed'/>
                 </a>
                
                 <a href='https://github.com/Chris-Mark-Wilson/trackme#readme' target='_blank' className='github'>
-                <img src='./pictures/screenshot-trackme.jpg' className='trackme' alt='screenshot from the track me app similar to strava' title='Track Me is an android application for exercise tracking similar to strava' />
+                <img src='./images/webdev/screenshot-trackme.jpg' className='trackme' alt='screenshot from the track me app similar to strava' title='Track Me is an android application for exercise tracking similar to strava' />
                 </a>
             </section>
             <br/>
             <section className='webpage-links'>
                 <a href='https://github.com/Chris-Mark-Wilson/android-weather#readme' target='_blank'>
-                <img src='./pictures/screenshot-android-weather.jpg' className='weather' alt='screenshot of a weather app for android' title='Android weather, the obligatory weather app everyone writes after they learn how to code...'/>
+                <img src='./images/webdev/screenshot-android-weather.jpg' className='weather' alt='screenshot of a weather app for android' title='Android weather, the obligatory weather app everyone writes after they learn how to code...'/>
                 </a>
 
                 <a href='https://chriswilsonncnews.netlify.app/' target='_blank'>
-                <img src="./pictures/screenshot-nc-news.png" className='nc-news' alt="screenshot from NC News" title="Example news web app I created as part of my Northcoders training, can take a minute to load the database as it's hosted on a free site"/>
+                <img src="./images/webdev/screenshot-nc-news.png" className='nc-news' alt="screenshot from NC News" title="Example news web app I created as part of my Northcoders training, can take a minute to load the database as it's hosted on a free site"/>
                 </a>
                
                 <a href='https://github.com/Chris-Mark-Wilson/safe-journey-2#readme' target='_blank' className='github'>
-                <img src='./pictures/screenshot-safe-journey.jpg' className='safe-journey' alt='screenshot from the safe journey app' title='Safe Journey is a lone person safety tracking app that gives your location to any friends that are logged in whilst you make your journey home. Created by a 6 person team as part of our northcoders training' />
+                <img src='./images/webdev/screenshot-safe-journey.jpg' className='safe-journey' alt='screenshot from the safe journey app' title='Safe Journey is a lone person safety tracking app that gives your location to any friends that are logged in whilst you make your journey home. Created by a 6 person team as part of our northcoders training' />
                 </a>
             </section>
 

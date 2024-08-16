@@ -3,7 +3,7 @@ import '../css_files/sign_in.css'
 
 import { signUpWithEmail,signInWithEmail } from "../../api/firebase_api"
 import { useNavigate } from "react-router-dom";
-import { set } from "firebase/database";
+
 
 export const EmailSignIn=()=>{
 
@@ -104,7 +104,7 @@ return (
     type="password" 
     value={password} 
     placeholder={'  Password'}
-    autoComplete="on"
+    autoComplete="new-password"
     onChange={(e) => setPassword(e.target.value)}
     required 
     />

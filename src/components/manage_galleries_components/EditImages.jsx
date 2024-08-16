@@ -135,26 +135,31 @@ setTimeout(()=>{
         await updateImageName(selectedCategory.id, selectedImage.name, editedImageName);
   
       } else{
-      await uploadImage(selectedCategory.id,selectedCategory.name, selectedImageUrl, {
+        //last parameter is overRrite in uploadImage
+        console.log('selected image.name:',selectedImage.name);
+      await uploadImage(selectedCategory.id,
+        selectedCategory.name,
+         selectedImageUrl,
+          {
         title: title,
         caption: caption,
-        name: selectedImage,
-      });
+        name: selectedImage.name,
+        url: selectedImage.url
+      },
+      true);
     }
-
-
-
-      
+     
       setEditedImageName('');
       setSelectedImage(editedImageName===''?selectedImage:editedImageName);
       setIsEdited(false);
       setIsLoading(false);
       setTimeout(() => {
       setReload((prev) => !prev);
-      showModalComplete('Image Saved',`Image saved as ${editedImageName===''?selectedImage:editedImageName}`);
+      showModalComplete('Image Saved',`Image saved as ${editedImageName===''?selectedImage.name:editedImageName}`);
       }, 2000);
     } catch (error) {
       console.log(error);
+      showModalComplete('Error',`Error saving image: ${error}`);
       setIsLoading(false);
     }
   };
@@ -205,11 +210,11 @@ setTimeout(()=>{
                       <div>Selected Image: {selectedImage.name}</div>
                     </div>
                     <div className="edit-input-group">
-                      <label htmlFor="editImageName">Edit Image Name</label>
+                     
                       <input
                         type="text"
                         name="editImageName"
-                        placeholder="enter new image name"
+                        placeholder="  Edit image name"
                         value={editedImageName}
                         onChange={(e) => {
                           setIsEdited(true);

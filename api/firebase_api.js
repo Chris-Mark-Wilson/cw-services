@@ -1,7 +1,7 @@
 import {   get, set,ref as baseRef,child,remove } from 'firebase/database';
 import {  ref as storeRef, listAll,uploadBytesResumable, getBlob,deleteObject,getBytes } from 'firebase/storage';
 import {db,storage,auth} from '../db/firebase_config';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { GoogleAuthProvider,signInWithPopup } from "firebase/auth";
 
 export const signInWithEmail = async (email, password) => {
@@ -17,6 +17,10 @@ export const signInWithEmail = async (email, password) => {
 export const signUpWithEmail = async (email, password) => {
     try{
     const credentials = await createUserWithEmailAndPassword(auth, email, password,);
+    await updateProfile(credentials.user, {
+        displayName: email,
+    }
+    )
     return credentials;
     } catch (error) {
     // console.log(error);
@@ -113,24 +117,39 @@ export const updateImageName = async (categoryId, oldName, newName) => {
 
 
 //uploads an image to storage and adds an image document to the database
-export const uploadImage = async (categoryId,categoryName, file, imageObject) => { //Checks if category exists
+export const uploadImage = async (categoryId,categoryName, file, imageObject,overWrite=false) => { //Checks if category exists
   //Checks if the image name already exists 
   //If the image name does not exist, upload the image to storage and add a document to the database
   
   //define upload function
   const upload=async (categoryId, file, imageObject)=>{
-
-  let imageId = await storeImage({
-  
-      name: new Date().getTime(),
+    let imageId = '';
+    let snapShot;
+    //if overWrite is false, create a new imageId
+    //this is sharing the upload with edit image
+    //if the image already exists and the title or caption has been changed, the imageId will be the same
+    //so no need to restore the image
+    //just update the document
+  if(!overWrite){ 
+    imageId= await storeImage({  
+      imageId: new Date().getTime(),
       file: file
-    });
+    })
+} else{
+      snapShot=await get(child(baseRef(db), `categories/${categoryId}/${imageObject.name}`));
+    if(snapShot.exists()){
+    console.log('snaosht: ',snapShot.val());
+      imageId=snapShot.val().imageId;
+    }
+
+}
     const doc = {
       title: imageObject.title.trim(),
       caption: imageObject.caption.trim(),
       imageId: imageId
     };
-    await set(
+    console.log('doc ',doc);
+      await set(
       baseRef(db, `categories/${categoryId}/${imageObject.name.trim()}`),
       doc
     );
@@ -141,14 +160,14 @@ export const uploadImage = async (categoryId,categoryName, file, imageObject) =>
   // define storeImage function
   // Adds a document to the "categories" collection
 const storeImage = async (image) => {
-    // console.log(image.file, image.name);
+   
     try{
-        const storageRef = storeRef(storage, `images/${image.name}`);
+        const storageRef = storeRef(storage, `images/${image.imageId}`);
         const snapshot=await uploadBytesResumable(storageRef, image.file)
         // console.log("Snapshot: ", snapshot);
         // console.log("Reference: ", storageRef);
        
-        return image.name;
+        return image.imageId;
     }
     catch(err){
         console.log(err);
@@ -161,11 +180,15 @@ const storeImage = async (image) => {
     const categoriesArray=await getAllCategories();
     //if category exists
     if(categoriesArray.find(category=>category.name===categoryName)){
- 
+   
         const snapShot=await get(child(baseRef(db), `categories/${categoryId}/${imageObject.name}`));
         if(snapShot.exists()){
-      
+        if(overWrite){ 
+        
+            upload(categoryId, file, imageObject);
+        } else{
             return Promise.reject('Image already exists');
+        }
         } else{
             upload(categoryId, file, imageObject);
         }
@@ -184,7 +207,7 @@ const storeImage = async (image) => {
 return true;
 
   } catch (error) {
-    console.error("Error adding document: ", error);
+    console.log("Error adding document: ", error);
     return Promise.reject(error);
   }
 };
