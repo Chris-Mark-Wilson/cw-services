@@ -68,7 +68,10 @@
     max-width:100%;
   }
 
-
+.sign-in form input::placeholder{
+ 
+    color:rgb(30, 30, 38);
+  }
   .sign-in form .email-buttons {
     display: flex;
     flex-direction: row;

@@ -2,9 +2,11 @@ import { useState } from "react";
 import '../css_files/sign_in.css'
 
 import { signUpWithEmail,signInWithEmail } from "../../api/firebase_api"
+import { useNavigate } from "react-router-dom";
 
 export const EmailSignIn=()=>{
 
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -13,6 +15,7 @@ export const EmailSignIn=()=>{
         signUpWithEmail(email, password)
         .then((response) => {
             console.log(JSON.stringify(response,null,1));
+            return redirect ('./');
         })
         .catch((error) => {
             console.log(error);
@@ -25,6 +28,7 @@ export const EmailSignIn=()=>{
         signInWithEmail(email, password)
         .then((response) => {
             console.log(JSON.stringify(response,null,1));
+           Navigate(-1);
         })
         .catch((error) => {
             console.log(error);
@@ -41,7 +45,7 @@ return (
     name="email" 
     type="email" 
     value={email} 
-    placeHolder={'Email'}
+    placeholder={'  Email'}
     onChange={(e) => setEmail(e.target.value)}
     required 
     />
@@ -50,7 +54,7 @@ return (
     name="password" 
     type="password" 
     value={password} 
-    placeHolder={'Password'}
+    placeholder={'  Password'}
     autoComplete="on"
     onChange={(e) => setPassword(e.target.value)}
     required 

@@ -37,7 +37,7 @@ export const signUpWithEmail = async (email, password) => {
 //get a list of all image names in Storage
 export const  getAllImagesByCategory = async (category) => {
 // console.log(category)
-console.log(JSON.stringify(db,null,1))
+// console.log(JSON.stringify(db,null,1))
     try {
      
         const imageData=[];

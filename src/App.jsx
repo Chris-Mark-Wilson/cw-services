@@ -27,14 +27,16 @@ import { Navigation } from "./components/Navigation.jsx";
 import { Footer } from "./components/Footer.jsx";
 
 import {ManageGalleries} from "./components/ManageGalleries.jsx";
-
+import { UserProvider } from "./context/UserContext.jsx";
 import { ModalProvider } from "./context/ModalContext.jsx";
 import {Modal} from "./components/Modal.jsx";
 import "./css_files/App.css";
-import { SignIn } from "./components/SignIn.jsx";
+import { SignIn } from "./pages/SignIn.jsx";
+import { SignOut } from "./pages/SignOut.jsx";
 
 function App() {
   return (
+    <UserProvider>
     <ModalProvider>
       <Navigation />
       <Routes>
@@ -59,10 +61,12 @@ function App() {
         <Route path='/glossary' element={<Glossary/>}/>
         <Route path='/manage' element={<ManageGalleries/>}/>
         <Route path="/signIn" element={<SignIn />} />
+        <Route path="/signOut" element={<SignOut />} />
       </Routes>
       <Footer/>
       <Modal />
     </ModalProvider>
+    </UserProvider>
   );
 }
 

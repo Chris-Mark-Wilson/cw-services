@@ -1,8 +1,8 @@
 
 
 
-import { GoogleSignIn } from "./GoogleSignIn";
-import { EmailSignIn } from "./EmailSignIn";
+import { GoogleSignIn } from "../components/GoogleSignIn";
+import { EmailSignIn } from "../components/EmailSignIn";
 import '../css_files/sign_in.css'
 export const SignIn =() => {
 

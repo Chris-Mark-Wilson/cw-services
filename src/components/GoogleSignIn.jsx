@@ -1,16 +1,19 @@
 import '../css_files/google_button.css'
-
+import { useNavigate } from "react-router-dom";
 import { signInWithGoogle } from "../../api/firebase_api"
 
 export const GoogleSignIn = () => {
 
+  const navigate = useNavigate();
     const  googleSignIn=()=>{
         signInWithGoogle()
         .then((credentials)=>{
             console.log(credentials.user);
+          navigate (-1);
             }) 
         .catch((error)=>{
             console.log(error);
+            alert('An error occurred. Please try again');
             });
         }
 
