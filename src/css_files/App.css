@@ -27,6 +27,7 @@
   padding:0;
   
 }
+
 .nav-bar{
 /* position:absolute; */
 background:linear-gradient(180deg, rgb(142, 145, 214), rgb(112,112,203));
@@ -35,6 +36,10 @@ justify-content: space-around;
 list-style-type: none;
 margin:0;
 padding:5px 0 5px 0;
+}
+.navbar .nav-link{
+  
+  color:rgb(250, 248, 248);
 }
 .navbar-container{
  /* border:1px solid black; */
