@@ -26,8 +26,8 @@ export const Profile = () => {
 
             <section className="profile-page">
             <h5>Profile</h5>
-            <p>{user.displayName!=null?user.displayName:'no user'}</p>
-            <p>{user.email}</p>
+            <p>Display name: {user.displayName!=null?user.displayName:'no user'}</p>
+            <p>Email: {user.email}</p>
             <img src={profileImage} alt="profile image"/>
         </section>
         </>

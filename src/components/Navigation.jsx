@@ -59,7 +59,7 @@ export const Navigation = () => {
     <Navbar
       sticky="top"
       expand="lg"
-      bg={mode}
+      
       data-bs-theme={mode}
       className="nav-bar"
     >
