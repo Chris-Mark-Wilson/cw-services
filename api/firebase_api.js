@@ -1,42 +1,9 @@
 import {   get, set,ref as baseRef,child,remove } from 'firebase/database';
-import {  ref as storeRef, listAll,uploadBytesResumable, getBlob,deleteObject,getBytes } from 'firebase/storage';
-import {db,storage,auth} from '../db/firebase_config';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { GoogleAuthProvider,signInWithPopup } from "firebase/auth";
+import {  ref as storeRef,uploadBytesResumable, getBlob,deleteObject} from 'firebase/storage';
+import {db,storage} from '../db/firebase_config';
 
-export const signInWithEmail = async (email, password) => {
-    try {
-        const credentials = await signInWithEmailAndPassword(auth, email, password);
-        return credentials;
-    } catch (error) {
-        // console.log(error);
-        return Promise.reject(error);
-    }
-}
 
-export const signUpWithEmail = async (email, password) => {
-    try{
-    const credentials = await createUserWithEmailAndPassword(auth, email, password,);
-    await updateProfile(credentials.user, {
-        displayName: email,
-    }
-    )
-    return credentials;
-    } catch (error) {
-    // console.log(error);
-    return Promise.reject(error);
-    }
-}
- export const signInWithGoogle = async () => {  
-    try {
-        const provider = new GoogleAuthProvider();
-        const credentials = await signInWithPopup(auth, provider);
-        return credentials;
-    } catch (error) {
-        // console.log(error);
-        return Promise.reject(error);
-    }
-}
+
 
 //get a list of all image names in Storage
 export const  getAllImagesByCategory = async (category) => {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import '../css_files/sign_in.css'
 
-import { signUpWithEmail,signInWithEmail } from "../../api/firebase_api"
+import { signUpWithEmail,signInWithEmail } from "../../api/firebaseAuth"
 import { useNavigate } from "react-router-dom";
 
 

@@ -1,6 +1,6 @@
 import '../css_files/google_button.css'
 import { useNavigate } from "react-router-dom";
-import { signInWithGoogle } from "../../api/firebase_api"
+import { signInWithGoogle } from "../../api/firebaseAuth"
 
 export const GoogleSignIn = () => {
 
@@ -9,7 +9,9 @@ export const GoogleSignIn = () => {
     const  googleSignIn=()=>{
         signInWithGoogle()
         .then((credentials)=>{
-            console.log(credentials.user);
+
+          
+            // console.log(credentials.user);
           navigate (-1);
             }) 
         .catch((error)=>{

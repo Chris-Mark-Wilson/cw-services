@@ -18,8 +18,8 @@ export const Profile = () => {
     }
 },[user]);
 
-    return (
-        
+        return (user &&
+            
         <> 
          {/* {JSON.stringify(user,null,1)} */}
          {/* {JSON.stringify(Object.keys(user),null,1)} */}
@@ -31,6 +31,7 @@ export const Profile = () => {
             <img src={profileImage} alt="profile image"/>
         </section>
         </>
+    
 
     
  

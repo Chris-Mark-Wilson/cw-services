@@ -7,7 +7,7 @@ import usePrefersColorScheme from "use-prefers-color-scheme";
 import { auth } from "../../db/firebase_config";
 import { onAuthStateChanged } from "firebase/auth";
 import { UserContext } from "../context/UserContext";
-import { setUserId } from "firebase/analytics";
+
 
 export const Navigation = () => {
   const [mode, setMode] = useState("light");
