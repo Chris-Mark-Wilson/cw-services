@@ -1,23 +1,28 @@
 import '../css_files/google_button.css'
 import { useNavigate } from "react-router-dom";
-import { signInWithGoogle } from "../../api/firebaseAuth"
+import { signInWithGoogle,listAllUsers,setAdminClaim } from "../../api/firebaseAuth"
 
 export const GoogleSignIn = () => {
 
   const navigate = useNavigate();
   
-    const  googleSignIn=()=>{
-        signInWithGoogle()
-        .then((credentials)=>{
+    const  googleSignIn=async()=>{
+      try{
+        const credentials = await signInWithGoogle();
+        const users=await listAllUsers();
+        // if the only user set admin claim
+        if (users.length===1){
+          const response=await setAdminClaim(credentials.user.uid);
+          console.log('admin claim response: ',response);
+        }
 
-          
-            // console.log(credentials.user);
+          //back to where you came from
           navigate (-1);
-            }) 
-        .catch((error)=>{
+      }  
+       catch(error){
             console.log(error);
-            alert('An error occurred. Please try again');
-            });
+            alert('An error occurred during google sign in. Please try again',error);
+            };
         }
 
 

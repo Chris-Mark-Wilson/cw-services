@@ -146,6 +146,7 @@ This person now has access to the 'manage' menu, and from that control panel can
 
 ### You will need to upgrade from the spark billing plan to the blaze billing plan in order to use the cloud functions, its either this or build a backend running in node and use the functionality there securely.
 
-##
+## On the first sign in, the user will be automatically made into an admin.
+### You will then need to sign out and back in again to access the admin page
 
 

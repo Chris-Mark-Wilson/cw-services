@@ -21,12 +21,21 @@ export const Navigation = () => {
     console.log('fire use effect  ')
     const unsubscribe=(onAuthStateChanged(auth,(newUser)=>{
       if(newUser){
-        console.log('fired callback,userName:',newUser.displayName)
-        setUser(()=>{return{...newUser}} );
-        if(newUser.displayName==='Chris Wilson'){
+        //check for admin status
+        newUser.getIdTokenResult()
+        .then((idTokenResult) => {
+        if (idTokenResult.claims.admin) {
+          console.log('User is an admin');
+         
           setIsAdmin(true)
-        }
-      }
+        } 
+
+        setUser(()=>{return{...newUser}} );
+
+        console.log('fired callback,userName:',newUser.displayName)
+       
+      })
+    }
       else{
         console.log('no user')
         setUser(null)
