@@ -18,22 +18,24 @@ export const Navigation = () => {
   const colorScheme = usePrefersColorScheme();
 //auth listener to auto manage user state
   useEffect(()=>{
-    const unsubscribe=(onAuthStateChanged(auth,(newuser)=>{
-      if(newuser){
-        console.log(newuser.displayName)
-        setUser(newuser);
-        if(newuser.displayName==='Chris Wilson'){
+    console.log('fire use effect  ')
+    const unsubscribe=(onAuthStateChanged(auth,(newUser)=>{
+      if(newUser){
+        console.log('fired callback,userName:',newUser.displayName)
+        setUser(()=>{return{...newUser}} );
+        if(newUser.displayName==='Chris Wilson'){
           setIsAdmin(true)
         }
       }
       else{
+        console.log('no user')
         setUser(null)
         setIsAdmin(false)
       }
     }))
     return (()=>unsubscribe())
 
-  },[user])
+  },[])
 
   useEffect(() => {
     if (mode) {
@@ -61,10 +63,11 @@ export const Navigation = () => {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/aboutme">About</Nav.Link>
-            {/* <NavDropdown
-              title="Inside"
+             <NavDropdown
+              title="Galleries"
               id="basic-nav-dropdown"
             >
+              {/*
               <NavDropdown.Item href="/kitchens">Kitchens</NavDropdown.Item>
               <NavDropdown.Item href="/bathrooms">Bathrooms</NavDropdown.Item>
               <NavDropdown.Item href="/miscinternal">Miscellaneous</NavDropdown.Item>
@@ -76,7 +79,8 @@ export const Navigation = () => {
               <NavDropdown.Item href="/externalJoinery">Timber</NavDropdown.Item>
               <NavDropdown.Item href="/externalMasonary">Masonary</NavDropdown.Item>
               <NavDropdown.Item href="/miscexternal">Miscellaneous</NavDropdown.Item>
-            </NavDropdown> */}
+               */}
+            </NavDropdown>
 
             <Nav.Link href="/webdev">Coding</Nav.Link>
             <Nav.Link href="/ha">Automation</Nav.Link>
@@ -85,7 +89,8 @@ export const Navigation = () => {
                 Services"
               id="basic-nav-dropdown"
             >
-              <NavDropdown.Item href="/plastering">Plastering</NavDropdown.Item>
+              
+              {/* <NavDropdown.Item href="/plastering">Plastering</NavDropdown.Item>
               <NavDropdown.Item href="/joinery">Joinery</NavDropdown.Item>
               <NavDropdown.Item href="/plumbing">Plumbing</NavDropdown.Item>
               <NavDropdown.Item href="/tiling">Tiling</NavDropdown.Item>
@@ -96,10 +101,16 @@ export const Navigation = () => {
               </NavDropdown.Item>
               <NavDropdown.Item href="/webdev">
                 Websites / Android apps built
-              </NavDropdown.Item>
+              </NavDropdown.Item> */}
             </NavDropdown>
+            
             {!user&&<Nav.Link href="/signIn">Sign In</Nav.Link>}
-            {user&&<Nav.Link href="/signOut">Sign Out</Nav.Link>}
+           
+            {user &&<NavDropdown title='Profile' id='basic-nav-dropdown'>
+            <NavDropdown.Item href="/signout">Sign Out</NavDropdown.Item>
+            <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+            </NavDropdown>}
+            
 
             <Nav.Link href="/contact">Contact</Nav.Link>
             {/* <Nav.Link href="/glossary">Glossary</Nav.Link> */}

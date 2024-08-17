@@ -5,6 +5,7 @@ import { signInWithGoogle } from "../../api/firebase_api"
 export const GoogleSignIn = () => {
 
   const navigate = useNavigate();
+  
     const  googleSignIn=()=>{
         signInWithGoogle()
         .then((credentials)=>{

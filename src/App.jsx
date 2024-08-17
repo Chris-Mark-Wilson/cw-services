@@ -33,6 +33,7 @@ import {Modal} from "./components/Modal.jsx";
 import "./css_files/App.css";
 import { SignIn } from "./pages/SignIn.jsx";
 import { SignOut } from "./pages/SignOut.jsx";
+import { Profile } from "./pages/Profile.jsx";
 
 function App() {
   return (
@@ -62,6 +63,7 @@ function App() {
         <Route path='/manage' element={<ManageGalleries/>}/>
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/signOut" element={<SignOut />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Footer/>
       <Modal />
