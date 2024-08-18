@@ -43,9 +43,9 @@
    
 }
 
-h5{color:black;}
+.profile-page h5{color:black;}
 
-p{
+.profile-page p{
     display:flex;
     color:black;
 }
