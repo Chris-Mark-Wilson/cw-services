@@ -10,6 +10,7 @@ export const Profile = () => {
 
     const [profileImageURL,setProfileImageURL]=useState('');
     const [newImage,setNewImage]=useState('');
+    const [passwordInputType,setPasswordInputType] =useState('password');
 
     useEffect(()=>{
         if(user && user.photoURL){

@@ -14,6 +14,7 @@ export const EmailSignIn = () => {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [passwordInputType, setPasswordInputType] = useState("password");
 
   const createAccount = async (e) => {
     setPasswordError("");
@@ -91,13 +92,21 @@ console.log('you are now signed in as:',credentials.user.displayName);
       });
   };
 
+  const showPassword = () => {
+    if (passwordInputType === "password") {
+      setPasswordInputType("text");
+    } else {
+      setPasswordInputType("password");
+    }
+  }
+
   return (
     <div className="email-sign-in">
       <div className="sign-in">
         <h4>
           Secure sign in <img src="/sign-in-logo.png" />
         </h4>
-        <form>
+       <div className='email-sign-in-form'>
           <input
             name="email"
             type="email"
@@ -107,23 +116,26 @@ console.log('you are now signed in as:',credentials.user.displayName);
             required
           />
           {emailError && <p className="signin-error">{emailError}</p>}
-
+        <div className='email-input'>
           <input
             name="password"
-            type="password"
+            type={passwordInputType}
             value={password}
             placeholder={"  Password"}
             autoComplete="new-password"
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          <button onClick={showPassword}><img src='/images/passwordIcon.png'/></button>
+          </div>
+
           {passwordError && <p className="signin-error">{passwordError}</p>}
 
           <div className="email-buttons">
             <button onClick={createAccount}>Create Account</button>
             <button onClick={signIn}>Sign In</button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

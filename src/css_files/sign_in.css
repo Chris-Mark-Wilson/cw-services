@@ -46,7 +46,7 @@
     width:100%;
     max-width:100%;
   }
-  .sign-in form{
+  .sign-in .email-sign-in-form{
     display:flex;
     flex-direction:column;
   
@@ -57,7 +57,7 @@
     width:100%;
     max-width:100%;
   }
-  .sign-in form input{
+  .sign-in .email-sign-in-form input{
     
     background: rgb(240, 248, 255 , 20%) !important;
  border-top:none;
@@ -76,11 +76,11 @@
     max-width:100%;
   }
 
-.sign-in form input::placeholder{
+.sign-in .email-sign-in-form input::placeholder{
  
     color:rgb(30, 30, 38);
   }
-  .sign-in form .email-buttons {
+  .sign-in .email-sign-in-form .email-buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -90,8 +90,28 @@
     width: 100%;
     max-width: 100%;
   }
+  .email-input{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+  }
   
-  .sign-in form .email-buttons button {
+  .sign-in .email-sign-in-form button {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center the text vertically */
+    border-radius: 35px; /* Adjust this value to make the button more pill-like */
+    background-color: rgb(192, 192, 238);
+    color: white;
+    margin: 0 auto;
+    padding: 8px 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width:30px;
+    height:30px;
+  }
+  .sign-in .email-sign-in-form .email-buttons button {
     display: flex;
     justify-content: center;
     align-items: center; /* Center the text vertically */
@@ -106,6 +126,6 @@
     width:45%;
   }
   
-  .sign-in form .email-buttons button:hover {
+  .sign-in .email-sign-in-form .email-buttons button:hover {
     background-color: rgb(66, 66, 207); /* Darker shade on hover */
   }
