@@ -101,7 +101,7 @@
     justify-content: center;
     align-items: center; /* Center the text vertically */
     border-radius: 35px; /* Adjust this value to make the button more pill-like */
-    background-color: rgb(192, 192, 238);
+    background-color: rgba(255,255,255,0);
     color: white;
     margin: 0 auto;
     padding: 8px 8px;

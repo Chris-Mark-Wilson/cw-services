@@ -49,6 +49,9 @@ console.log('you are now signed in as:',credentials.user.displayName);
         case "auth/missing-password":
           setPasswordError("Password required");
           break;
+        case"auth/too-many-requests":
+        setEmailError("Too many requests. Please try again later");
+        break;
         default:
           setEmailError("An error occurred. Please try again");
           break;
@@ -84,6 +87,10 @@ console.log('you are now signed in as:',credentials.user.displayName);
           case "auth/missing-password":
             setPasswordError("Password required");
             break;
+          case"auth/too-many-requests":
+          setEmailError("Too many requests. Please try again later");
+          break;
+            
           default:
             setEmailError("An error occurred. Please try again");
             break;
