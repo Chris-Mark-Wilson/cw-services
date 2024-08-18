@@ -7,7 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { listAllUsers,setAdminClaim } from "../../api/firebaseAuth";
 
 export const EmailSignIn = () => {
+
   const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -22,11 +24,11 @@ export const EmailSignIn = () => {
       const users=await listAllUsers();
       // if no users, set admin claim
       if (users.length===1){
-        const response=await setAdminClaim(credentials.user.uid);
+        const response=await setAdminClaim(response.user.uid);
         console.log('admin claim response: ',response);
       }
 
-    //   console.log(JSON.stringify(response, null, 1));
+console.log('you are now signed in as:',credentials.user.displayName);
       navigate(-1);
 
     } catch (error) {
@@ -60,7 +62,7 @@ export const EmailSignIn = () => {
     e.preventDefault();
     signInWithEmail(email, password)
       .then((response) => {
-
+        console.log('you are now signed in as:',response.user.displayName);
   
         navigate(-1);
       })

@@ -1,8 +1,12 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { GoogleAuthProvider,signInWithPopup } from "firebase/auth";
 import { auth } from '../db/firebase_config';
+import { storage } from '../db/firebase_config';
+import { getDownloadURL } from 'firebase/storage';
 
 import { getFunctions,httpsCallable } from 'firebase/functions';
+
+import {ref as storeRef,uploadBytesResumable} from 'firebase/storage';
 
 export const signInWithEmail = async (email, password) => {
     try {
@@ -69,4 +73,27 @@ export const setAdminClaim = async (uid) => {
         // console.log(error);
         return Promise.reject(error);
     }
+}
+
+
+export const uploadProfilePic=async (user,blob)=>{
+    // ENSURE USER OBJECT IS VALID, NOT A SHALLOW COPY
+  
+    try{
+        const imageId= Date.now();
+        const storageRef = storeRef(storage, `profile-pics/${imageId}`);
+        //store pic in storage
+       await uploadBytesResumable(storageRef, blob)
+        //get download url
+       const url=await getDownloadURL(storageRef);
+        //update user profile with photoURL
+            await updateProfile(user, { photoURL: url });
+            return url;
+    
+         return url;
+  }
+  catch(error){
+    console.error(error);
+    return Promise.reject(error);
+  }
 }

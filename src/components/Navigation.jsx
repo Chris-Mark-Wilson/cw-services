@@ -18,29 +18,51 @@ export const Navigation = () => {
   const colorScheme = usePrefersColorScheme();
 //auth listener to auto manage user state
   useEffect(()=>{
-    console.log('fire use effect  ')
+    console.log('fire navigation use effect  ')
     const unsubscribe=(onAuthStateChanged(auth,(newUser)=>{
       if(newUser){
+    
+//DO NOT SHALLOW COPY THIS`OBJECT, it has methods and functions on it
+
         //check for admin status
         newUser.getIdTokenResult()
         .then((idTokenResult) => {
+
+
         if (idTokenResult.claims.admin) {
           console.log('User is an admin');
-         
+      
+         //add isAdmin property to auth user object
+          newUser.isAdmin=true;
           setIsAdmin(true)
-        } 
 
-        setUser(()=>{return{...newUser}} );
 
+          setUser(newUser);
+        } else{
+
+          
+          newUser.isAdmin=false;
+     
+        }
         console.log('fired callback,userName:',newUser.displayName)
        
+        if(newUser.photoURL===null){
+          console.log('no photo')
+          newUser.photoURL='/images/user.png'
+      }
+
+      // DIRECT COPY OF OBJECT
+      setUser(newUser)
+
+
       })
     }
       else{
-        console.log('no user')
+        
         setUser(null)
         setIsAdmin(false)
       }
+  
     }))
     return (()=>unsubscribe())
 
@@ -115,7 +137,7 @@ export const Navigation = () => {
             
             {!user&&<Nav.Link href="/signIn">Sign In</Nav.Link>}
            
-            {user &&<NavDropdown title='Profile' id='basic-nav-dropdown'>
+            {user &&<NavDropdown title={<img src={user.photoURL}/>} id='basic-nav-dropdown'>
             <NavDropdown.Item href="/signout">Sign Out</NavDropdown.Item>
             <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
             </NavDropdown>}
@@ -123,7 +145,7 @@ export const Navigation = () => {
 
             <Nav.Link href="/contact">Contact</Nav.Link>
             {/* <Nav.Link href="/glossary">Glossary</Nav.Link> */}
-            {isAdmin && <Nav.Link href="/manage">Manage</Nav.Link>}
+            {isAdmin && <Nav.Link href="/manage">Admin</Nav.Link>}
           </Nav>
         </Navbar.Collapse>
       </Container>
