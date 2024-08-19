@@ -101,20 +101,23 @@
     max-width:100%;
 }
 
-#update-profile .profile-item-upload button, .password-input-group #change { 
+ #change, #change-name{ 
     display: flex;
     justify-content: center;
     align-items: center; /* Center the text vertically */
     border-radius: 35px; /* Adjust this value to make the button more pill-like */
     background-color: rgb(86, 86, 227);
     color: white;
-    margin: 0 auto;
+    margin: 10px auto;
     padding: 8px 8px;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
     width:25%;}
-
+    
+ #change:hover, #change-name:hover{
+        background-color: rgb(38, 38, 161);
+    }
 .password-input-group{
     /* border:1px solid magenta; */
     display:flex;
@@ -131,14 +134,16 @@
 
 .password-input{
     display:flex;
-    /* border:1px solid rgb(38, 38, 161); */
+    border:1px solid rgb(38, 38, 161);
     margin:0;
     display:flex;
     align-items: center;
     width:100%; 
-  
+  color:black;
     justify-content: space-between;
-
+}
+.password-input input{
+    color:black;
 }
 /* .email-input{margin:0;} */
 
@@ -165,16 +170,28 @@
     width:20px;
     height:20px;
   }
+
   #delete-account{
-    border:1px solid rgb(199, 41, 41);
+    border:1px solid rgb(23, 1, 1);
     box-sizing: border-box;
   justify-content: center;
     display:flex;
- 
-    border-radius:10px;
-    background:rgb(144, 63, 63);
+    background-color:rgb(200, 136, 136);
 padding:10px;
-
+border-radius:35px;
     margin:20px auto;
     width:350px;
-    max-width:100%;}
+    max-width:100%;
+}
+
+#delete-account:hover{
+    background-color:rgb(255, 0, 0);
+    transition: background-color 0.3s ease;
+}
+p.signin-error {
+    color:red;
+    font-size:0.8rem;
+    margin:0;
+    padding:0;
+    text-align:center;
+}

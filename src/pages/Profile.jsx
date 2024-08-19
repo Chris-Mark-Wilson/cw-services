@@ -1,8 +1,18 @@
+import { useState,useEffect } from "react";
+
 import "../css_files/profile.css";
 import { UpdateProfile } from "../components/UpdateProfile";
 import { ProfileDetails } from "../components/ProfileDetails";
 
 export const Profile = () => {
+
+
+
+
+
+
+
+
   return (
     <div className="profile-page">
       <ProfileDetails />

@@ -4,7 +4,7 @@ import { UserContext } from '../context/UserContext';
 
 
 
-export const ProfileDetails = () => {
+export const ProfileDetails = ({refresh}) => {
     const [profileImageURL,setProfileImageURL]=useState('');
 const {user} = useContext(UserContext);
 
@@ -12,21 +12,20 @@ const {user} = useContext(UserContext);
 useEffect(()=>{
     if(user && user.photoURL){
         setProfileImageURL(user.photoURL);
+        
     }
     if(user){
-        console.log(JSON.stringify(user.photoURL ,null,1));
+        console.log(JSON.stringify(user.providerData[0].providerId ,null,1));
         console.log(Object.keys(user));
 }
-},[user]);
+},[user,refresh]);
 
 return user && (
 
     <>
-      {/* {JSON.stringify(user,null,1)} */}
-      {/* {JSON.stringify(Object.keys(user),null,1)} */}
-     
+   
         <section className="profile-details">
-          <h5>Profile</h5>
+          <h5>Profile Details</h5>
           <div className="profile-item">
             <p>Display name:</p>
             <p>

@@ -1,4 +1,6 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile,
+  reauthenticateWithCredential, updatePassword,EmailAuthProvider
+ } from 'firebase/auth';
 import { GoogleAuthProvider,signInWithPopup } from "firebase/auth";
 import { auth } from '../db/firebase_config';
 import { storage } from '../db/firebase_config';
@@ -96,4 +98,28 @@ export const uploadProfilePic=async (user,blob)=>{
     console.error(error);
     return Promise.reject(error);
   }
+}
+
+export const alterPassword = async (user,oldPassword,newPassword) => {
+    try {
+        const credential = EmailAuthProvider.credential(user.email, oldPassword);
+        await reauthenticateWithCredential(user, credential);
+        console.log('reauthenticated');
+        await updatePassword(user, newPassword);
+        console.log('password updated');
+        return true;
+    } catch (error) {
+        console.log(error);
+        return Promise.reject(error);
+    }
+}
+
+export const alterDisplayName = async (user,newDisplayName) => {
+    try {
+        await updateProfile(user, { displayName: newDisplayName });
+        return true;
+    } catch (error) {
+        console.log(error);
+        return Promise.reject(error);
+    }
 }
