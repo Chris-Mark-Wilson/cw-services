@@ -16,9 +16,12 @@ export const Profile = () => {
   return (
     <div className="profile-page">
       <ProfileDetails />
+      <details>
+        <summary>Update Profile / Delete account</summary>
       <UpdateProfile />
 
       <button id="delete-account">Delete Account</button>
+    </details>
     </div>
   );
 };

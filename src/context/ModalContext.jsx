@@ -12,7 +12,7 @@ export const ModalProvider = ({ children }) => {
   const [modalMessage, setModalMessage] = useState("");
   const [modalConfirm, setModalConfirm] = useState(() => () => {});
 
-  const showModalDelete = (title, message, onConfirm) => {
+  const showModalDelete = (title, message, onConfirm=()=>{}) => {
   
     setModalTitle(title);
     setModalMessage(message);
@@ -20,10 +20,11 @@ export const ModalProvider = ({ children }) => {
     setShowDeleteModal(true);
   };
 
-  const showModalComplete = (title, message) => {
+  const showModalComplete = (title, message, onConfirm) => {
     setModalTitle(title);
     setModalMessage(message);
     setShowCompletionModal(true);
+    setModalConfirm(()=>onConfirm);
    
   };
 

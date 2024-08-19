@@ -1,5 +1,5 @@
 import React from "react";
-import "../../css_files/delete_modal.css"; // Ensure the CSS file is imported
+import "../../css_files/modal.css"; // Ensure the CSS file is imported
 import { Spinner } from "react-bootstrap";
 
 export const LoadingSpinner = ({message}) => {

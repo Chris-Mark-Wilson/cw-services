@@ -3,8 +3,11 @@ import { uploadProfilePic } from '../../api/firebaseAuth';
 import { UserContext } from '../context/UserContext';
 import { alterPassword } from "../../api/firebaseAuth";
 import { alterDisplayName } from "../../api/firebaseAuth";
+import { useModal } from "../context/ModalContext";
 
 export const UpdateProfile = () => {
+
+    const {showModalComplete} = useModal();
 
 
     const {user} = useContext(UserContext);
@@ -28,7 +31,8 @@ export const UpdateProfile = () => {
         try{
             const url = await uploadProfilePic(user,newImage);
             console.log('upload response:',url);
-       window.location.reload();
+            showModalComplete('Profile Picture Updated','Your profile picture has been updated',()=>window.location.reload());
+  
 
         }catch(error){
             console.log('error uploading profile pic:',error);
@@ -44,9 +48,14 @@ export const UpdateProfile = () => {
         }
 
         const changePassword = async () => {
+            if(newPassword.length<1){
+                setNewPasswordError('New password required');
+                return;
+            }
           try {
             await alterPassword(user, oldPassword, newPassword);
-        window.location.reload();
+            showModalComplete('Password Changed','Your password has been changed',()=>window.location.reload());
+
           } catch (error) {
             //set errors here
             switch (error.code) {
@@ -59,6 +68,9 @@ export const UpdateProfile = () => {
               case "auth/requires-recent-login":
                 setOldPasswordError("Please reauthenticate");
                 break;
+                case "auth/missing-password":
+                setOldPasswordError('Old password required');
+                break;
               default:
                 setOldPasswordError("An error occurred. Please try again");
                 break;
@@ -69,9 +81,14 @@ export const UpdateProfile = () => {
 
         const changeDisplayName = async () => { 
             console.log('changing display name');
+            if(newDisplayName.length<1){
+               showModalComplete('Display Name Error','Display name cannot be empty');
+                return;
+            }
             try{
                 alterDisplayName(user,newDisplayName);
-             window.location.reload();
+                showModalComplete('Display Name Changed','Your display name has been changed',()=>window.location.reload());
+      
             }
             catch(error){
                 console.log('error changing display name:',error);
@@ -136,7 +153,7 @@ export const UpdateProfile = () => {
                       value={oldPassword}
                       placeholder={"  Old Password"}
                       autoComplete="old-password"
-                      onChange={(e) => setOldPassword(e.target.value)}
+                      onChange={(e) => {setOldPassword(e.target.value);setOldPasswordError('');setNewPasswordError('')}}
                       required
                     />
                     <button className="password-eye" onClick={showPassword}>
@@ -157,7 +174,7 @@ export const UpdateProfile = () => {
                       value={newPassword}
                       placeholder={"  New Password"}
                       autoComplete="new-password"
-                      onChange={(e) => setNewPassword(e.target.value)}
+                      onChange={(e) => {setNewPassword(e.target.value);setNewPasswordError('');setOldPasswordError('')}}
                       required
                     />
                     <button className="password-eye" onClick={showPassword}>
