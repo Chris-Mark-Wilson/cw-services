@@ -80,7 +80,7 @@
  
     color:rgb(30, 30, 38);
   }
-  .sign-in .email-sign-in-form .email-buttons {
+.sign-in .email-sign-in-form .email-buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -96,7 +96,7 @@
     align-items: center;
   }
   
-  .sign-in .email-sign-in-form button {
+  .sign-in .email-sign-in-form .email-input button{
     display: flex;
     justify-content: center;
     align-items: center; /* Center the text vertically */
