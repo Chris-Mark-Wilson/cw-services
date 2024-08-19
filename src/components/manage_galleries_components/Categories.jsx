@@ -131,10 +131,12 @@ return newList.map((category)=>{
             value={JSON.stringify(selectedCategory)}
           >
             {categoryList.map((category, index) => {
-              return (
+              return (<>
                 <option key={category.id} value={JSON.stringify(category)}>
                   {category.name}
                 </option>
+                <hr/>
+                </>
               );
             })}
           </select>

@@ -11,12 +11,12 @@
     width:auto;
 }
 .webpage p{
-    color:white;
+    color:rgb(44, 41, 41);
     font-size:medium;
 }
 .webpage h1 {
     font-size:40px;
-    color:white;
+    color:rgb(19, 19, 19);
 }
 .webpage-links{
     padding:5px 20px 5px 20px;
@@ -82,7 +82,7 @@ max-width:100%;
 
 .pre-footer {
     font-size:medium;
-    color:white;
+    color:rgb(33, 29, 29);
 }
 .certificate{
     transition:all 0.5s ease-in-out;

@@ -14,7 +14,7 @@
  /* flex-wrap: wrap; */
   text-align: center;
   /* border:10px solid green; */
-  background:linear-gradient(0deg, rgb(203, 204, 221), rgb(152, 152, 207));
+  background:linear-gradient(0deg, rgb(203, 204, 221), rgb(169, 169, 181));
 
 }
 
@@ -30,7 +30,7 @@
 
 .nav-bar{
 /* position:absolute; */
-background:linear-gradient(0deg, rgb(152, 152, 207), rgb(203,204,221));
+background:linear-gradient(0deg, rgb(169,169,181), rgb(203,204,221));
 display:flex;
 justify-content: space-around;
 list-style-type: none;
