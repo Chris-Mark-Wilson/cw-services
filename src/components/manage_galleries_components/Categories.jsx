@@ -46,7 +46,7 @@ export const Categories = ({
 
    
    if(categories.length>0){ 
-
+console.log(categories);
     setCategoryList(categories);
    
     setSelectedCategory(categoryList[0]);
@@ -131,12 +131,12 @@ return newList.map((category)=>{
             value={JSON.stringify(selectedCategory)}
           >
             {categoryList.map((category, index) => {
-              return (<>
+              return (
                 <option key={category.id} value={JSON.stringify(category)}>
                   {category.name}
                 </option>
-                <hr/>
-                </>
+    
+                
               );
             })}
           </select>
