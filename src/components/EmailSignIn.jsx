@@ -3,10 +3,13 @@ import "../css_files/sign_in.css";
 
 import { signUpWithEmail, signInWithEmail } from "../../api/firebaseAuth";
 import { useNavigate } from "react-router-dom";
+import { useModal } from "../context/ModalContext";
 
 import { listAllUsers,setAdminClaim } from "../../api/firebaseAuth";
 
 export const EmailSignIn = () => {
+
+  const {showModalComplete} = useModal();
 
   const navigate = useNavigate();
 
@@ -29,7 +32,7 @@ export const EmailSignIn = () => {
         console.log('admin claim response: ',response);
       }
 
-console.log('you are now signed in as:',credentials.user.displayName);
+console.log('you are now signed in as:',credentials.user.displayName?credentials.user.displayName:credentials.user.email);
       navigate(-1);
 
     } catch (error) {
@@ -53,7 +56,7 @@ console.log('you are now signed in as:',credentials.user.displayName);
         setEmailError("Too many requests. Please try again later");
         break;
         default:
-          setEmailError("An error occurred. Please try again");
+          showModalComplete('Error',`An error occurred. ${error.code}, ${error.message}`);
           break;
       }
       console.log(JSON.stringify(error, null, 1));
@@ -66,7 +69,7 @@ console.log('you are now signed in as:',credentials.user.displayName);
     e.preventDefault();
     signInWithEmail(email, password)
       .then((response) => {
-        console.log('you are now signed in as:',response.user.displayName);
+        console.log('you are now signed in as:',response.user.displayName?response.user.displayName:response.user.email);
   
         navigate(-1);
       })
@@ -92,7 +95,7 @@ console.log('you are now signed in as:',credentials.user.displayName);
           break;
             
           default:
-            setEmailError("An error occurred. Please try again");
+            showModalComplete('Error',`An error occurred. ${error.code}, ${error.message}`);
             break;
         }
         console.log(JSON.stringify(error.code, null, 1));

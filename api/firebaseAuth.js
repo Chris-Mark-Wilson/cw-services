@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile,
-  reauthenticateWithCredential, updatePassword,EmailAuthProvider
+  reauthenticateWithCredential, updatePassword,EmailAuthProvider,deleteUser
  } from 'firebase/auth';
 import { GoogleAuthProvider,signInWithPopup } from "firebase/auth";
 import { auth } from '../db/firebase_config';
@@ -8,7 +8,7 @@ import { getDownloadURL } from 'firebase/storage';
 
 import { getFunctions,httpsCallable } from 'firebase/functions';
 
-import {ref as storeRef,uploadBytesResumable} from 'firebase/storage';
+import {ref as storeRef,uploadBytesResumable,deleteObject} from 'firebase/storage';
 
 export const signInWithEmail = async (email, password) => {
     try {
@@ -117,6 +117,36 @@ export const alterPassword = async (user,oldPassword,newPassword) => {
 export const alterDisplayName = async (user,newDisplayName) => {
     try {
         await updateProfile(user, { displayName: newDisplayName });
+        return true;
+    } catch (error) {
+        console.log(error);
+        return Promise.reject(error);
+    }
+}
+
+export const deleteMember = async (user) => {
+
+  //this function needs to iterate through all the user's data and delete it
+  // before deleting the user account
+  //Do not allow admin to delete if there are no other users
+    try {
+      if(user.isAdmin){
+        const users=await listAllUsers();
+        if(users.length>1){
+          const adminCount=users.filter((registeredUser)=>registeredUser.customClaims && registeredUser.customClaims.admin).length;
+          if(adminCount===1){
+            return Promise.reject({code:'auth/last-admin'});
+        }  
+      }
+    }
+      console.log(user);
+      if(user.photoURL!=='/images/user.png' && user.photoURL.startsWith('profile-pics/')){
+        const storageRef=storeRef(storage,(user.photoURL));
+        await deleteObject(storageRef);
+        console.log('profile pic deleted');
+      }
+        await deleteUser(user);
+
         return true;
     } catch (error) {
         console.log(error);
