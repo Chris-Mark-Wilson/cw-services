@@ -1,15 +1,15 @@
 import { useState } from "react";
 import "../css_files/sign_in.css";
 
-import { signUpWithEmail, signInWithEmail } from "../../api/firebaseAuth";
+import { signUpWithEmail, signInWithEmail,sendVerificationEmail } from "../../api/firebaseAuth";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../context/ModalContext";
 
-import { listAllUsers,setAdminClaim } from "../../api/firebaseAuth";
+import { listAllUsers,setAdminClaim,reAuthenticate } from "../../api/firebaseAuth";
 
 export const EmailSignIn = () => {
 
-  const {showModalComplete} = useModal();
+  const {showModalComplete,showModalDelete} = useModal();
 
   const navigate = useNavigate();
 
@@ -25,6 +25,17 @@ export const EmailSignIn = () => {
     e.preventDefault();
     try {
       const credentials = await signUpWithEmail(email, password);
+      console.log('created user - credentials are:',credentials)
+      await sendVerificationEmail(credentials.user);
+      // console.log('verification email sent:',response);
+     await showModalComplete('Email Verification','A verification email has been sent to your email address. Please verify your email address, then press ok to continue',async()=>{
+        const response=await reAuthenticate(credentials.user);
+        console.log('re-auth response:',response);
+        // navigate(-1);
+
+      }
+      );
+
       const users=await listAllUsers();
       // if no users, set admin claim
       if (users.length===1){
@@ -33,7 +44,7 @@ export const EmailSignIn = () => {
       }
 
 console.log('you are now signed in as:',credentials.user.displayName?credentials.user.displayName:credentials.user.email);
-      navigate(-1);
+      // navigate(-1);
 
     } catch (error) {
       switch (error.code) {

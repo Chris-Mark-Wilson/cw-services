@@ -1,5 +1,11 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile,
-  reauthenticateWithCredential, updatePassword,EmailAuthProvider,deleteUser
+import { createUserWithEmailAndPassword,
+   signInWithEmailAndPassword,
+    updateProfile,
+    reauthenticateWithCredential,
+     updatePassword,
+     EmailAuthProvider,
+     deleteUser,
+     sendEmailVerification
  } from 'firebase/auth';
 import { GoogleAuthProvider,signInWithPopup } from "firebase/auth";
 import { auth } from '../db/firebase_config';
@@ -152,4 +158,26 @@ export const deleteMember = async (user) => {
         console.log(error);
         return Promise.reject(error);
     }
+}
+export const sendVerificationEmail=async (user)=>{
+  try{
+    await sendEmailVerification(user);
+    return true;
+  }
+  catch(error){
+    console.error(error);
+    return Promise.reject(error);
+  }
+}
+export const reAuthenticate=async (user)=>{
+  try{
+    const credential = EmailAuthProvider.credential(user.email, user.password);
+    console.log('and the created credential from credential.user is... ',credential);
+    await reauthenticateWithCredential(user, credential);
+    return true;
+  }
+  catch(error){
+    console.error(error);
+    return Promise.reject(error);
+  }
 }
