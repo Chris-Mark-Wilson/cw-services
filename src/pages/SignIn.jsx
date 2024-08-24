@@ -5,6 +5,8 @@ import { GoogleSignIn } from "../components/GoogleSignIn";
 import { EmailSignIn } from "../components/EmailSignIn";
 import { useNavigate } from "react-router-dom";
 import '../css_files/sign_in.css'
+import {auth} from '../../db/firebase_config';
+import { signInWithEmailAndPassword,sendEmailVerification,deleteUser, reauthenticateWithCredential } from "firebase/auth";
 export const SignIn =() => {
     const navigate = useNavigate();
 
@@ -13,26 +15,32 @@ export const SignIn =() => {
 
     useEffect(()=>{
         if(user){
+            console.log('user:',user);
  setIsSignedIn(true);
+ if(user.emailVerified){
+     navigate('/');
+
     }
+}
+console.log('user: ',user)
 },[user]);
+
 
 
 return (
     <div className="sign-in-page">
-       {!isSignedIn ? <div className='sign-in-container'>
+      <div className='sign-in-container'>
     <div className="sign-in">
        <EmailSignIn/>
        
+        {!user &&
         <GoogleSignIn/>
-    </div>
-    </div>
-    :
-    <div className="sign-in">
-        <h3>You are signed in as {user.displayName}</h3>
-        <button onClick={()=>navigate('/')} className="btn btn-primary">Go to Home</button>
-    </div>
 }
+    </div>
+    </div>
+  
+  
+
 </div>
 )
 

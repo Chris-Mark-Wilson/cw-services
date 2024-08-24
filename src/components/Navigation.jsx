@@ -7,15 +7,40 @@ import usePrefersColorScheme from "use-prefers-color-scheme";
 import { auth } from "../../db/firebase_config";
 import { onAuthStateChanged } from "firebase/auth";
 import { UserContext } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
+import { getAllCategories } from "../../api/firebase_api";
 
 
 export const Navigation = () => {
+
+  const navigate=useNavigate();
   const [mode, setMode] = useState("light");
 
   const {user,setUser} = useContext(UserContext);
   const [isAdmin,setIsAdmin] = useState(false);
+  const [categories,setCategories]=useState([]);
 
   const colorScheme = usePrefersColorScheme();
+
+  useEffect(()=>{
+    const getCategories=async()=>{
+      try{
+        const categories = await getAllCategories();
+        if(categories.length>0){
+          setCategories(categories);
+        }
+        else{
+          setCategories([]);
+        }
+      }
+      catch(error){
+        console.log(error);
+      }
+    }
+    getCategories();
+  },[categories])
+
+
 //auth listener to auto manage user state
   useEffect(()=>{
     console.log('fire navigation use effect  ')
@@ -27,39 +52,37 @@ export const Navigation = () => {
         //check for admin status
         newUser.getIdTokenResult()
         .then((idTokenResult) => {
+          if (idTokenResult.claims.admin) {
+            console.log("User is an admin");
 
+            //add isAdmin property to auth user object
+            newUser.isAdmin = true;
+            setIsAdmin(true);
 
-        if (idTokenResult.claims.admin) {
-          console.log('User is an admin');
-      
-         //add isAdmin property to auth user object
-          newUser.isAdmin=true;
-          setIsAdmin(true)
+            setUser(newUser);
+          } else {
+            newUser.isAdmin = false;
+          }
+          console.log("fired callback,userName:", newUser.displayName);
 
-
+          if (newUser.photoURL === null) {
+            console.log("no photo");
+            newUser.photoURL = "/images/user.png";
+          }
+          console.log(newUser);
+          // DIRECT COPY OF OBJECT
           setUser(newUser);
-        } else{
-
-          
-          newUser.isAdmin=false;
-     
-        }
-        console.log('fired callback,userName:',newUser.displayName)
-       
-        if(newUser.photoURL===null){
-          console.log('no photo')
-          newUser.photoURL='/images/user.png'
-      }
-
-      // DIRECT COPY OF OBJECT
-      setUser(newUser)
-
-
-      })
+          //check user is verified email
+          if (!newUser.emailVerified) {
+            console.log("email not verified");
+            navigate("/signIn");
+          }
+        })
     }
       else{
         
         setUser(null)
+    
         setIsAdmin(false)
       }
   
@@ -76,6 +99,10 @@ export const Navigation = () => {
 
 
   }, [mode]);
+
+  const handleNavigate = (category) => {
+    navigate(`/gallery/${category.id}`, { state: { id: category.id, name: category.name } });
+  };
 
   return (
     <Navbar
@@ -98,6 +125,14 @@ export const Navigation = () => {
               title="Galleries"
               id="basic-nav-dropdown"
             >
+             {categories && categories.map((category) => (
+        <NavDropdown.Item
+          key={category.id}
+          onClick={() => handleNavigate(category)}
+        >
+          {category.name}
+        </NavDropdown.Item>
+      ))}
               {/*
               <NavDropdown.Item href="/kitchens">Kitchens</NavDropdown.Item>
               <NavDropdown.Item href="/bathrooms">Bathrooms</NavDropdown.Item>

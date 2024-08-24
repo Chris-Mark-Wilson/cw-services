@@ -34,7 +34,7 @@ export const signUpWithEmail = async (email, password) => {
       password
     );
     console.log('created user:'
-    ,credentials.user.uid
+    ,credentials
     )
     await updateProfile(credentials.user, {
       displayName: email,
@@ -169,6 +169,10 @@ export const sendVerificationEmail=async (user)=>{
     return Promise.reject(error);
   }
 }
+
+
+
+
 export const reAuthenticate=async (user)=>{
   try{
     const credential = EmailAuthProvider.credential(user.email, user.password);

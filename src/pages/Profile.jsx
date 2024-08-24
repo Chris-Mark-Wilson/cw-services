@@ -17,6 +17,13 @@ const {user}=useContext(UserContext);
 
 const navigate=useNavigate();
 
+
+useEffect(()=>{ 
+if(user && !user.emailVerified){
+  navigate('/signIn');
+}
+},[user])
+
 const handleDelete= async()=>{
   showModalDelete('Delete Account','Are you sure you want to delete your account?',deleteAccount);
 
@@ -33,10 +40,10 @@ const deleteAccount=async()=>{
   catch(error){
     switch (error.code) {
       case "auth/requires-recent-login":
-        showModalComplete('Error','Please sign in again to delete your account');
+        showModalComplete('Recent login required','Please sign in again to delete your account',()=>{signOut();navigate('/signIn')});
         break;
         case "auth/last-admin":
-          showModalComplete('Error','You are the last admin. You cannot delete your account');
+          showModalComplete('Error','You are the last admin. You cannot delete your account while other users who are not admins exist. Visit the admin page to delete other users or change their admin status');
           break;
       default:
         showModalComplete('Error',`An error occurred. ${error.code}, ${error.message}`);

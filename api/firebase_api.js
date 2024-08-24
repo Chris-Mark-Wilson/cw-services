@@ -273,15 +273,11 @@ export const deleteCategory = async (category) => {
               
             });
             await Promise.all(imagePromises);
-        
         }
-
-
 
         //delete category data from db
         const categoryRef=baseRef(db, `categories/${category.id}`);
         await remove(categoryRef);
- 
 
         //delete category from categoryList in db;
         const listRef = baseRef(db, `categoryList/${category.name}`);

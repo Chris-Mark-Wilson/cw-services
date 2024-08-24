@@ -28,7 +28,8 @@ const CustomSelect = ({ images,selectedImage,setSelectedImage,setSelectedImageUR
           <div key={index} className="select-item" onClick={() => handleSelect(image)}>
             <img src={image.url}
              title={image.name}
-             alt={image.name} className="image-option" />
+             alt={image.name}
+             className="image-option" />
          
           </div>
         ))}

@@ -34,6 +34,7 @@ import "./css_files/App.css";
 import { SignIn } from "./pages/SignIn.jsx";
 import { SignOut } from "./pages/SignOut.jsx";
 import { Profile } from "./pages/Profile.jsx";
+import { Gallery } from "./pages/Gallery.jsx";
 
 function App() {
   return (
@@ -43,19 +44,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/aboutme" element={<AboutMe />} />
-        <Route path="/plastering" element={<Plastering />} />
-        <Route path="/joinery" element={<Joinery />} />
-        <Route path="/plumbing" element={<Plumbing />} />{" "}
-        <Route path="/tiling" element={<Tiling />} />{" "}
-        <Route path="/decorating" element={<Decorating />} />{" "}
-        <Route path="/maintenance" element={<Maintenance />} />{" "}
-        <Route path="/externaljoinery" element={<ExternalJoinery />} />
-        <Route path="/externalmasonary" element={<ExternalMasonary />} />
-        <Route path="/miscexternal" element={<MiscExternal />} />
-        <Route path ="/kitchens" element={<Kitchens/>} />
-        <Route path ="/bathrooms" element={<Bathrooms/>} />
-        <Route path ="/miscinternal" element={<MiscInternal/>} />
-        <Route path="/glazing" element={<Glazing />} />
+          <Route path='/gallery'>
+            <Route path=':id' element={<Gallery/>}/>
+          </Route>
         <Route path="/webdev" element={<WebDev />} />
         <Route path="/ha" element={<HomeAutomation />} />
         <Route path="/contact" element={<Contact />} />
