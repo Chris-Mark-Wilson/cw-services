@@ -14,16 +14,19 @@ export const AboutMe=()=>{
     return(
         <div className='page'>
         <h5>This is me...</h5>
-         <section className='description'>
-            <p>I am a generation 'X' Multi skilled builder / junior software engineer with a background in construction and mechanical engineering. I have been working in the construction industry for over 20 years, and have worked on a wide range of projects from kitchen and bathroom refits to ultra modern <a href='/glossary#sips'>Sips</a> houses with air source heat pumps. With over 10 years in the glass and glazing industry I consider myself expert in that particular field. I have a passion for learning and enjoy working on projects that challenge me. In 2023 I completed a software engineering course with <a href='https://northcoders.com/' target='_blank'>Northcoders</a> and have experience with a wide range of technologies including React, Node.js, Express, MongoDB, Linux operating systems and SQL. I am also a keen cyclist and enjoy building and riding electric bikes. I am a big fan of open source software and have built my own home automation system suitable for landlords using the <a href='https://www.home-assistant.io/' target='_blank'>Home Assistant</a> operating system. I am always looking for new opportunities to learn and continue to grow as a person.
-            </p>
+        <section className='description'>
+          <p>With over 20 years of experience in the construction industry and a diverse skill set spanning construction, mechanical engineering, and software development, my professional background is rooted in both traditional and modern techniques. Projects have ranged from kitchen and bathroom refits to cutting-edge Sips houses equipped with air source heat pumps. Additionally, over a decade in the glass and glazing sector has honed a deep expertise in that field.
+
+</p>
+<p>In 2023, a software engineering course with Northcoders expanded my technical repertoire, including proficiency in React, Node.js, Express, MongoDB, Linux operating systems, and SQL. A commitment to continuous learning drives involvement in projects that challenge and expand my skill set.</p>
+<p>Outside of construction and software, a passion for cycling fuels the design and creation of electric bikes. A strong advocate of open-source software, I developed a home automation system tailored for landlords using the Home Assistant platform. Continual personal and professional growth remains a top priority, with an eagerness to explore new opportunities and challenges.</p>
         </section>
         <hr/>
-        <PictureCard
+        {/* <PictureCard
         imageUris={{0:'./pictures/me-in-mask.jpg'}}
         alts={{0:'Chris Wilson at work on a building site'}}
        
-      />
+      /> */}
         
         
 
