@@ -37,12 +37,32 @@ const handleSelect=(e)=>{
         
             <h1>{capitalise(name)}</h1>
             <div className="gallery">
-                {images.length>0?images.map((image,index)=>(
+                {images.length>0
+                ?
+                images.map((image,index)=>(
+                    <div className='gallery-card'>
+                    <>
                     <img key={index}
                      src={image.url}
                      alt={image.caption}
+                     title={'Click on image to expand'}
                      onClick={(e)=>handleSelect(e)} />
-                )):<p>No images found</p>}
+                     <p className='gallery-card-title'>
+                        {image.title?image.title:'No title'}
+                     </p>
+                     <div className='gallery-card-caption'>
+                     <p  title={image.caption}>
+                        {image.caption}
+                     </p>
+                     </div>
+                     </>
+                </div>
+                ))
+                :
+                <p>No images found</p>
+       
+               }
+              
             </div>
 
             {selectedImage &&
@@ -52,8 +72,8 @@ const handleSelect=(e)=>{
                 onClick={()=>setSelectedImage(null)}>
                     <p>X</p>
                 </div>
-            <div className="title">
-                    <p>title{images.find((image)=>image.url===selectedImage).title}</p>
+            <div className="image-title">
+                    <h5>title{images.find((image)=>image.url===selectedImage).title}</h5>
                 </div>
                 <img  src={selectedImage} alt="selected" />
                 <div className="caption">

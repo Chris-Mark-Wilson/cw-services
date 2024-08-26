@@ -109,11 +109,11 @@ export const Navigation = () => {
       sticky="top"
       expand="lg"
       
-      data-bs-theme={mode}
+      // data-bs-theme={mode}
       className="nav-bar"
     >
       <Container className="navbar-container">
-        <Navbar.Brand href="#home" className="logo">
+        <Navbar.Brand href="/" className="logo">
           CW Services
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
