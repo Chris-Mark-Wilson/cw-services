@@ -15,6 +15,7 @@ useEffect(()=>{
             const images=await getAllImagesByCategory({id:id,name:name});
             console.log(images);
             setImages(images);
+            setSelectedImage(null)
         }
         catch(error){
             console.log(error);
@@ -32,7 +33,7 @@ const handleSelect=(e)=>{
 }
 
     return(
-        <div>
+        <div >
         
             <h1>{capitalise(name)}</h1>
             <div className="gallery">
@@ -44,9 +45,25 @@ const handleSelect=(e)=>{
                 )):<p>No images found</p>}
             </div>
 
-            {selectedImage && <div className="selected-image">
-                <img onClick={()=>setSelectedImage(null)} src={selectedImage} alt="selected" />
-            </div>}
+            {selectedImage &&
+            <> 
+            <div  className="image-container">
+                <div className="close"
+                onClick={()=>setSelectedImage(null)}>
+                    <p>X</p>
+                </div>
+            <div className="title">
+                    <p>title{images.find((image)=>image.url===selectedImage).title}</p>
+                </div>
+                <img  src={selectedImage} alt="selected" />
+                <div className="caption">
+                    <p>caption{images.find((image)=>image.url===selectedImage).caption}</p>
+                </div>
+            </div>
+              {/* <div className="caption">
+              <p>awsdasdasd{images.find((image)=>image.url===selectedImage).caption}</p>
+          </div> */}
+          </>}
 
 
         </div>
