@@ -3,7 +3,7 @@ export const HomeAutomation = () => {
         <div className="page">
         <h1>Home Automation</h1>
         <section className="description">
-<<<<<<< HEAD
+
             <p>
                 Home automation is the residential extension of building automation. It involves the control and automation of lighting, heating, ventilation, air conditioning, and security, as well as home appliances such as washer/dryers, ovens, and refrigerators/freezers. 
                 <br/>
@@ -14,7 +14,7 @@ export const HomeAutomation = () => {
                 Home automation is a growing field, with the potential to greatly improve the quality of life for homeowners. It can be used to increase energy efficiency, improve security, and provide convenience and comfort.
             </p>
         </section>
-=======
+        <section className='details'>
             <p>With the popularity of home automation increasing in the UK I looked into a way to solve an age old problem using this new tech. The problem being fuel bills in HMO (multiple occupation housing)</p>
             <p>With tennants mostly being at work, why have the heating on for that room? </p>
             <p>Why have the radiator on full with the window wide open?</p>
@@ -74,7 +74,7 @@ export const HomeAutomation = () => {
                     </details>
               
                 </section>           
->>>>>>> rewrite
+
         </div>
     )
     }

@@ -163,9 +163,11 @@ export const Navigation = () => {
             
 
             <Nav.Link href="/contact">Contact</Nav.Link>
+
             {/* <Nav.Link href="/glossary">Glossary</Nav.Link> */}
             {isAdmin && <Nav.Link href="/manage">Admin</Nav.Link>}
           </Nav>
+
         </Navbar.Collapse>
       </Container>
     </Navbar>
