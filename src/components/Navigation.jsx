@@ -150,25 +150,9 @@ export const Navigation = () => {
 
             <Nav.Link href="/webdev">Coding</Nav.Link>
             <Nav.Link href="/ha">Automation</Nav.Link>
-            <NavDropdown
-              title="
-                Services"
-              id="basic-nav-dropdown"
-            >
+            <Nav.Link href="/services">Services</Nav.Link>
               
-              {/* <NavDropdown.Item href="/plastering">Plastering</NavDropdown.Item>
-              <NavDropdown.Item href="/joinery">Joinery</NavDropdown.Item>
-              <NavDropdown.Item href="/plumbing">Plumbing</NavDropdown.Item>
-              <NavDropdown.Item href="/tiling">Tiling</NavDropdown.Item>
-              <NavDropdown.Item href="/glazing">Glazing</NavDropdown.Item>
-              <NavDropdown.Item href="/decorating">Decorating</NavDropdown.Item>
-              <NavDropdown.Item href="/maintenance">
-                Reactive maintenance
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/webdev">
-                Websites / Android apps built
-              </NavDropdown.Item> */}
-            </NavDropdown>
+           
             
             {!user&&<Nav.Link href="/signIn">Sign In</Nav.Link>}
            

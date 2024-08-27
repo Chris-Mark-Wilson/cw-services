@@ -1,4 +1,4 @@
-import PictureCard from "../components/PictureCard";
+
 import '../css_files/webdev.scss';
 import '../css_files/webdev.css'; 
 

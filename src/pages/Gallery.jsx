@@ -41,9 +41,9 @@ const handleSelect=(e)=>{
                 {images.length>0
                 ?
                 images.map((image,index)=>(
-                    <div className='gallery-card'>
+                    <div key={index} className='gallery-card'>
                     <>
-                    <img key={index}
+                    <img 
                      src={image.url}
                      alt={image.caption}
                      title={'Click on image to expand'}
