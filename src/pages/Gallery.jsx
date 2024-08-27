@@ -13,7 +13,7 @@ useEffect(()=>{
     const getImages=async()=>{
         try{
             let images=await getAllImagesByCategory({id:id,name:name});
-            console.log(images);
+ 
             images=images.sort((a,b)=>a.imageId-b.imageId);
             setImages(images);
             setSelectedImage(null)
