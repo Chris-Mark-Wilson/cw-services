@@ -3,6 +3,7 @@ export const HomeAutomation = () => {
         <div className="page">
         <h1>Home Automation</h1>
         <section className="description">
+
             <p>With the popularity of home automation increasing in the UK I looked into a way to solve an age old problem using this new tech. The problem being fuel bills in HMO (multiple occupation housing)</p>
             <p>With tennants mostly being at work, why have the heating on for that room? </p>
             <p>Why have the radiator on full with the window wide open?</p>
@@ -62,6 +63,7 @@ export const HomeAutomation = () => {
                     </details>
               
                 </section>           
+
         </div>
     )
     }

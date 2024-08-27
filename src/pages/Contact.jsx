@@ -1,4 +1,5 @@
 export const Contact = () => {
+
     const handleClick=(e)=>{
 // copy the innerhtml to clipboard
         navigator.clipboard.writeText(e.target.innerHTML)
@@ -16,6 +17,7 @@ export const Contact = () => {
            <p>Just drop me an email at <h5 onClick={handleClick}>cmwilson.co.uk</h5></p>
             
            </section>
+
         </div>
     );
     }
