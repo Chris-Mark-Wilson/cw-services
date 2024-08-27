@@ -33,15 +33,13 @@ export const signUpWithEmail = async (email, password) => {
       email,
       password
     );
-    console.log('created user:'
-    ,credentials
-    )
+ 
     await updateProfile(credentials.user, {
       displayName: email,
     });
     return credentials;
   } catch (error) {
-    console.log("error", error);
+
     return Promise.reject(error);
   }
 };
@@ -62,7 +60,7 @@ export const listAllUsers = async () => {
     const getUsers = httpsCallable(functions,'listUsers');
     try {
         const response = await getUsers();
-        console.log(response.data);
+   
         
         return response.data.users;
     } catch (error) {
@@ -110,9 +108,9 @@ export const alterPassword = async (user,oldPassword,newPassword) => {
     try {
         const credential = EmailAuthProvider.credential(user.email, oldPassword);
         await reauthenticateWithCredential(user, credential);
-        console.log('reauthenticated');
+     
         await updatePassword(user, newPassword);
-        console.log('password updated');
+      
         return true;
     } catch (error) {
         console.log(error);
@@ -145,11 +143,11 @@ export const deleteMember = async (user) => {
         }  
       }
     }
-      console.log(user);
+ 
       if(user.photoURL!=='/images/user.png' && user.photoURL.startsWith('profile-pics/')){
         const storageRef=storeRef(storage,(user.photoURL));
         await deleteObject(storageRef);
-        console.log('profile pic deleted');
+    
       }
         await deleteUser(user);
 
@@ -176,7 +174,7 @@ export const sendVerificationEmail=async (user)=>{
 export const reAuthenticate=async (user)=>{
   try{
     const credential = EmailAuthProvider.credential(user.email, user.password);
-    console.log('and the created credential from credential.user is... ',credential);
+ 
     await reauthenticateWithCredential(user, credential);
     return true;
   }

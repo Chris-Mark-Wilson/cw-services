@@ -48,7 +48,7 @@ export const  getAllImagesByCategory = async (category) => {
 
        
     } catch (error) {
-        console.log(error);
+       
         return Promise.reject(error);
     }
 }
@@ -73,7 +73,7 @@ export const updateImageName = async (categoryId, oldName, newName) => {
         }
 
   catch (error) {
-        console.log("Error updating image name ", error);
+      
         return Promise.reject(error);
     }
 
@@ -105,7 +105,7 @@ export const uploadImage = async (categoryId,categoryName, file, imageObject,ove
 } else{
       snapShot=await get(child(baseRef(db), `categories/${categoryId}/${imageObject.name}`));
     if(snapShot.exists()){
-    console.log('snaosht: ',snapShot.val());
+
       imageId=snapShot.val().imageId;
     }
 
@@ -115,7 +115,7 @@ export const uploadImage = async (categoryId,categoryName, file, imageObject,ove
       caption: imageObject.caption.trim(),
       imageId: imageId
     };
-    console.log('doc ',doc);
+
       await set(
       baseRef(db, `categories/${categoryId}/${imageObject.name.trim()}`),
       doc
@@ -131,13 +131,12 @@ const storeImage = async (image) => {
     try{
         const storageRef = storeRef(storage, `images/${image.imageId}`);
         const snapshot=await uploadBytesResumable(storageRef, image.file)
-        // console.log("Snapshot: ", snapshot);
-        // console.log("Reference: ", storageRef);
+    
        
         return image.imageId;
     }
     catch(err){
-        console.log(err);
+ 
         return Promise.reject('Error uploading image to storage');
     }
 }
@@ -174,7 +173,7 @@ const storeImage = async (image) => {
 return true;
 
   } catch (error) {
-    console.log("Error adding document: ", error);
+ 
     return Promise.reject(error);
   }
 };
@@ -201,7 +200,7 @@ export const getAllCategories = async () => {
         }
        
     } catch (error) {
-        console.log("Error getting categories ", error);
+    
         return Promise.reject(error);
     }
 };
@@ -231,7 +230,7 @@ export const deleteImage = async (categoryId, categoryName,image) => {
         }
        return true;
     } catch (error) {
-        console.log("Error deleting image ", error);
+     
         return Promise.reject(error);
     }
 };
@@ -253,7 +252,7 @@ export const updateCategoryName = async (oldName, newName) => {
             return {name:newName,id:data};
         }
     } catch (error) {
-        console.log("Error updating category name ", error);
+     
         return Promise.reject(error);
     }
 }
@@ -282,9 +281,9 @@ export const deleteCategory = async (category) => {
         //delete category from categoryList in db;
         const listRef = baseRef(db, `categoryList/${category.name}`);
         await remove(listRef);
-        console.log("Category deleted from categoryList successfully");       return true;
+        return true;
     } catch (error) {
-        console.log("Error deleting category ", error);
+      
         return Promise.reject(error);
     }
 }

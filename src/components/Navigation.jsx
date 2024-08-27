@@ -43,8 +43,7 @@ export const Navigation = () => {
 
 //auth listener to auto manage user state
   useEffect(()=>{
-    console.log('fire navigation use effect  ')
-    const unsubscribe=(onAuthStateChanged(auth,(newUser)=>{
+        const unsubscribe=(onAuthStateChanged(auth,(newUser)=>{
       if(newUser){
     
 //DO NOT SHALLOW COPY THIS`OBJECT, it has methods and functions on it
@@ -53,7 +52,7 @@ export const Navigation = () => {
         newUser.getIdTokenResult()
         .then((idTokenResult) => {
           if (idTokenResult.claims.admin) {
-            console.log("User is an admin");
+       
 
             //add isAdmin property to auth user object
             newUser.isAdmin = true;
@@ -63,18 +62,18 @@ export const Navigation = () => {
           } else {
             newUser.isAdmin = false;
           }
-          console.log("fired callback,userName:", newUser.displayName);
+       
 
           if (newUser.photoURL === null) {
-            console.log("no photo");
+         
             newUser.photoURL = "/images/user.png";
           }
-          console.log(newUser);
+        
           // DIRECT COPY OF OBJECT
           setUser(newUser);
           //check user is verified email
           if (!newUser.emailVerified) {
-            console.log("email not verified");
+         
             navigate("/signIn");
           }
         })
