@@ -1,0 +1,47 @@
+.custom-select {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .select-selected {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  .select-items {
+    /* box-sizing: border-box; */
+    position: absolute;
+    border:2px groove red; 
+    background-color: #f1f1f1;
+    /* border: 1px solid #ccc; */
+    z-index: 99;
+    width: 100%;
+    max-height:250%;
+    overflow:scroll;
+    scrollbar-width:none;
+    
+  }
+  
+  .select-hide {
+    display: none;
+  }
+  
+  .select-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .select-item:hover {
+    background-color: #ddd;
+  }
+  
+  .image-option {
+    border-radius: 5px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
