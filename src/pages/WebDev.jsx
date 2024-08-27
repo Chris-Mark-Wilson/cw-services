@@ -47,7 +47,7 @@ export const WebDev = () => {
     
         <section className="pre-footer">
             <br/>
-            <p>credit to <a href='https://devdevout.com/css/css-animated-backgrounds' target='_blank'>Alison Quaglia</a> for the sass background effect code I just adaped it to work in one page only</p>
+            <p>credit to <a href='https://devdevout.com/css/css-animated-backgrounds' target='_blank'>Alison Quaglia</a> for the sass background effect, I just played around with the code</p>
             <br/>
             <br/>
         </section>

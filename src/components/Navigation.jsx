@@ -15,7 +15,7 @@ export const Navigation = () => {
 
   const navigate=useNavigate();
   const [mode, setMode] = useState("light");
-
+  const [expanded, setExpanded] = useState(false);
   const {user,setUser} = useContext(UserContext);
   const [isAdmin,setIsAdmin] = useState(false);
   const [categories,setCategories]=useState([]);
@@ -25,6 +25,7 @@ export const Navigation = () => {
   useEffect(()=>{
     const getCategories=async()=>{
       try{
+        console.log('getCategories fired in effect');
         const categories = await getAllCategories();
         if(categories.length>0){
           setCategories(categories);
@@ -38,7 +39,8 @@ export const Navigation = () => {
       }
     }
     getCategories();
-  },[categories])
+    //ffs  sake do not put categories in the dependency array
+  },[categories.length])
 
 
 //auth listener to auto manage user state
@@ -101,13 +103,15 @@ export const Navigation = () => {
 
   const handleNavigate = (category) => {
     navigate(`/gallery/${category.id}`, { state: { id: category.id, name: category.name } });
+    setExpanded(false); // Close the navigation menu
   };
 
   return (
     <Navbar
       sticky="top"
       expand="lg"
-      
+      expanded={expanded}
+      onToggle={() => setExpanded(!expanded)}
       // data-bs-theme={mode}
       className="nav-bar"
     >

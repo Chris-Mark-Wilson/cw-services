@@ -17,7 +17,7 @@ export const  getAllImagesByCategory = async (category) => {
         // console.log('here')
         //return an object with image names as keys
         if(dbSnapShot.exists()){
-           
+           console.log('getallimagesbycategory fired   ');
         const images = Object.keys(dbSnapShot.val());
         const values = Object.values(dbSnapShot.val());
         
@@ -182,7 +182,7 @@ return true;
 
 // Retrieves all documents from the "categories" collection
 export const getAllCategories = async () => {
-  
+  console.log('getallcaategories fired');
     try {
         const snapshot = await get(baseRef(db, '/categoryList'));
         
