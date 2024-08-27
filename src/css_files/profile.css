@@ -1,0 +1,222 @@
+.profile-page{
+    /* border:1px solid black; */
+    width:100%;
+    min-height:90vh;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    place-items: center;
+    align-content: center;
+    /* background:linear-gradient(45deg, rgba(155, 155, 224, 0.8), rgba(247, 247, 250, 0.8)); */
+}
+.profile-details{
+
+
+    box-sizing: content-box;
+    display:flex;
+    flex-direction:column;
+    border-radius:10px;
+    background:linear-gradient(45deg, rgba(120, 120, 151, 0.8), rgba(247, 247, 250, 0.8));
+
+    margin:20px auto;
+    width:350px;
+    max-width:100%;
+
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    font: 1rem Arial, sans-serif;
+    
+}
+.profile-details img, .update-profile img{
+    border-radius:50%;
+    height:50px;
+    width:50px;
+    margin:0 auto;
+}
+.profile-item{
+    /* border:1px solid rgb(60, 255, 0); */
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items: center;
+    width:100%;
+    margin:8px 0;
+   
+}
+.profile-item-upload{
+    /* border:1px solid rgb(60, 255, 0); */
+    display:flex;
+    /* flex-wrap: wrap; */
+    flex-direction:row;
+    justify-content: space-evenly;
+    align-items: center;
+    width:100%;
+    height:50px;
+    margin:8px 0;
+   
+}
+.profile-item img, .profile-item-upload img{
+    border-radius:50%;
+    height:50px;
+    width:50px;
+    margin:0 10px;
+}
+
+.profile-page h5{color:black;}
+
+.profile-page p{
+    display:flex;
+    color:black;
+}
+
+.profile-page details{
+    /* border:1px solid rgb(60, 255, 0); */
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    margin:10px auto;
+    width:350px;
+    max-width:100%;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    /* padding:10px; */
+    border-radius:10px;
+    background:linear-gradient(45deg, rgba(1, 1, 27, 0.8), rgba(247, 247, 250, 0.8));
+}
+.profile-page summary{
+    /* border:1px solid rgb(60, 255, 0); */
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    padding:10px;
+    border-radius:10px;
+    background:linear-gradient(45deg, rgba(120, 120, 151, 0.8), rgba(247, 247, 250, 0.8));
+}
+
+#update-profile{
+    /* border:1px solid rgb(199, 41, 41); */
+    box-sizing: content-box;
+    display:flex;
+    flex-direction:column;
+    border-radius:10px;
+    background:linear-gradient(45deg, rgba(120, 120, 151, 0.8), rgba(247, 247, 250, 0.8));
+
+    margin:0 auto;
+    width:350px;
+    max-width:100%;
+
+
+    font: 1rem Arial, sans-serif;
+ 
+}
+
+.change-password{
+    /* border:1px solid green; */
+    
+    display:flex;
+    flex-direction:column;
+  
+    justify-content: center;
+    /* margin:0 auto; */
+  width:100%;
+    height:fit-content;
+
+    max-width:100%;
+}
+
+ #change, #change-name{ 
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center the text vertically */
+    border-radius: 35px; /* Adjust this value to make the button more pill-like */
+    background-color: rgb(86, 86, 227);
+    color: white;
+    margin: 10px auto;
+    padding: 8px 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width:25%;}
+    
+ #change:hover, #change-name:hover{
+        background-color: rgb(38, 38, 161);
+    }
+.password-input-group{
+    /* border:1px solid magenta; */
+    display:flex;
+    flex-direction:column;
+  border-radius:15px;
+  background:linear-gradient(45deg, rgba(120, 120, 151, 0.8), rgba(247, 247, 250, 0.8));
+    justify-content: space-around;
+    margin:  0 auto;
+    padding:10px;
+    height:fit-content;
+   width:100%;
+    max-width:350px;
+}
+
+.password-input{
+    display:flex;
+    /* border:1px solid rgb(38, 38, 161); */
+    margin:0;
+    display:flex;
+    align-items: center;
+    width:100%; 
+  color:black;
+    justify-content: space-between;
+}
+.password-input input{
+    color:black;
+}
+/* .email-input{margin:0;} */
+
+ .password-eye{
+    /* border:1px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center the text vertically */
+ padding:0;
+    background-color: rgba(255,255,255,0);
+ 
+  margin:0;
+    /* padding: 8px 8px; */
+   
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width:30px;
+    height:30px;
+  }
+  .password-eye img{
+    /* border:1px solid red; */
+    padding:0;
+    margin:0;
+    width:20px;
+    height:20px;
+  }
+
+  #delete-account{
+    border:1px solid rgb(23, 1, 1);
+    box-sizing: border-box;
+  justify-content: center;
+    display:flex;
+    background-color:rgb(200, 136, 136);
+padding:10px;
+border-radius:35px;
+    margin:20px auto;
+    width:350px;
+    max-width:100%;
+}
+
+#delete-account:hover{
+    background-color:rgb(255, 0, 0);
+    transition: background-color 0.3s ease;
+}
+p.signin-error {
+    color:red;
+    font-size:0.8rem;
+    margin:0;
+    padding:0;
+    text-align:center;
+}

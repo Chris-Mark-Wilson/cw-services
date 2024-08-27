@@ -1,22 +1,23 @@
 export const Contact = () => {
 
-    const email = "cw.plastering.services@gmail.com";
-    const copyToClipboard = () => {
-        navigator.clipboard.writeText(email).then(() => {
-          alert("Email address copied to clipboard!");
-        }).catch((error) => {
-          console.error("Failed to copy email address: ", error);
-        });
-      };
+    const handleClick=(e)=>{
+// copy the innerhtml to clipboard
+        navigator.clipboard.writeText(e.target.innerHTML)
+        .then(()=>{
+            alert('copied to clipboard')
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+    }
     return (
         <div className='page'>
-        <h1>Contact</h1>
+        <h4>Contact me</h4>
         <section className='description'>
-        <div>
-      <p onClick={copyToClipboard} style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}>
-        {email}
-      </p>
-    </div>            </section>
+           <p>Just drop me an email at <h5 onClick={handleClick}>cmwilson.co.uk</h5></p>
+            
+           </section>
+
         </div>
     );
     }
