@@ -16,7 +16,7 @@ export const Contact = () => {
            <p>Just drop me an email at <h5 onClick={handleClick}>cmwilson.co.uk</h5></p>
             
            </section>
->>>>>>>>> Temporary merge branch 2
+
         </div>
     );
     }
