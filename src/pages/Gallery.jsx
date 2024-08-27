@@ -12,8 +12,9 @@ const [selectedImage,setSelectedImage]=useState(null);
 useEffect(()=>{
     const getImages=async()=>{
         try{
-            const images=await getAllImagesByCategory({id:id,name:name});
+            let images=await getAllImagesByCategory({id:id,name:name});
             console.log(images);
+            images=images.sort((a,b)=>a.imageId-b.imageId);
             setImages(images);
             setSelectedImage(null)
         }
@@ -73,16 +74,14 @@ const handleSelect=(e)=>{
                     <p>X</p>
                 </div>
             <div className="image-title">
-                    <h5>title{images.find((image)=>image.url===selectedImage).title}</h5>
+                    <h5>{images.find((image)=>image.url===selectedImage).title}</h5>
                 </div>
                 <img  src={selectedImage} alt="selected" />
                 <div className="caption">
-                    <p>caption{images.find((image)=>image.url===selectedImage).caption}</p>
+                    <p>{images.find((image)=>image.url===selectedImage).caption}</p>
                 </div>
             </div>
-              {/* <div className="caption">
-              <p>awsdasdasd{images.find((image)=>image.url===selectedImage).caption}</p>
-          </div> */}
+          
           </>}
 
 
