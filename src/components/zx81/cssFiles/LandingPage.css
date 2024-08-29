@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&family=Permanent+Marker&family=Pixelify+Sans&display=swap');
+@font-face {
+    font-family: 'zx81';
+    src: local('zx81'),url('/src/assets/data/fonts/zx81.ttf') format('truetype');
+}
+
+#zx81-image-container{
+   
+    box-sizing: border-box;
+    display:flex;
+    margin:0;
+/* height:100%; */
+    width:100%;
+    ;
+    
+
+ 
+}
+#zx81-image{
+    object-fit:cover;
+    width:100%;
+    /* width:928px; */
+    /* height:559px; */
+   /* height:100%; */
+    opacity: 100%;
+    z-index: 1;
+    position:absolute;
+    top:0;
+    left:0;
+}
+/* @media (max-width:1024px) {
+    #zx81-image{
+        width:120%;
+        opacity: 30%;
+        z-index: 1;
+    }
+}
+
+@media (max-width: 500px) {
+    #zx81-image{
+        width:150%;
+        opacity: 30%;
+        z-index: 1;
+    }
+} */
