@@ -13,7 +13,7 @@ export const Contact = () => {
         <div className='page'>
         <h4>Contact me</h4>
         <section className='description'>
-           <p>Just drop me an email at <h5 onClick={handleClick}>cmwilson.co.uk</h5></p>
+           <p>Drop me an email <h5 onClick={handleClick}>chris@cmwilson.co.uk</h5></p>
             
            </section>
 
