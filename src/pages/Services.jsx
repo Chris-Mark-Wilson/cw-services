@@ -2,7 +2,7 @@ export const Services = () => {
     
     
     return(
-    <>
+    <div className='page'>
     <h5>Services</h5>
     <div className='description'>
                 <p>Plastering</p>
@@ -22,8 +22,10 @@ export const Services = () => {
                 <hr/>
                 <p>Tig/Mig/Arc Welding</p>
                 <p>Steelwork</p>
+                <hr/>
+                <p>Anything else just ask...</p>
   </div>
 
-  </>
+  </div>
     )
 }
