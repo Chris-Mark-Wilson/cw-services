@@ -1,10 +1,10 @@
 .upload-page * {
-color:black;
+color:light-dark(black,white);
     margin-top: 10px;
     
 }
 input, select, textarea{
-    background:rgba(193, 189, 189, 0.1);
+    background:light-dark(white,rgba(193, 189, 189, 0.1));
     border-top:none;
     border-left:none;
     border-right:none;
@@ -13,7 +13,7 @@ input, select, textarea{
     
 }
 input::placeholder, select::placeholder, textarea::placeholder{
-    color:rgb(30, 30, 38);
+    color:light-dark(rgb(30, 30, 38),rgb(255, 255, 255));
 }
 
 .upload-page {
@@ -71,7 +71,7 @@ label{
     justify-content: center;
     align-items: center; /* Center the text vertically */
     border-radius: 25px; /* Adjust this value to make the button more pill-like */
-    background-color: rgb(86, 86, 227);
+    background-color:light-dark( rgb(86, 86, 227),rgb(55, 66, 141));
     color: white;
     margin: 0 auto;
     padding: 2px 8px;

@@ -109,15 +109,16 @@ export const Navigation = () => {
   return (
     <Navbar
       sticky="top"
-      expand="lg"
+      expand="sl"
       expanded={expanded}
       onToggle={() => setExpanded(!expanded)}
-      // data-bs-theme={mode}
+      data-bs-theme={mode}
       className="nav-bar"
+      style={{ backgroundColor: mode === "dark" ? "#333" : "#fff" }}
     >
       <Container className="navbar-container">
         <Navbar.Brand href="/" className="logo">
-          CW Services
+          CMWILSON.CO.UK
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

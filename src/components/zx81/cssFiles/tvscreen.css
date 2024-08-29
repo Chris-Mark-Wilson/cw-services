@@ -55,10 +55,10 @@ outline:none;
 #left,
 #bottom
   {
-  background-color: rgba(18, 18, 22,0);
+  background-color: rgba(18, 18, 22,1);
 
 opacity:1;
-/* animation: load 0.0051s ease-in-out 500 alternate forwards; */
+animation: load 0.051s ease-in-out 30 alternate forwards;
 
 }
 @keyframes load {

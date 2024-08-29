@@ -11,15 +11,22 @@ export const Telewriter = ({ txt, startPos }) => {
   const [para, setPara] = useState(0);
   const [txtArray, setTxtArray] = useState(txt[0].split("\n"));
   const [end, setEnd] = useState(false);
+  const [ready,setReady]=useState(false);
   const screenRef = useRef(null);
   const width = window.innerWidth;
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      setReady(true)
+    },2000)
+  },[]);
 
   useEffect(() => {
     setFeed(() => {
       return new Array(txtArray.length).fill("\r");
     });
 
-    screenRef.current.focus();
+    screenRef.current && screenRef.current.focus();
   }, [txtArray]);
 
   ///////////////TIMER//////////////
@@ -32,6 +39,7 @@ export const Telewriter = ({ txt, startPos }) => {
 
   //////////TELEWRITER////////////
   useEffect(() => {
+    if(ready){
     if (!written) {
       if (index === txtArray[para].length - 1) {
         setPara((para) => para + 1);
@@ -51,20 +59,21 @@ export const Telewriter = ({ txt, startPos }) => {
       });
 
       //scrollHeight increases beyond  clientHeight on overflow so...
-      screenRef.current.scrollTo({
+      screenRef.current && screenRef.current.scrollTo({
         top: screenRef.current.scrollHeight,
         left: 0,
         behaviour: "smooth",
       });
     }
-  }, [timer]);
+  }
+  }, [timer,ready]);
   useEffect(() => {
     setTxtArray(() => txt[block].split("\n"));
   }, [block]);
 
   useEffect(() => {
 
-    screenRef.current.focus()
+    screenRef.current && screenRef.current.focus()
 
   }, [block, written])
 
@@ -78,8 +87,8 @@ export const Telewriter = ({ txt, startPos }) => {
         setWritten(false);
       }
     }
-    if (written && end) {
-
+    if (e.type!="click" && written && end) {
+console.log(e)
       switch (e.nativeEvent.key.toLowerCase()) {
         case "1":
           window.open("https://chriswilsonncnews.netlify.app/", "_blank", "noreferrer");
@@ -112,9 +121,9 @@ export const Telewriter = ({ txt, startPos }) => {
     }
   };
 
-  return (
+  return ready &&(
     <>
-      <div id={!end ? "writing" : "finished"} ref={screenRef} tabIndex={0} onKeyDown={handleKeyDown}>
+      <div title={txtArray.join().slice(0,-1)}id={!end ? "writing" : "finished"} onClick={handleKeyDown} ref={screenRef} tabIndex={0} onKeyDown={handleKeyDown}>
         {feed.map((paragraph, index) => {
           return (
             <p
