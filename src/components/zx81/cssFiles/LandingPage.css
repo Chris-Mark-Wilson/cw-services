@@ -40,7 +40,7 @@
 @media (max-width: 600px) {
     #zx81-image-container{
         
-        border:1px solid green;
+        /* border:1px solid green; */
             top:0;
             left:-15%;
             width:115%;
