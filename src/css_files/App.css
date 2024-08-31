@@ -519,6 +519,13 @@ background-color:white;
   }
   
 }
+
+@media (max-width:600px){
+  .footer{
+    position:absolute;
+    bottom:0;
+  }
+}
 @media (prefers-color-scheme: dark) {
   #root body html{
     background-color: #213547;

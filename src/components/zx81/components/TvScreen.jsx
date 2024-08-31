@@ -4,7 +4,7 @@ import { helloWorld } from "/src/assets/data/intros";
 
 export const TvScreen=()=>{
     return(
-        <div className='zx81-container'>
+        <div className='tv-screen-container'>
         <div id="tv-screen">
             <div id="top"></div>
             <div id="left"></div>
