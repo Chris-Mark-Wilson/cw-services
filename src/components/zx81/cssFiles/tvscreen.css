@@ -23,14 +23,14 @@
 }
 
 #tv-screen {
-  /* border:1px solid red; */
+  border:1px solid red;
   z-index: 9999;
 outline:none;
   font-family: "zx81";
   font-weight:lighter;
 
     /* position: absolute; */
-    position:relative;
+    position:absolute;
   top: 9vw;
   left:7.3vw;
   /* left: 5%; */

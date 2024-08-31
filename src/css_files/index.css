@@ -32,6 +32,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   height:fit-content;
+  background-color:light-dark( #f9f9f9,#242424);
 }
 
 h1 {
