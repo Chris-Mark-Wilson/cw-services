@@ -14,10 +14,10 @@ export const ZX81=()=> {
 
   return (
     <>
-      <section id="zx81-image-container">
+      <div id="zx81-image-container">
         <img src={'/zx81/zx81desk.png'} id="zx81-image" />
         <TvScreen />
-      </section>
+      </div>
     
     </>
   );

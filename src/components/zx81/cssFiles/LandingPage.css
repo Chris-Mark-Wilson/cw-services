@@ -9,9 +9,9 @@
     box-sizing: border-box;
     display:flex;
     margin:0;
-/* height:100%; */
+    position:absolute;
     width:100%;
-    ;
+
     
 
  
@@ -27,6 +27,7 @@
     position:absolute;
     top:0;
     left:0;
+  
 }
 /* @media (max-width:1024px) {
     #zx81-image{
@@ -36,10 +37,21 @@
     }
 }
 */
-@media (max-width: 500px) {
+@media (max-width: 600px) {
+    #zx81-image-container{
+        
+        border:1px solid green;
+            top:0;
+            left:-15%;
+            width:115%;
+            height:100%;
+            overflow:hidden;
+          }
+
     #zx81-image{
-        width:165%;
-  
-        z-index: 1;
-    }
+        top:25vw;
+        left:-0.3vw;
+        width:200%;
+        overflow:hidden;
+      }
 } 
