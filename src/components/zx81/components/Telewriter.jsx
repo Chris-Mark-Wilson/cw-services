@@ -67,6 +67,7 @@ export const Telewriter = ({ txt, startPos }) => {
     }
   }
   }, [timer,ready]);
+  
   useEffect(() => {
     setTxtArray(() => txt[block].split("\n"));
   }, [block]);
@@ -78,7 +79,7 @@ export const Telewriter = ({ txt, startPos }) => {
   }, [block, written])
 
   const handleKeyDown = (e) => {
-
+    //finished screen (came accross a 'k' or 'e')
     if (written) {
       if (txt.length - 1 > block) {
         setBlock(block + 1);
@@ -90,34 +91,16 @@ export const Telewriter = ({ txt, startPos }) => {
     if (e.type!="click" && written && end) {
 console.log(e)
       switch (e.nativeEvent.key.toLowerCase()) {
-        case "1":
-          window.open("https://chriswilsonncnews.netlify.app/", "_blank", "noreferrer");
+        case "z":
+          window.open("https://www.zx81stuff.org.uk/zx81/jtyone.html", "_blank", "noreferrer");
           break;
-        case "2":
-          window.open("https://github.com/Chris-Mark-Wilson/safe-journey-2#safejourney", "_blank", "noreferrer");
-          break;
-        case "3":
-          window.open("https://sabotage81.onrender.com", "_blank", "noreferrer");
-          break;
-          case "4":
-            window.open("https://www.npmjs.com/package/silly-cipher", "_blank", "noreferrer");
-            break;
-            case "5":
-              window.open("https://github.com/Chris-Mark-Wilson/trackme?tab=readme-ov-file#readme", "_blank", "noreferrer");
-              break;
-              case "6":
-                window.open("https://github.com/Chris-Mark-Wilson/android-weather?tab=readme-ov-file#readme", "_blank", "noreferrer");
-                break;
-                case "7":
-                  window.open("https://cmwebserveer.ddns.net", "_blank", "noreferrer");
-                  case "8":
-                    window.open("https://www.npmjs.com/package/quickqr", "_blank", "noreferrer");
-                    case "9":
-                      window.open("https://cw-services.onrender.com", "_blank", "noreferrer");
-                  break;
+    
         default:
+          window.location.reload();
           break;
       }
+    }else if (e.type==="click" && written && end) {
+      window.location.reload();
     }
   };
 
