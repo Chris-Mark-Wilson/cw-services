@@ -145,4 +145,9 @@ max-width:100%;
         margin:0 auto;
         max-width:100%;
     }
+    .certificate:hover{
+        transform:translateX(0) translateY(0) scale(1);
+        width:100%;
+        height:fit-content;
+    }
 }
