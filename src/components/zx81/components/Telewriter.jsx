@@ -147,39 +147,7 @@ console.log(e)
           );
         })}
       </div>
-      {end && width<601&&(
-        <section id="buttons">
-          <button className="button" id="one" onClick={() => window.open("https://chriswilsonncnews.netlify.app/", "_blank", "noreferrer")}>
-
-          </button>
-
-          <button className="button" id="two" onClick={() => {
-            console.log("clicked two")
-            window.open("https://clipchamp.com/watch/GNvttaH0by6", "_blank", "noreferrer")
-          }}>
-
-          </button>
-
-          <button className="button" id="three" onClick={() => window.open("https://sabotage81.onrender.com", "_blank", "noreferrer")}>
-
-          </button>
-
-          <button className="button" id="four" onClick={() => window.open("https://www.npmjs.com/package/silly-cipher", "_blank", "noreferrer")}>
-
-          </button>
-
-          <button className="button" id="five" onClick={() => window.open("https://github.com/Chris-Mark-Wilson/trackme?tab=readme-ov-file#readme", "_blank", "noreferrer")}>
-
-          </button>
-        </section>
-      )}
-      {written && !end && width<601&&
-        <img id="keyboard" src={"/ZX81_keyboard.jpg"}
-          onClick={() => {
-            handleKeyDown("x")
-          }} />
-      }
-    </>
+         </>
 
   );
 };

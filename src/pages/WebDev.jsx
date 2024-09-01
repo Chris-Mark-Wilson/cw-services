@@ -7,12 +7,19 @@ export const WebDev = () => {
         <div className="webpage">
         <h1>Web and Application Development</h1>
         <section className="webpage-description">
-            <p>In 2023 I decided to add another string to my bow and enrolled and completed a software engineering course with <a href='https://northcoders.com' title='We provide bootcamp style coding courses, dont be a luddite and sign up today before the world leaves you behind..' target='_blank'>Northcoders </a><img src="./images/webdev/nc-completion-certificate.png" className='certificate'/>. Almost 40 years ago I got my first ever 'computer'.. A Sinclair <a href="https://en.wikipedia.org/wiki/ZX81" title='Heres a link for those too young to remember the dawn of the great home computing revolution (which my dad said was a passing fad and wouldnt have any of it, although he did relent when he realised you could get one for 30 quid, which was half a weeks rent for a 4 bedroom house in 1982)' target='_blank'>ZX81</a>, with which I learned to create my first 'Hello World!' computer program.</p>
+            <p>. Just over 40 years ago I got my first ever 'computer'.. A Sinclair <a href="https://en.wikipedia.org/wiki/ZX81" title='Heres a link for those too young to remember the dawn of the great home computing revolution (which my dad said was a passing fad and wouldnt have any of it, although he did relent when he realised you could get one for 30 quid, which was half a weeks rent for a 4 bedroom house in 1982)' target='_blank'>ZX81</a>, with which I learned to create my first 'Hello World!' computer program. In 2023 I decided to add another string to my bow and enrolled and completed a software engineering course with <a href='https://northcoders.com' title='We provide bootcamp style coding courses, dont be a luddite and sign up today before the world leaves you behind..' target='_blank'>Northcoders </a><img src="./images/webdev/nc-completion-certificate.png" className='certificate'/></p>
             <br/>
-            <p>Since then I have dabbled with various programming languages, but never really got to grips with any of them. I decided to change that am now constantly still learning JavaScript, PHP, HTML, CSS, SASS, React, Node.js, Express, SQL, MongoDB, and more, on LInux based operating systems</p>
+            <p>Prior to enrollment I was a contractor in the construction sector. Realising things had moved on since I was a nipper and that I lacked even basic modern programming skills, I decided to change that am now constantly <i>still</i> learning JavaScript, PHP, HTML, CSS, SASS, React, Node.js, Express, SQL, MongoDB, and more, using various operating systems</p>
+            <br/>
+            <p>The idea of a career change got somewhat squashed on the realisation that the market is now flooded with bootcamp graduates, LLM's like chat gpt have started to become the focus of everyones attention</p>
+            <br/>
+        <p>So whatever the state of what is now 'Starmers britain', the fact remains that I actually enjoy creating 'things' whether tangible or otherwise, and below are links to virtual 'stuff' I've created since I got my certificate in software engineering not too long ago (11 months at time of writing)</p>
+            <br/>
+            
         </section>   
           
-        <p>Click on any of the below images to view the content in another page</p>  
+        <p>Click on any of the below images to view the content in another page</p> 
+        <br></br> 
 
             <section className='webpage-links'>
                 <a href='https://sabotage81.onrender.com' target='_blank'>
