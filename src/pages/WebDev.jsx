@@ -13,7 +13,7 @@ export const WebDev = () => {
             <br/>
             <p>The idea of a career change got somewhat squashed on the realisation that the market is now flooded with bootcamp graduates, LLM's like chat gpt have started to become the focus of everyones attention</p>
             <br/>
-        <p>So whatever the state of what is now 'Starmers britain', the fact remains that I actually enjoy creating 'things' whether tangible or otherwise, and below are links to virtual 'stuff' I've created since I got my certificate in software engineering not too long ago (11 months at time of writing)</p>
+        <p>So whatever the state of what is now 'Starmers britain', the fact remains that I actually enjoy creating 'things' whether tangible or otherwise, and below are links to virtual 'stuff' I've created since I got my certificate in software engineering not too long ago (11 months at time of writing), and of course this site, written using reactJs, built using vite. I just keep adding bits and bobs to it as they occur to me and I have time...</p>
             <br/>
             
         </section>   

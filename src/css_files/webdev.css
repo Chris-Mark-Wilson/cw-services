@@ -38,7 +38,9 @@ max-width:100%;
     font: 1rem Arial, sans-serif;
 }
 .webpage-description p{
-    text-align:center;
+    /* border:1px solid red; */
+    
+    text-align:left;
 }
 .webserver, .nc-news {
     z-index:1;
