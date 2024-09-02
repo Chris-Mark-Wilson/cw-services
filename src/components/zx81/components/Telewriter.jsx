@@ -3,7 +3,7 @@ import { WrittenContext } from "../contexts/WrittenContext";
 
 
 export const Telewriter = ({ txt, startPos }) => {
-  const timerInterval = 10;
+  const timerInterval = 6;
   const [feed, setFeed] = useState([]);
   const [timer, setTimer] = useState(0);
   const [index, setIndex] = useState(0);
@@ -124,7 +124,7 @@ export const Telewriter = ({ txt, startPos }) => {
               className="paragraph"
               style={{
                 position: "relative",
-                top: !end ? `${startPos.top}` : 0,
+                top: !end ? `${startPos.top}` :  `${startPos.top}`,
                 left: `${startPos.left}`,
               }}
               onClick={() => {

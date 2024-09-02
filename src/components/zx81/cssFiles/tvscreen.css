@@ -87,20 +87,14 @@ animation: load 0.051s ease-in-out 30 alternate forwards;
   border-bottom-left-radius: 50%;
 }
 #writing {
-/* border:1px solid black; */
   border-radius:7px;
     z-index: 2;
     font-size:5px;
     justify-content: left;
     overflow: hidden;
     outline:none;
-    
-    
-    
-    /* width: 100fr; */
     padding:10px;
     color:black;
-
   margin: 10px;
   background-color: rgba(82, 102, 113,0);
   grid-column: 2;
@@ -113,7 +107,7 @@ animation: load 0.051s ease-in-out 30 alternate forwards;
   scrollbar-width:thin;
   overflow-y:auto;
   overflow-x:hidden;
-  width: 100fr;
+ 
 padding:10px;
 outline:none;
   color: rgb(29, 28, 28);
