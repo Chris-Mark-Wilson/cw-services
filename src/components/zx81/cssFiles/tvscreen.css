@@ -13,7 +13,7 @@
 
 #tv-screen {
   /* border:1px solid red; */
-  z-index: 9999;
+  z-index: 1;
 outline:none;
   font-family: "zx81";
   /* font-weight:lighter; */
@@ -146,6 +146,34 @@ line-height: 1.3;
 #writing{
   overflow-y:scroll;
   scrollbar-width: thin;
+}
+#mobile-keyboard{
+  position:absolute;
+  top:350px;
+  left:-80px;
+
+  z-index:3;
+  border:1px solid red;
+
+}
+#mobile-button{
+position:absolute;
+top:520px;
+left:-5px;
+width:58px;
+height:50px;
+
+z-index:3;
+/* border:10px solid red; */
+animation: flash 1s ease-in-out 0s 3;
+}
+@keyframes flash {
+  0% {
+    background-color:rgba(248, 43, 11, 0);
+  }
+  100% {
+    background-color:rgb(238, 16, 16);
+  }
 }
 
   #tv-screen{

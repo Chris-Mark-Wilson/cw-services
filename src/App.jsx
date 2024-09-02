@@ -25,7 +25,12 @@ import { SignOut } from "./pages/SignOut.jsx";
 import { Profile } from "./pages/Profile.jsx";
 import { Gallery } from "./pages/Gallery.jsx";
 
+
 function App() {
+
+
+
+
   return (
     <UserProvider>
     <ModalProvider>

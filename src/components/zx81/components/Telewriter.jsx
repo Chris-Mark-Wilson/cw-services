@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import { WrittenContext } from "../contexts/WrittenContext";
 
+
 export const Telewriter = ({ txt, startPos }) => {
   const timerInterval = 10;
   const [feed, setFeed] = useState([]);
@@ -9,11 +10,18 @@ export const Telewriter = ({ txt, startPos }) => {
   const { written, setWritten } = useContext(WrittenContext);
   const [block, setBlock] = useState(0);
   const [para, setPara] = useState(0);
-  const [txtArray, setTxtArray] = useState(txt[0].split("\n"));
   const [end, setEnd] = useState(false);
   const [ready,setReady]=useState(false);
   const screenRef = useRef(null);
   const width = window.innerWidth;
+  
+
+
+
+
+
+  const [txtArray, setTxtArray] = useState(txt[0].split("\n"));
+
 
   useEffect(()=>{
     setTimeout(()=>{
@@ -79,6 +87,7 @@ export const Telewriter = ({ txt, startPos }) => {
   }, [block, written])
 
   const handleKeyDown = (e) => {
+    // console.log(e)
     //finished screen (came accross a 'k' or 'e')
     if (written) {
       if (txt.length - 1 > block) {
@@ -89,7 +98,7 @@ export const Telewriter = ({ txt, startPos }) => {
       }
     }
     if (e.type!="click" && written && end) {
-console.log(e)
+// console.log('in noclick',e)
       switch (e.nativeEvent.key.toLowerCase()) {
         case "z":
           window.open("https://www.zx81stuff.org.uk/zx81/jtyone.html", "_blank", "noreferrer");
@@ -100,6 +109,7 @@ console.log(e)
           break;
       }
     }else if (e.type==="click" && written && end) {
+      // console.log(e)
       window.location.reload();
     }
   };
@@ -118,7 +128,7 @@ console.log(e)
                 left: `${startPos.left}`,
               }}
               onClick={() => {
-                console.log("clicked");
+               
                 screenRef.current.focus();
               }}
               onLoad={() => {
@@ -130,6 +140,17 @@ console.log(e)
           );
         })}
       </div>
+      {written && end && width<601 && 
+      <>
+      <div id="mobile-keyboard">
+        
+      
+        <img src='/zx81/ZX81_keyboard.jpg' onClick={handleKeyDown}/>
+        </div>
+        <div id="mobile-button" onClick={(e)=>{e.nativeEvent.key='z';e.type='keypress';handleKeyDown(e)}}>
+          </div>
+        </> 
+      }
          </>
 
   );

@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { getAllCategories } from "../../api/firebase_api";
 
 
+
 export const Navigation = () => {
 
   const navigate=useNavigate();
@@ -20,12 +21,16 @@ export const Navigation = () => {
   const [isAdmin,setIsAdmin] = useState(false);
   const [categories,setCategories]=useState([]);
 
+
   const colorScheme = usePrefersColorScheme();
+
+
+
 
   useEffect(()=>{
     const getCategories=async()=>{
       try{
-        console.log('getCategories fired in effect');
+        // console.log('getCategories fired in effect');
         const categories = await getAllCategories();
         if(categories.length>0){
           setCategories(categories);
@@ -100,6 +105,7 @@ export const Navigation = () => {
 
 
   }, [mode]);
+
 
   const handleNavigate = (category) => {
     navigate(`/gallery/${category.id}`, { state: { id: category.id, name: category.name } });

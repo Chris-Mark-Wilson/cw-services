@@ -3,6 +3,38 @@ import {  ref as storeRef,uploadBytesResumable, getBlob,deleteObject} from 'fire
 import {db,storage} from '../db/firebase_config';
 
 
+export const getCounter = async () => {
+    try {
+        const ref = baseRef(db, 'counter');
+        const snapshot=await get(ref);
+        if(snapshot.exists()){
+            return snapshot.val();
+        }
+        else{
+            return 0;
+        }
+    }
+    catch (error) {
+        return Promise.reject(error);
+    }
+}
+
+export const incCounter = async () => {
+    try {
+        const ref = baseRef(db, 'counter');
+        const snapshot=await get(ref);
+        if(snapshot.exists()){
+            console.log(snapshot.val());
+        await set(ref, snapshot.val()+1);
+        return snapshot.val()+1;
+        }else{
+            await set(ref, 1);
+            return 1;
+        }
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
 
 
 //get a list of all image names in Storage
@@ -182,7 +214,7 @@ return true;
 
 // Retrieves all documents from the "categories" collection
 export const getAllCategories = async () => {
-  console.log('getallcaategories fired');
+//   console.log('getallcaategories fired');
     try {
         const snapshot = await get(baseRef(db, '/categoryList'));
         
