@@ -1,7 +1,7 @@
 import { useState,useContext } from "react";
 import { CountContext } from "../../context/CountContext";
 
-import "./cssFiles/App.css";
+
 import "./cssFiles/LandingPage.css";
 import "./cssFiles/tvscreen.css";
 
