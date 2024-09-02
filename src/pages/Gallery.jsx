@@ -1,7 +1,7 @@
-import { useParams , useLocation} from "react-router-dom"
+import { useLocation} from "react-router-dom"
 import { getAllImagesByCategory } from "../../api/firebase_api";
 import { useEffect,useState } from "react";
-
+import '../css_files/App.css';
 export const Gallery=()=>{
 
 const location=useLocation();
