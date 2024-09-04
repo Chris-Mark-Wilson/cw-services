@@ -79,7 +79,7 @@ const handleSelect=(e)=>{
                 <div className="caption">
                     <p>{images.find((image)=>image.url===selectedImage).caption}</p>
                 </div>
-                <img  src={selectedImage} alt="selected" />
+                <img  src={selectedImage} alt={images.find((image)=>image.url===selectedImage).caption} />
             </div>
           
           </>}
