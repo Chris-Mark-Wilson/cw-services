@@ -60,7 +60,7 @@ const handleSelect=(e)=>{
                 </div>
                 ))
                 :
-                <p>No images found</p>
+                <p>Loading Images</p>
        
                }
               
@@ -76,10 +76,10 @@ const handleSelect=(e)=>{
             <div className="image-title">
                     <h5>{images.find((image)=>image.url===selectedImage).title}</h5>
                 </div>
-                <img  src={selectedImage} alt="selected" />
                 <div className="caption">
                     <p>{images.find((image)=>image.url===selectedImage).caption}</p>
                 </div>
+                <img  src={selectedImage} alt="selected" />
             </div>
           
           </>}
