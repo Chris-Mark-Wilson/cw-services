@@ -24,7 +24,7 @@ export const incCounter = async () => {
         const ref = baseRef(db, 'counter');
         const snapshot=await get(ref);
         if(snapshot.exists()){
-            console.log(snapshot.val());
+           
         await set(ref, snapshot.val()+1);
         return snapshot.val()+1;
         }else{
@@ -49,7 +49,7 @@ export const  getAllImagesByCategory = async (category) => {
         // console.log('here')
         //return an object with image names as keys
         if(dbSnapShot.exists()){
-           console.log('getallimagesbycategory fired   ');
+    
         const images = Object.keys(dbSnapShot.val());
         const values = Object.values(dbSnapShot.val());
         

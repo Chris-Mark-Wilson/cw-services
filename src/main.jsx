@@ -27,7 +27,7 @@ const VisitorCounter = () => {
   useEffect(() => {
  
     if (!sessionStorage.getItem('visitorCounterIncremented')) {
-      console.log('VisitorCounter incrementing counter');
+
     incrementVisitorCounter()
     .then((result) => {
      setCounter(result);

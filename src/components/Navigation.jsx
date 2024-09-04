@@ -27,8 +27,7 @@ export const Navigation = () => {
   const {color, setColor,backgroundColor,setBackgroundColor} = useContext(CountContext);
 
   useEffect(() => {
-    console.log("color changed:",color);
-    console.log(document.body.style);
+  
     document.getElementById('root').style.setProperty('color', color, 'important');
     document.getElementById('root').style.setProperty('background-color', backgroundColor, 'important');
   
