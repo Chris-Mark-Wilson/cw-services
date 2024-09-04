@@ -175,13 +175,17 @@ export const Navigation = () => {
             {/* <Nav.Link href="/glossary">Glossary</Nav.Link> */}
             {isAdmin && <Nav.Link href="/manage">Admin</Nav.Link>}
           </Nav>
-
+          <NavDropdown
+              title="Colour scheme"
+              id="basic-nav-dropdown"
+            >
     <div className="nav-spacer" style={{height:'100px'}}>
       <span>Text Color</span>
       <input type='color' value={color} onChange={(e)=>setColor(e.target.value)} />
       <span>Background Color</span>
       <input type='color' value={backgroundColor} onChange={(e)=>setBackgroundColor(e.target.value)} />
       </div>
+      </NavDropdown>
         </Navbar.Collapse>
       </Container>
     </Navbar>
