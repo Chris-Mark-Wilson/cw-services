@@ -44,13 +44,13 @@ const VisitorCounter = () => {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.Suspense fallback={<LoadingScreen />}>
+        <CountProvider>
     <BrowserRouter>
       <WrittenProvider>
-        <CountProvider>
           <VisitorCounter />
           <App />
-        </CountProvider>
       </WrittenProvider>
     </BrowserRouter>
+        </CountProvider>
   </React.Suspense>,
 )

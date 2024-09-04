@@ -7,6 +7,7 @@ import usePrefersColorScheme from "use-prefers-color-scheme";
 import { auth } from "../../db/firebase_config";
 import { onAuthStateChanged } from "firebase/auth";
 import { UserContext } from "../context/UserContext";
+import { CountContext } from "../context/CountContext";
 import { useNavigate } from "react-router-dom";
 import { getAllCategories } from "../../api/firebase_api";
 
@@ -23,6 +24,15 @@ export const Navigation = () => {
 
 
   const colorScheme = usePrefersColorScheme();
+  const {color, setColor,backgroundColor,setBackgroundColor} = useContext(CountContext);
+
+  useEffect(() => {
+    console.log("color changed:",color);
+    console.log(document.body.style);
+    document.getElementById('root').style.setProperty('color', color, 'important');
+    document.getElementById('root').style.setProperty('background-color', backgroundColor, 'important');
+  
+  }, [color,backgroundColor]);
 
 
 
@@ -113,6 +123,7 @@ export const Navigation = () => {
   };
 
   return (
+    <>
     <Navbar
       sticky="top"
       expand="sl"
@@ -143,19 +154,7 @@ export const Navigation = () => {
           {category.name}
         </NavDropdown.Item>
       ))}
-              {/*
-              <NavDropdown.Item href="/kitchens">Kitchens</NavDropdown.Item>
-              <NavDropdown.Item href="/bathrooms">Bathrooms</NavDropdown.Item>
-              <NavDropdown.Item href="/miscinternal">Miscellaneous</NavDropdown.Item>
-            </NavDropdown>
-            <NavDropdown
-              title="Outside"
-              id="basic-nav-dropdown"
-            >
-              <NavDropdown.Item href="/externalJoinery">Timber</NavDropdown.Item>
-              <NavDropdown.Item href="/externalMasonary">Masonary</NavDropdown.Item>
-              <NavDropdown.Item href="/miscexternal">Miscellaneous</NavDropdown.Item>
-               */}
+             
             </NavDropdown>
 
             <Nav.Link href="/webdev">Coding</Nav.Link>
@@ -178,8 +177,15 @@ export const Navigation = () => {
             {isAdmin && <Nav.Link href="/manage">Admin</Nav.Link>}
           </Nav>
 
+    <div className="nav-spacer" style={{height:'100px'}}>
+      <span>Text Color</span>
+      <input type='color' value={color} onChange={(e)=>setColor(e.target.value)} />
+      <span>Background Color</span>
+      <input type='color' value={backgroundColor} onChange={(e)=>setBackgroundColor(e.target.value)} />
+      </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    </>
   );
 };
