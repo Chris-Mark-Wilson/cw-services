@@ -37,6 +37,7 @@ export const Navigation = () => {
 
 
   useEffect(()=>{
+    console.log(localStorage);
     const getCategories=async()=>{
       try{
         // console.log('getCategories fired in effect');
