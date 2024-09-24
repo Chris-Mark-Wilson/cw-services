@@ -10,6 +10,7 @@ const [images,setImages]=useState([]);
 const [selectedImage,setSelectedImage]=useState(null);
 
 useEffect(()=>{
+    setImages([]);
     const getImages=async()=>{
         try{
             let images=await getAllImagesByCategory({id:id,name:name});
