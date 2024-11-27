@@ -126,12 +126,12 @@ export const Navigation = () => {
     <>
     <Navbar
       sticky="top"
-      expand="sl"
+      expand="md"
       expanded={expanded}
       onToggle={() => setExpanded(!expanded)}
       data-bs-theme={mode}
       className="nav-bar"
-      style={{ backgroundColor: mode === "dark" ? "#333" : "#fff" }}
+      // style={{ backgroundColor: mode === "dark" ? "#333" : "#fff" }}
     >
       <Container className="navbar-container">
         <Navbar.Brand href="/" className="logo">
@@ -141,7 +141,7 @@ export const Navigation = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/aboutme">About</Nav.Link>
+            {/* <Nav.Link href="/aboutme">About</Nav.Link> */}
              <NavDropdown
               title="Galleries"
               id="basic-nav-dropdown"
