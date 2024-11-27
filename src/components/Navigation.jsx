@@ -10,6 +10,7 @@ import { UserContext } from "../context/UserContext";
 import { CountContext } from "../context/CountContext";
 import { useNavigate } from "react-router-dom";
 import { getAllCategories } from "../../api/firebase_api";
+import '../css_files/navbar.css';
 
 
 
@@ -26,12 +27,12 @@ export const Navigation = () => {
   const colorScheme = usePrefersColorScheme();
   const {color, setColor,backgroundColor,setBackgroundColor} = useContext(CountContext);
 
-  useEffect(() => {
+  // useEffect(() => {
   
-    document.getElementById('root').style.setProperty('color', color, 'important');
-    document.getElementById('root').style.setProperty('background-color', backgroundColor, 'important');
+  //   document.getElementById('root').style.setProperty('color', color, 'important');
+  //   document.getElementById('root').style.setProperty('background-color', backgroundColor, 'important');
   
-  }, [color,backgroundColor]);
+  // }, [color,backgroundColor]);
 
 
 
@@ -107,14 +108,14 @@ export const Navigation = () => {
 
   },[])
 
-  useEffect(() => {
-    if (mode) {
-      setMode(colorScheme);
-    }
+  // useEffect(() => {
+  //   if (mode) {
+  //     setMode(colorScheme);
+  //   }
 
 
 
-  }, [mode]);
+  // }, [mode]);
 
 
   const handleNavigate = (category) => {
@@ -126,12 +127,12 @@ export const Navigation = () => {
     <>
     <Navbar
       sticky="top"
-      expand="sl"
+      expand="md"
       expanded={expanded}
       onToggle={() => setExpanded(!expanded)}
       data-bs-theme={mode}
       className="nav-bar"
-      style={{ backgroundColor: mode === "dark" ? "#333" : "#fff" }}
+      // style={{ backgroundColor: mode === "dark" ? "#333" : "#fff" }}
     >
       <Container className="navbar-container">
         <Navbar.Brand href="/" className="logo">
@@ -141,7 +142,7 @@ export const Navigation = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/aboutme">About</Nav.Link>
+            {/* <Nav.Link href="/aboutme">About</Nav.Link> */}
              <NavDropdown
               title="Galleries"
               id="basic-nav-dropdown"
@@ -157,8 +158,8 @@ export const Navigation = () => {
              
             </NavDropdown>
 
-            <Nav.Link href="/webdev">Coding</Nav.Link>
-            <Nav.Link href="/ha">Automation</Nav.Link>
+            {/* <Nav.Link href="/webdev">Coding</Nav.Link> */}
+            {/* <Nav.Link href="/ha">Automation</Nav.Link> */}
             <Nav.Link href="/services">Services</Nav.Link>
               
            
@@ -176,7 +177,7 @@ export const Navigation = () => {
             {/* <Nav.Link href="/glossary">Glossary</Nav.Link> */}
             {isAdmin && <Nav.Link href="/manage">Admin</Nav.Link>}
           </Nav>
-          <NavDropdown
+          {/* <NavDropdown
               title="Colour scheme"
               id="basic-nav-dropdown"
             >
@@ -186,7 +187,7 @@ export const Navigation = () => {
       <span>Background Color</span>
       <input type='color' value={backgroundColor} onChange={(e)=>setBackgroundColor(e.target.value)} />
       </div>
-      </NavDropdown>
+      </NavDropdown> */}
         </Navbar.Collapse>
       </Container>
     </Navbar>

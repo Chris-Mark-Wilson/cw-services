@@ -1,9 +1,11 @@
 
 import '../css_files/webdev.scss';
 import '../css_files/webdev.css'; 
+import { ZX81 } from '../components/zx81/ZX81';
 
 export const WebDev = () => {
-    return (
+    return (<>
+        <ZX81 />
         <div className="webpage">
         <h1>Web and Application Development</h1>
         <section className="webpage-description">
@@ -60,6 +62,7 @@ export const WebDev = () => {
         </section>
       
         </div>
+        </>
     )
     }
    
