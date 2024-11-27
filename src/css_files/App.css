@@ -18,14 +18,16 @@
   text-align: center;
   /* border:10px solid green; */
   /* background:linear-gradient(0deg, rgb(203, 204, 221), rgb(169, 169, 181)); */
-  background:light-dark(white,rgb(49, 44, 44));
-  color:light-dark(black,white);
-
+  /* background:light-dark(white,rgb(49, 44, 44));
+  color:light-dark(black,white); */
+background-color:#f9f9f9;
+color:#213547;
 }
 
 .logo{
-  /* font-family: "Rubik Doodle Shadow", system-ui; */
-  font-family:"zx81";
+  font-family: "Rubik Doodle Shadow", system-ui;
+  /* font-family:"zx81"; */
+  /* font-family:"speccy"; */
   font-weight: 100;
   font-style: normal;
   font-size: 1rem;
@@ -39,18 +41,21 @@
 /* position:absolute; */
 /* background:linear-gradient(0deg, rgb(169,169,181), rgb(203,204,221)); */
 /* background-color:light-dark(white,rgb(49, 44, 44)); */
-color:light-dark(black,white);
+/* color:light-dark(black,white); */
+color:#213547;
 display:flex;
 justify-content: space-around;
 list-style-type: none;
 margin:0;
 padding:5px 0 5px 0;
-font-family:"speccy";
+/* font-family:"speccy"; */
+font-family:Arial, Helvetica, sans-serif;
   font-size:12px;
 }
 .logo{
-  color:rgb(12, 11, 11);
-  color:light-dark(black,white);
+  /* color:rgb(12, 11, 11); */
+  color:#213547;
+  /* color:light-dark(black,white); */
 }
 /* .navbar-toggler{
   border:1px solid red;
@@ -58,14 +63,17 @@ font-family:"speccy";
 } */
 .navbar .nav-link{
   
-  color:rgb(12, 11, 11);
-  color:light-dark(black,white);
+  /* color:rgb(12, 11, 11);
+  color:light-dark(black,white); */
+  color:#213547;
+
 }
 .navbar-container{
  /* border:1px solid black; */
  border-radius:5px;
   max-width:95%;
-  color:light-dark(black,white);
+  /* color:light-dark(black,white); */
+  color:#213547;
 }
 .nav-link img{
   border-radius:50%;
@@ -146,8 +154,10 @@ a.dropdown-item{
   /* color: #e14edc; */
 }
 div.dropdown-menu.show{
-  background-color: #213547;
-  color: #ffffff;
+  /* background-color: #213547;
+  color: #ffffff; */
+  background-color: #f9f9f9;
+  color: #213547;
 }
 
 /* classes for fade in effect */

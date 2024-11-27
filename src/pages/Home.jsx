@@ -1,13 +1,14 @@
 import { ZX81 } from "../components/zx81/ZX81"
+import { AboutMe } from "./AboutMe"
 
-export const Home = ({counter}) => {
+export const Home = () => {
 
   
 
     return (
         <>
-       
-        <ZX81 counter={counter} />
+        <AboutMe />
+        {/* <ZX81 /> */}
         </>
     )
   

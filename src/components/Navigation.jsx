@@ -26,12 +26,12 @@ export const Navigation = () => {
   const colorScheme = usePrefersColorScheme();
   const {color, setColor,backgroundColor,setBackgroundColor} = useContext(CountContext);
 
-  useEffect(() => {
+  // useEffect(() => {
   
-    document.getElementById('root').style.setProperty('color', color, 'important');
-    document.getElementById('root').style.setProperty('background-color', backgroundColor, 'important');
+  //   document.getElementById('root').style.setProperty('color', color, 'important');
+  //   document.getElementById('root').style.setProperty('background-color', backgroundColor, 'important');
   
-  }, [color,backgroundColor]);
+  // }, [color,backgroundColor]);
 
 
 
@@ -107,14 +107,14 @@ export const Navigation = () => {
 
   },[])
 
-  useEffect(() => {
-    if (mode) {
-      setMode(colorScheme);
-    }
+  // useEffect(() => {
+  //   if (mode) {
+  //     setMode(colorScheme);
+  //   }
 
 
 
-  }, [mode]);
+  // }, [mode]);
 
 
   const handleNavigate = (category) => {
@@ -157,8 +157,8 @@ export const Navigation = () => {
              
             </NavDropdown>
 
-            <Nav.Link href="/webdev">Coding</Nav.Link>
-            <Nav.Link href="/ha">Automation</Nav.Link>
+            {/* <Nav.Link href="/webdev">Coding</Nav.Link> */}
+            {/* <Nav.Link href="/ha">Automation</Nav.Link> */}
             <Nav.Link href="/services">Services</Nav.Link>
               
            
@@ -176,7 +176,7 @@ export const Navigation = () => {
             {/* <Nav.Link href="/glossary">Glossary</Nav.Link> */}
             {isAdmin && <Nav.Link href="/manage">Admin</Nav.Link>}
           </Nav>
-          <NavDropdown
+          {/* <NavDropdown
               title="Colour scheme"
               id="basic-nav-dropdown"
             >
@@ -186,7 +186,7 @@ export const Navigation = () => {
       <span>Background Color</span>
       <input type='color' value={backgroundColor} onChange={(e)=>setBackgroundColor(e.target.value)} />
       </div>
-      </NavDropdown>
+      </NavDropdown> */}
         </Navbar.Collapse>
       </Container>
     </Navbar>
