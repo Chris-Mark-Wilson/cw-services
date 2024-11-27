@@ -10,6 +10,7 @@ import { UserContext } from "../context/UserContext";
 import { CountContext } from "../context/CountContext";
 import { useNavigate } from "react-router-dom";
 import { getAllCategories } from "../../api/firebase_api";
+import '../css_files/navbar.css';
 
 
 
