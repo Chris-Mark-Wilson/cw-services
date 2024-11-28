@@ -40,7 +40,7 @@ const toggle = (index) => {
 <p>In 2023, a software engineering course with Northcoders expanded my technical repertoire, including proficiency in React, Node.js, Express, MongoDB, Firebase, Linux operating systems, and SQL. A commitment to continuous learning drives involvement in projects that challenge and expand my skill set.</p>
 <div className='about-images'>
 
-<img src='public/images/webdev/aboutshot.png' className={`about-image ${expanded[3]?'expanded':''}`} onClick={()=>{toggle(3)}}/>
+<img src='/images/webdev/aboutshot.png' className={`about-image ${expanded[3]?'expanded':''}`} onClick={()=>{toggle(3)}}/>
 </div>
 </div>
 <div>
