@@ -39,10 +39,8 @@ p{
 
 
 .page{
-
   margin:0 auto;
-  /* background:linear-gradient(0deg, rgb(203, 204, 221), rgba(53, 53, 117, 0.8)); */
-box-sizing: border-box;
+  box-sizing: border-box;
   padding:0 10px;
   display:flex;
   flex-direction: column;
@@ -50,10 +48,6 @@ box-sizing: border-box;
   min-height: 90vh;
   width:100%;
   max-width:900px;
- 
-
-
-  
 }
 .page h5{
  
