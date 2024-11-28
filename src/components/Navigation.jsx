@@ -136,7 +136,7 @@ export const Navigation = () => {
     >
       <Container className="navbar-container">
         <Navbar.Brand href="/" className="logo">
-          CMWILSON.CO.UK
+          CW Services
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -145,10 +145,11 @@ export const Navigation = () => {
             {/* <Nav.Link href="/aboutme">About</Nav.Link> */}
              <NavDropdown
               title="Galleries"
-              id="basic-nav-dropdown"
+              className="basic-nav-dropdown"
             >
              {categories && categories.map((category) => (
         <NavDropdown.Item
+        className='nav-dropdown-item'
           key={category.id}
           onClick={() => handleNavigate(category)}
         >

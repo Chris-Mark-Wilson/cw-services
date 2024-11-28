@@ -1,3 +1,5 @@
+import '../css_files/services.css'
+
 export const Services = () => {
     
     
