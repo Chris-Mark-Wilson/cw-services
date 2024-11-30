@@ -1,5 +1,5 @@
-import { useState,useContext } from "react";
-import { CountContext } from "../../context/CountContext";
+import { useState,useContext, useEffect } from "react";
+import { WrittenContext } from "./contexts/WrittenContext";
 
 
 import "./cssFiles/LandingPage.css";
@@ -11,6 +11,16 @@ export const ZX81=()=> {
 
   const [top, setTop] = useState(0);
   const [left, setLeft] = useState(0);
+  const {linkTriggerArray}=useContext(WrittenContext);
+  const [triggers,setTriggers]=useState([]);
+
+  useEffect(()=>{
+    if(linkTriggerArray.length>0){
+      setTriggers((prev)=>{
+        return [...prev,true]
+    });
+    }
+  },[linkTriggerArray])
 
 
   return (

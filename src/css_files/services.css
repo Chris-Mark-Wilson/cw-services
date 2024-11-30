@@ -91,7 +91,7 @@
 border:3px solid rgb(42, 37, 37);
 border-radius:15px;
 left:15%;
-top:15%;
+/* top:15%; */
   height:fit-content;
 }
 .text-column ul{

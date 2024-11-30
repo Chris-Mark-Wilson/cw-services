@@ -14,14 +14,10 @@ export const Telewriter = ({ txt, startPos }) => {
   const [ready,setReady]=useState(false);
   const screenRef = useRef(null);
   const width = window.innerWidth;
-  
-
-
-
-
 
   const [txtArray, setTxtArray] = useState(txt[0].split("\n"));
 
+  const {linkTriggerArray,setLinkTriggerArray}=useContext(WrittenContext);
 
   useEffect(()=>{
     setTimeout(()=>{
@@ -59,6 +55,15 @@ export const Telewriter = ({ txt, startPos }) => {
       if (txtArray[para][index] === "e") {
         setWritten(true);
         setEnd(true);
+      }
+      //fire trigger to make link visible in ZX81.jsx
+      if (txtArray[para][index] === "t") {
+        if(linkTriggerArray.length){
+        setLinkTriggerArray((oldArray)=>[...oldArray,oldArray.length]);
+        } else {
+          setLinkTriggerArray([0]);
+        }
+        txtArray[para]=txtArray[para].replace('t','');
       }
       setFeed((oldFeed) => {
         oldFeed[para] += txtArray[para][index];

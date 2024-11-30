@@ -146,6 +146,52 @@ line-height: 1.3;
 }
 
 @media (max-width: 600px) {
+  #writing{
+    overflow-y:scroll;
+    scrollbar-width: thin;
+  }
+  #mobile-keyboard{
+    position:absolute;
+    top:250px;
+    left:-80px;
+    width:80%;
+    z-index:3;
+  border-radius:10px;
+  
+  }
+  #mobile-button{
+  position:absolute;
+  top:420px;
+  left:-5px;
+  width:58px;
+  height:50px;
+  
+  z-index:3;
+  /* border:10px solid red; */
+  animation: flash 1s ease-in-out 0s 3;
+  /* border:10px solid red; */
+  }
+  @keyframes flash {
+    0% {
+      background-color:rgba(248, 43, 11, 0);
+    }
+    100% {
+      background-color:rgb(238, 16, 16);
+    }
+  }
+  
+    #tv-screen{
+     top:31vw;
+     left:11vw;
+     height:69vw;
+     width:91vw;
+     
+    }
+  .paragraph{
+      font-size:12px;
+    }
+  } 
+@media (max-width: 400px) {
 #writing{
   overflow-y:scroll;
   scrollbar-width: thin;
@@ -154,7 +200,7 @@ line-height: 1.3;
   position:absolute;
   top:250px;
   left:-80px;
-
+  width:80%;
   z-index:3;
 border-radius:10px;
 
@@ -181,10 +227,10 @@ animation: flash 1s ease-in-out 0s 3;
 }
 
   #tv-screen{
-   top:42vw;
-   left:23vw;
-   height:78vw;
-   width:94vw;
+   top:41vw;
+   left:11vw;
+   height:69vw;
+   width:91vw;
    
   }
 .paragraph{

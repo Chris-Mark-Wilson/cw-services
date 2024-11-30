@@ -8,7 +8,7 @@ export const TvScreen=()=>{
 const {counter} = useContext(CountContext);
     useEffect(()=>{
         if(counter>0)
-        helloWorld.unshift(`WELCOME VISITOR NUMBER ${counter}! \n PLEASE PRESS ANY KEY OR CLICK THE SCREEN k`);
+        helloWorld.unshift(`HELLO AND WELCOME, I'M CHRIS AND YOU ARE VISITOR NUMBER ${counter}! \n IF YOU SEE A WHITE ON BLACK K IT MEANS CLICK THE SCREEN OR PRESS A KEY TO CONTINUE k`);
     },[counter]);
 
     return(
