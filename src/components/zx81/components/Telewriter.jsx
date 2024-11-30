@@ -116,7 +116,7 @@ export const Telewriter = ({ txt, startPos }) => {
 
   return ready &&(
     <>
-      <div title={txtArray.join().slice(0,-1)}id={!end ? "writing" : "finished"} onClick={handleKeyDown} ref={screenRef} tabIndex={0} onKeyDown={handleKeyDown}>
+      <div alt={txtArray.join().slice(0,-1)}id={!end ? "writing" : "finished"} onClick={handleKeyDown} ref={screenRef} tabIndex={0} onKeyDown={handleKeyDown}>
         {feed.map((paragraph, index) => {
           return (
             <p
