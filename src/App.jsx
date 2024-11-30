@@ -25,6 +25,8 @@ import { SignOut } from "./pages/SignOut.jsx";
 import { Profile } from "./pages/Profile.jsx";
 import { Gallery } from "./pages/Gallery.jsx";
 
+import { ZX81 } from "./components/zx81/ZX81.jsx";
+
 
 function App() {
 
@@ -34,6 +36,7 @@ function App() {
   return (
     <UserProvider>
     <ModalProvider>
+   
       <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -50,6 +53,7 @@ function App() {
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/signOut" element={<SignOut />} />
         <Route path="/profile" element={<Profile />} />
+       
       </Routes>
       <Footer/>
       <Modal />

@@ -17,7 +17,9 @@ export const ZX81=()=> {
     <>
       <div id="zx81-image-container">
         <img src={'/zx81/zx81desk.png'} id="zx81-image" />
+        {/*  screen/container adjustments done in tvscreen css*/}
         <TvScreen />
+        {/* text is in src/assets/data/intro.js */}
       </div>
     
     </>

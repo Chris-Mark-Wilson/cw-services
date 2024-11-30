@@ -1,7 +1,14 @@
 import '../css_files/services.css'
 import { useState } from 'react';
+import { ZX81 } from '../components/zx81/ZX81';
+import { Helmet } from 'react-helmet';
 export const Services = () => {
     const [expanded,setExpanded]=useState([])
+    const [metaDescription, setMetaDescription] = useState('Our services include plastering and joinery in Peterborough.');
+
+    const handleMeta = (description) => {
+      setMetaDescription(description);
+    };
     
   const toggle = (index) => {
     // console.log('clicked');
@@ -14,9 +21,13 @@ export const Services = () => {
 
     return(
     <div className='services-page'>
+        <Helmet>
+        <title>Our Services</title>
+        <meta name="description" content={metaDescription} />
+      </Helmet>
     <h5>Services</h5>
    <p id='info'>Click on any service for further details</p>
-                <details name='details' className='description'>
+                <details name='details' className='description'onToggle={() => handleMeta('Professional Plastering, plasterer services in Peterborough. Quality craftsmanship and reliable service.')}>
                   <summary id='summary'>Plastering</summary>
                     <div className='open'>
                       <div className='image-1'>
@@ -44,7 +55,7 @@ export const Services = () => {
 
 
           
-                <details name='details' className='description'>
+                <details name='details' className='description' onToggle={() => handleMeta('Professional Tiler,Tiling services in Peterborough. Quality craftsmanship and reliable service.')}>
                 <summary id='summary'>Tiling</summary>
                 <div className='open'>
                       <div className='image-1'>
@@ -71,7 +82,7 @@ export const Services = () => {
                     </div>
                 </details>
 
-                <details name='details' className='description'>
+                <details name='details' className='description' onToggle={() => handleMeta('Professional Joinery, joiner services in Peterborough. Quality craftsmanship and reliable service.')}>
                 <summary id='summary'>Joinery</summary>
                 <div className='open'>
                       <div className='image-1'>
@@ -100,7 +111,7 @@ export const Services = () => {
                     </div>
                 </details>
 
-                <details name='details' className='description'>
+                <details name='details' className='description' onToggle={() => handleMeta('Professional Glazing, double glazing, uPvc and aluminium services in Peterborough. Quality craftsmanship and reliable service.')}>
                 <summary id='summary'>Upvc / Aluminium glazing</summary>
                 <div className='open'>
                       <div className='image-1'>
@@ -131,7 +142,7 @@ export const Services = () => {
                     </div>
                 </details>
                
-                <details name='details' className='description'>
+                <details name='details' className='description' onToggle={() => handleMeta('Professional Plumbing, plumber services in Peterborough. Quality craftsmanship and reliable service.')}>
                 <summary id='summary'>Plumbing</summary>
                 <div className='open'>
                       <div className='image-1'>
@@ -160,7 +171,7 @@ export const Services = () => {
                     </div>
                 </details>
 
-                <details name='details' className='description'>
+                <details name='details' className='description' onToggle={() => handleMeta('Professional Fencing, decking, paving services in Peterborough. Including Sheds, Summerhouses, turf laying. Quality craftsmanship and reliable service.')}>
                 <summary id='summary'>External works</summary>
                 <div className='open'>
                       <div className='image-1'>
@@ -185,7 +196,7 @@ export const Services = () => {
                     </div>
                 </details>
 
-                <details name='details' className='description'>
+                <details name='details' className='description' onToggle={() => handleMeta('Professional Brickwork, stonework services in Peterborough. Quality craftsmanship and reliable service.')}>
                 <summary id='summary'>Brickwork / Stonework</summary>
                 <div className='open'>
                       <div className='image-1'>
@@ -209,11 +220,11 @@ export const Services = () => {
                     </div>
                 </details>
 
-                <details name='details' className='description'>
+                <details name='details' className='description' onToggle={() => handleMeta('Professional Property maintenance, landlord, hmo, call out services in Peterborough. Quality craftsmanship and reliable service.')}>
                 <summary id='summary'>Landlord / Property management</summary>
                 <div className='open'>
                       <div className='image-1'>
-                      <img src='/images/workpics/blockage.jpg' className={` ${expanded[14]?'larger-image':''}`} onClick={()=>{toggle(12)}}/>
+                      <img src='/images/workpics/blockage.jpg' className={` ${expanded[14]?'larger-image':''}`} onClick={()=>{toggle(14)}}/>
                       </div>
                       <div className='text-column'>
                         <ul>
@@ -224,22 +235,27 @@ export const Services = () => {
                         </ul>
                       </div>
                       <div className='image-2'>
-                      <img src='/images/inside/misc_internal/35mmfiredoor-woodston.jpg' className={` ${expanded[15]?'larger-image':''}`} onClick={()=>{toggle(13)}}/>
+                      <img src='/images/inside/misc_internal/35mmfiredoor-woodston.jpg' className={` ${expanded[15]?'larger-image':''}`} onClick={()=>{toggle(15)}}/>
                       </div>
                     </div>
                 </details>
                 
              
-                <details name='details' className='description'>
-                <summary id='summary'>Web / App Development</summary>      
-                <p>Web Development</p>
+                <details name='details' className='description' onToggle={() => handleMeta('Professional Web development, app development services in Peterborough. Quality craftsmanship and reliable service.')}>
+                <summary id='summary'>Web / App Development</summary> 
+                <div>
+                  <div className='zx'>     
+                    <ZX81/>
+                    
+                  </div>  
+                  </div>
                 </details>
-                <details name='details' className='description'>
+                <details name='details' className='description' onToggle={() => handleMeta('Professional Home automation services in Peterborough. Quality craftsmanship and reliable service.')}>
                 <summary id='summary'>Home Automation</summary>   
                 <p>Automation</p>
                 </details>
   
-                <details name='details' className='description'>
+                <details name='details' className='description' onToggle={() => handleMeta('Professional Mig welding, Tig welding, Arc welding services in Peterborough. Quality craftsmanship and reliable service.')}>
                 <summary id='summary'>MMA/Tig Welding</summary>  
                 <p>Tig/Mig/Arc Welding</p>
                 </details>

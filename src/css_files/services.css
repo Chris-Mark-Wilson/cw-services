@@ -98,6 +98,13 @@ left:0%;
 .text-column li{
   list-style-type: disc;
 }
+.zx{
+ border:1px solid red;
+  width:85%;
+  height:100%;
+  overflow:hidden;
+  position:absolute;
+}
 
 @media  (max-width:600px){
   .open{
