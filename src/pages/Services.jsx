@@ -268,7 +268,7 @@ export const Services = () => {
                 </details>
                 
              
-                <details ref={webRef}name='details' className='description' onClick={(e) => handleMeta('Web development','Professional Web development, app development services in Peterborough. Quality craftsmanship and reliable service.',webRef,e.target.open)}>
+                {/* <details ref={webRef}name='details' className='description' onClick={(e) => handleMeta('Web development','Professional Web development, app development services in Peterborough. Quality craftsmanship and reliable service.',webRef,e.target.open)}>
                 <summary id='summary'>Web / App Development</summary> 
                 <div>
                   <div className='zx'>     
@@ -276,7 +276,8 @@ export const Services = () => {
                     
                   </div>  
                   </div>
-                </details>
+                </details> */}
+
                 <details ref={autoRef} name='details' className='description' onClick={(e) => handleMeta('Home automation','Professional Home automation services in Peterborough. Quality craftsmanship and reliable service.',autoRef,e.target.open)}>
                 <summary id='summary'>Home Automation</summary>   
                 <div className='open'>
