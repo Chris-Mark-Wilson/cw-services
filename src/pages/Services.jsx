@@ -75,13 +75,14 @@ export const Services = () => {
                 <summary id='summary'>Joinery</summary>
                 <div className='open'>
                       <div className='image-1'>
-                      <img src='/images/workpics/table.jpg' className={` ${expanded[2]?'larger-image':''}`} onClick={()=>{toggle(2)}}/>
+                      <img src='/images/workpics/table.jpg' className={` ${expanded[4]?'larger-image':''}`} onClick={()=>{toggle(4)}}/>
                       </div>
                       <div className='text-column'>
                         <ul>
                           <li>Bespoke items</li>
                           <li>Internal studwork</li>
                           <li>1st and 2nd fix</li>
+                          <li>Firedoors</li>
                           <li>Skirting / architrave</li>
                           <li>Worktop masons mitre</li>
                           <li>Kitchens, cornice / plinth</li>
@@ -94,7 +95,7 @@ export const Services = () => {
                         </ul>
                       </div>
                       <div className='image-2'>
-                      <img src='/images/outside/timber/bespoke-stairs-workshop2.jpg' className={` ${expanded[3]?'larger-image':''}`} onClick={()=>{toggle(3)}}/>
+                      <img src='/images/outside/timber/bespoke-stairs-workshop2.jpg' className={` ${expanded[5]?'larger-image':''}`} onClick={()=>{toggle(5)}}/>
                       </div>
                     </div>
                 </details>
@@ -103,7 +104,7 @@ export const Services = () => {
                 <summary id='summary'>Upvc / Aluminium glazing</summary>
                 <div className='open'>
                       <div className='image-1'>
-                      <img src='/images/workpics/french doors.jpg' className={` ${expanded[2]?'larger-image':''}`} onClick={()=>{toggle(2)}}/>
+                      <img src='/images/workpics/french doors.jpg' className={` ${expanded[6]?'larger-image':''}`} onClick={()=>{toggle(6)}}/>
                       </div>
                       <div className='text-column'>
                         <ul>
@@ -111,6 +112,8 @@ export const Services = () => {
                           <li>uPVC</li>
                           <li>Windows</li>
                           <li>Doors</li>
+                          <li>Locks / Gearing</li>
+                          <li>'Dropped' doors - adjusted / Toe and Heeled</li>
                           <li>French / Patio doors</li>
                           <li>Bifold / trifold doors</li>
                           <li>Lintels fitted (building regs)</li>
@@ -123,7 +126,7 @@ export const Services = () => {
                         </ul>
                       </div>
                       <div className='image-2'>
-                      <img src='/images/workpics/uopvc door handle.jpg' className={` ${expanded[3]?'larger-image':''}`} onClick={()=>{toggle(3)}}/>
+                      <img src='/images/workpics/uopvc door handle.jpg' className={` ${expanded[7]?'larger-image':''}`} onClick={()=>{toggle(7)}}/>
                       </div>
                     </div>
                 </details>
@@ -132,7 +135,7 @@ export const Services = () => {
                 <summary id='summary'>Plumbing</summary>
                 <div className='open'>
                       <div className='image-1'>
-                      <img src='/images/inside/kitchens/cambridge-conversion-utility-under-sink2.jpg' className={` ${expanded[2]?'larger-image':''}`} onClick={()=>{toggle(2)}}/>
+                      <img src='/images/inside/kitchens/cambridge-conversion-utility-under-sink2.jpg' className={` ${expanded[8]?'larger-image':''}`} onClick={()=>{toggle(8)}}/>
                       </div>
                       <div className='text-column'>
                         <ul>
@@ -152,24 +155,78 @@ export const Services = () => {
                         </ul>
                       </div>
                       <div className='image-2'>
-                      <img src='/images/inside/bathrooms/scottys-mum-ensuite.jpg' className={` ${expanded[3]?'larger-image':''}`} onClick={()=>{toggle(3)}}/>
+                      <img src='/images/inside/bathrooms/scottys-mum-ensuite.jpg' className={` ${expanded[9]?'larger-image':''}`} onClick={()=>{toggle(9)}}/>
                       </div>
                     </div>
                 </details>
 
                 <details name='details' className='description'>
-                <summary id='summary'>Decking / Fencing</summary>
-                <p>Decking fencing</p>
+                <summary id='summary'>External works</summary>
+                <div className='open'>
+                      <div className='image-1'>
+                      <img src='/images/workpics/cox harley hut.jpg' className={` ${expanded[10]?'larger-image':''}`} onClick={()=>{toggle(10)}}/>
+                      </div>
+                      <div className='text-column'>
+                        <ul>
+                          <li>Featheredge / close board</li>
+                          <li>Palisade</li>
+                          <li>Sheds</li>
+                          <li>Summerhouses</li>
+                          <li>Decking</li>
+                          <li>Patios / block paviours</li>
+                          <li>Turf laying</li>
+                          <li>Refelting</li>
+                          <li>Felt shingles</li>
+                        </ul>
+                      </div>
+                      <div className='image-2'>
+                      <img src='/images/workpics/paving barn.jpg' className={` ${expanded[11]?'larger-image':''}`} onClick={()=>{toggle(11)}}/>
+                      </div>
+                    </div>
                 </details>
 
                 <details name='details' className='description'>
                 <summary id='summary'>Brickwork / Stonework</summary>
-                <p>Brickwork</p>
+                <div className='open'>
+                      <div className='image-1'>
+                      <img src='/images/workpics/brickwork farooq.jpg' className={` ${expanded[12]?'larger-image':''}`} onClick={()=>{toggle(12)}}/>
+                      </div>
+                      <div className='text-column'>
+                        <ul>
+                          <li>Brick</li>
+                          <li>Stone</li>
+                          <li>Block</li>
+                          <li>Conservation / Lime</li>
+                          <li>Repointing</li>
+                          <li>Patching</li>
+                          <li>Retaining walls</li>
+                          <li>Extensions</li>
+                        </ul>
+                      </div>
+                      <div className='image-2'>
+                      <img src='/images/workpics/blockwork farooq.jpg' className={` ${expanded[13]?'larger-image':''}`} onClick={()=>{toggle(13)}}/>
+                      </div>
+                    </div>
                 </details>
 
                 <details name='details' className='description'>
-                <summary id='summary'>Roofing</summary>
-                <p>Roofing</p>
+                <summary id='summary'>Landlord / Property management</summary>
+                <div className='open'>
+                      <div className='image-1'>
+                      <img src='/images/workpics/blockage.jpg' className={` ${expanded[14]?'larger-image':''}`} onClick={()=>{toggle(12)}}/>
+                      </div>
+                      <div className='text-column'>
+                        <ul>
+                          <li>Reactive maintenance</li>
+                          <li>Same day service</li>
+                          <li>Emergency call out</li>
+                          <li>Hmo conversions</li>
+                        </ul>
+                      </div>
+                      <div className='image-2'>
+                      <img src='/images/inside/misc_internal/35mmfiredoor-woodston.jpg' className={` ${expanded[15]?'larger-image':''}`} onClick={()=>{toggle(13)}}/>
+                      </div>
+                    </div>
                 </details>
                 
              
