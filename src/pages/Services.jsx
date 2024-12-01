@@ -287,8 +287,11 @@ export const Services = () => {
                         <p>Home automation, or domotics, is building automation for a home, called a smart home or smart house. It involves the control and automation of lighting, heating, ventilation, air conditioning, and security, as well as home appliances such as washer/dryers, ovens or refrigerators.
                         </p>
                         <p>My personal setup uses some free and open source software called <a href='https://www.home-assistant.io/' target='_blank'>Home Assistant</a>, which can talk to just about any brand of IoT (Internet Of Things) device or "Smart device" you can think of.</p>
-                        <p>Doing it this way gives me a dashboard I can access through any web browser, that enables me to write the automation sequences, connect new devices or display any information I need, such as the temperature curve for any given sensor.</p>
-                        <p>Such is the versatility of home assistant I created a solution that uses a human presence detector, in conjunction with window sensors and a thermostatic radiator valve (trv) that enables me to accurately control the heating for a particular room, dependent on occupancy and whether the windows are closed or not. Ask any Hmo (multiple occupation housing) landlord about heating bills.</p>
+                        <br></br>
+                        <p>Doing it this way gives me a dashboard I can access through any web browser, that enables me to write the automation sequences, connect new devices or display any information I need, such as the temperature curve for any given sensor.</p><br></br><p>I call it 'AutoDad' </p>
+                        <br></br>
+                        <p>Such is the versatility of home assistant I created a solution that uses a human presence detector, in conjunction with window / door sensors and a thermostatic radiator valve (trv) that enables me to accurately control the heating for a particular room, dependent on occupancy and whether the windows are closed or not. Ask any Hmo (multiple occupation housing) landlord about heating bills.</p>
+                        <br></br><br></br>
                         <p>If you are interested in such a setup, and would like me to help, give me a call...</p>
                       </div>
                       <div className='image-2'>
@@ -299,7 +302,22 @@ export const Services = () => {
   
                 <details ref={weldingRef} name='details' className='description' onClick={(e) => handleMeta('Welding','Professional Mig welding, Tig welding, Arc welding services in Peterborough. Quality craftsmanship and reliable service.',weldingRef,e.target.open)}>
                 <summary id='summary'>MMA/Tig Welding</summary>  
-                <p>Tig/Mig/Arc Welding</p>
+                <div className='open'>
+                      <div className='image-1'>
+                      <img src='/images/workpics/van weld before.jpg' className={` ${expanded[18]?'larger-image':''}`} onClick={()=>{toggle(18)}}/>
+                      </div>
+                      <div className='text-column'>
+                        <ul>
+                          <li>Cars</li>
+                          <li>Vans</li>
+                          <li>Steelwork</li>
+                          <li>Stainless</li>
+                        </ul>
+                      </div>
+                      <div className='image-2'>
+                      <img src='/images/workpics/van weld after.jpg' className={` ${expanded[19]?'larger-image':''}`} onClick={()=>{toggle(19)}}/>
+                      </div>
+                    </div>
                 </details>
                 
                 <hr/>

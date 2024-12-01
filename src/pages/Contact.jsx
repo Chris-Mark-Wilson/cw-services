@@ -14,7 +14,7 @@ export const Contact = () => {
         <h4>Contact me</h4>
         <section className='description'>
            <p>Drop me an email <span onClick={handleClick}>chris@cmwilson.co.uk</span></p>
-            
+            <p>Or call 07597 852 695</p>
            </section>
 
         </div>
