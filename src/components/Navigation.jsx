@@ -165,7 +165,7 @@ export const Navigation = () => {
               
            
             
-            {!user&&<Nav.Link href="/signIn">Sign In</Nav.Link>}
+            {!user&&<Nav.Link href="/signIn">Admin</Nav.Link>}
            
             {user &&<NavDropdown title={<img src={user.photoURL}/>} id='basic-nav-dropdown'>
             <NavDropdown.Item href="/signout">Sign Out</NavDropdown.Item>
