@@ -70,17 +70,14 @@ const handleSelect=(e)=>{
             {selectedImage &&
             <> 
             <div  className="image-container">
-                <div className="close"
-                onClick={()=>setSelectedImage(null)}>
-                    <p>X</p>
-                </div>
+               
             <div className="image-title">
                     <h5>{images.find((image)=>image.url===selectedImage).title}</h5>
                 </div>
                 <div className="caption">
                     <p>{images.find((image)=>image.url===selectedImage).caption}</p>
                 </div>
-                <img  src={selectedImage} alt={images.find((image)=>image.url===selectedImage).caption} />
+                <img  onClick={()=>setSelectedImage(null)} src={selectedImage} alt={images.find((image)=>image.url===selectedImage).caption} />
             </div>
           
           </>}
