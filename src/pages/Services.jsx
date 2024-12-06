@@ -30,10 +30,11 @@ export const Services = () => {
        if(prev===description) return 'Our services include plastering and joinery in Peterborough.';
         return description;
     });
+    console.log(isOpen);
     if (isOpen && ref.current) {
       console.log(ref)
-      // ref.current.scrollTo({ top:ref.current.height, behavior: 'smooth'});
-      ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // ref.current.scrollTo({ top:150, behavior: 'smooth'});
+      ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
     };
     
