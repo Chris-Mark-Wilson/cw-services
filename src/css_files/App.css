@@ -230,7 +230,7 @@ details summary {
 
 .image-container{
   z-index:9999;
-border:5px solid rgb(147, 198, 58);
+border:2px solid rgb(47, 49, 43);
 border-radius:10px;
   position: fixed;
   top:50%;
