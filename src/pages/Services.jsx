@@ -260,6 +260,7 @@ export const Services = () => {
                           <li>Same day service</li>
                           <li>Emergency call out</li>
                           <li>Hmo conversions</li>
+                          <li>Fire doors</li>
                         </ul>
                       </div>
                       <div className='image-2'>
