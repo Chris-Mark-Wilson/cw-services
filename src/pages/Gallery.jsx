@@ -62,7 +62,7 @@ const handleSelect=(e)=>{
                         </div>
                     ))
                     :
-                    <div className="loader-container">
+                    <div className="loader-container" >
                         <p>Loading Images</p>
                         <ClipLoader
                             // color={color}
