@@ -86,7 +86,7 @@
   }
 }
 .image-1{
-  animation:slide-in-left 1.5s ease-in-out;
+  animation:slide-in-left 1s ease-in-out;
   grid-column: 1;
   grid-row:1;
   /* border:2px solid green; */
@@ -96,7 +96,7 @@
 
 }
 .text-column{
-  animation:slide-in-bottom 1.5s ease-in-out;
+  animation:slide-in-bottom 1s ease-in-out;
   border:1px solid rgb(73, 69, 69);
 max-height:300px;
 overflow-y: auto;
@@ -116,7 +116,7 @@ margin:auto;
   list-style-type:none;
 }
 .image-2{
-  animation:slide-in-right 1.5s ease-in-out;
+  animation:slide-in-right 1s ease-in-out;
   grid-column: 3;
   /* border:2px solid green; */
   display:flex;

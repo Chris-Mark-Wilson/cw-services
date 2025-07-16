@@ -10,13 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.7.7",
-    "firebase": "^10.12.5",
-    "react": "^18.3.1",
-    "react-bootstrap": "^2.10.4",
-    "react-dom": "^18.3.1",
+    "axios": "^1.7.7",git 
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.25.1",
+    "react-spinners": "^0.17.0",
     "sass": "^1.77.8",
     "use-prefers-color-scheme": "^1.1.3"
   },

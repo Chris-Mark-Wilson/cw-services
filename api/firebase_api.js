@@ -46,26 +46,41 @@ export const  getAllImagesByCategory = async (category) => {
         const imageData=[];
         const ref=baseRef(db, `categories/${category.id}`);
         const dbSnapShot = await get(ref);;
-        // console.log('here')
+        console.log('here')
         //return an object with image names as keys
         if(dbSnapShot.exists()){
     
         const images = Object.keys(dbSnapShot.val());
         const values = Object.values(dbSnapShot.val());
-        
+
         const imageDataPromises = images.map(async (image, index) => {
-          const imageId = values[index].imageId;
-          const imageRef = storeRef(storage, `images/${imageId}`);
-          const imageBlob = await getBlob(imageRef);
-        
-          return {
-            name: image,
-            caption: values[index].caption,
-            title: values[index].title,
-            imageId: imageId,
-            url: URL.createObjectURL(imageBlob),
-          };
+          try {
+            const imageId = values[index].imageId;
+            console.log('imageId:', imageId);
+            const imageRef = storeRef(storage, `images/${imageId}`);
+            const imageBlob = await getBlob(imageRef);
+            
+            return {
+              name: image,
+              caption: values[index].caption,
+              title: values[index].title,
+              imageId: imageId,
+              url: URL.createObjectURL(imageBlob),
+            };
+          } catch (error) {
+            console.log(`Error retrieving image ${image}:`, error);
+            // Return object with default image when an image can't be retrieved
+            return {
+              name: image,
+              caption: values[index].caption || 'No caption available',
+              title: values[index].title || 'Image not found',
+              imageId: 'default',
+              url: '/path/to/default/image.jpg', // Replace with actual path to your default image
+              error: true
+            };
+          }
         });
+
         //wait for all the image objects
         const imageData = await Promise.all(imageDataPromises);
         

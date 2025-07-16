@@ -2,6 +2,7 @@ import { useLocation} from "react-router-dom"
 import { getAllImagesByCategory } from "../../api/firebase_api";
 import { useEffect,useState } from "react";
 import '../css_files/App.css';
+import { ClipLoader } from "react-spinners";
 export const Gallery=()=>{
 
 const location=useLocation();
@@ -34,37 +35,47 @@ const handleSelect=(e)=>{
     setSelectedImage(e.target.src);
 }
 
-    return(
+    return (
         <div >
-        
+
             <h1>{capitalise(name)}</h1>
             <div className="gallery">
-                {images.length>0
-                ?
-                images.map((image,index)=>(
-                    <div key={index} className='gallery-card'>
-                    <>
-                    <img 
-                     src={image.url}
-                     alt={image.caption}
-                     title={'Click on image to expand'}
-                     onClick={(e)=>handleSelect(e)} />
-                     <p className='gallery-card-title'>
-                        {image.title?image.title:'No title'}
-                     </p>
-                     <div className='gallery-card-caption'>
-                     <p  title={image.caption}>
-                        {image.caption}
-                     </p>
-                     </div>
-                     </>
-                </div>
-                ))
-                :
-                <p>Loading Images</p>
-       
-               }
-              
+                {images.length > 0
+                    ?
+                    images.map((image, index) => (
+                        <div key={index} className='gallery-card'>
+                            <>
+                                <img
+                                    src={image.url}
+                                    alt={image.caption}
+                                    title={'Click on image to expand'}
+                                    onClick={(e) => handleSelect(e)} />
+                                <p className='gallery-card-title'>
+                                    {image.title ? image.title : 'No title'}
+                                </p>
+                                <div className='gallery-card-caption'>
+                                    <p title={image.caption}>
+                                        {image.caption}
+                                    </p>
+                                </div>
+                            </>
+                        </div>
+                    ))
+                    :
+                    <div className="loader-container">
+                        <p>Loading Images</p>
+                        <ClipLoader
+                            // color={color}
+                            // loading={loading}
+                            // cssOverride={override}
+                            size={150}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
+                    </div>
+
+                }
+
             </div>
 
             {selectedImage &&
