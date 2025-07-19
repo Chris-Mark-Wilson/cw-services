@@ -75,8 +75,7 @@ export const  getAllImagesByCategory = async (category) => {
               caption: values[index].caption || 'No caption available',
               title: values[index].title || 'Image not found',
               imageId: 'default',
-              url: '/path/to/default/image.jpg', // Replace with actual path to your default image
-              error: true
+              url: '/images/defualt-not-found.jpg',    error: true
             };
           }
         });
